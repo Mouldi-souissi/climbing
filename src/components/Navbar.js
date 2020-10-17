@@ -1,11 +1,12 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-light navbar-expand-lg">
-      <a className="navbar-brand" href="/">
+    <nav className="navbar navbar-light navbar-expand-lg transparent">
+      <Link className="navbar-brand" to="/">
         Climbing
-      </a>
+      </Link>
       <button
         className="navbar-toggler"
         type="button"
@@ -19,25 +20,25 @@ const Navbar = () => {
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
-          <li className="nav-item active">
-            <a className="nav-link" href="/">
-              Home <span className="sr-only">(current)</span>
-            </a>
+          <li className="nav-item">
+            <NavLink exact className="nav-link" to="/" activeclassname="active">
+              Home
+            </NavLink>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/posts">
+            <NavLink className="nav-link" to="/posts" activeclassname="active">
               Posts
-            </a>
+            </NavLink>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/events">
+            <NavLink className="nav-link" to="/events" activeclassname="active">
               Events
-            </a>
+            </NavLink>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/shop">
+            <NavLink className="nav-link" to="/shop" activeclassname="active">
               Shop
-            </a>
+            </NavLink>
           </li>
         </ul>
         <div role="navigation" className="mt-3 mt-lg-0 mt-md-0 ml-auto p-2">

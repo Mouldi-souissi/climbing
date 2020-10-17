@@ -1,6 +1,20 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { GlobalContext } from "../GlobalContext";
 
 const SignIn = () => {
+  const { isConnected, login } = useContext(GlobalContext);
+  const [data, setData] = useState("");
+
+  const handleInput = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+    console.log(e.target.value);
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    login(data.login, data.password);
+  };
+
   return (
     <div className="sign-up">
       <div className="registration-form">
@@ -16,6 +30,8 @@ const SignIn = () => {
               className="form-control item"
               id="email"
               placeholder="Email"
+              name="login"
+              onChange={handleInput}
             />
           </div>
           <div className="form-group">
@@ -24,10 +40,16 @@ const SignIn = () => {
               className="form-control item"
               id="password"
               placeholder="Password"
+              name="password"
+              onChange={handleInput}
             />
           </div>
           <div className="form-group">
-            <button type="button" className="btn btn-block create-account">
+            <button
+              type="button"
+              className="btn btn-block create-account"
+              onClick={handleLogin}
+            >
               Login
             </button>
           </div>

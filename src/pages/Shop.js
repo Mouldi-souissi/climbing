@@ -1,6 +1,6 @@
 import ShopCard from "../components/ShopCard";
 import React, { useState } from "react";
-import ShopSearch from "../components/ShopSearch";
+import { Link } from "react-router-dom";
 
 const Shop = () => {
   const [articles, setArticles] = useState({
@@ -13,14 +13,14 @@ const Shop = () => {
           "https://ae01.alicdn.com/kf/HTB1PHEkOVXXXXXwXpXXq6xXFXXXW/2017-Canvas-Leather-Crossbody-Bag-Men-Military-Army-Vintage-Messenger-Bags-Large-Shoulder-Bag-Casual-Travel.jpg",
       },
       {
-        name: "bag",
-        price: 200,
+        name: "5ima",
+        price: 300,
         description: "7aja nthifa",
         pics:
           "https://ae01.alicdn.com/kf/HTB1PHEkOVXXXXXwXpXXq6xXFXXXW/2017-Canvas-Leather-Crossbody-Bag-Men-Military-Army-Vintage-Messenger-Bags-Large-Shoulder-Bag-Casual-Travel.jpg",
       },
       {
-        name: "bag",
+        name: "canne",
         price: 200,
         description: "7aja nthifa",
         pics: "",
@@ -28,11 +28,231 @@ const Shop = () => {
     ],
   });
   return (
-    <div className="container-fluid shop" style={{ paddingTop: "100px" }}>
-      <ShopSearch />
-      {articles.articles.map((article) => (
-        <ShopCard article={article} />
-      ))}
+    <div className="shop" style={{ paddingTop: "100px" }}>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="grid search">
+              <div className="grid-body">
+                <div className="row">
+                  <div className="col-md-3">
+                    <h2 className="grid-title">
+                      <i className="fa fa-filter"></i> Filters
+                    </h2>
+                    <hr />
+                    <h4>By category:</h4>
+                    <div className="checkbox">
+                      <label>
+                        <input type="checkbox" className="icheck" /> Application
+                      </label>
+                    </div>
+                    <div className="checkbox">
+                      <label>
+                        <input type="checkbox" className="icheck" /> Design
+                      </label>
+                    </div>
+                    <div className="checkbox">
+                      <label>
+                        <input type="checkbox" className="icheck" /> Desktop
+                      </label>
+                    </div>
+                    <div className="checkbox">
+                      <label>
+                        <input type="checkbox" className="icheck" /> Management
+                      </label>
+                    </div>
+                    <div className="checkbox">
+                      <label>
+                        <input type="checkbox" className="icheck" /> Mobile
+                      </label>
+                    </div>
+                    <div className="padding"></div>
+                    <h4>By date:</h4>
+                    From
+                    <div
+                      className="input-group date form_date"
+                      data-date="2014-06-14T05:25:07Z"
+                      data-date-format="dd-mm-yyyy"
+                      data-link-field="dtp_input1"
+                    >
+                      <input type="text" className="form-control" />
+                      <div className="input-group-append">
+                        <span class="input-group-text">
+                          <i className="fa fa-th" />
+                        </span>
+                      </div>
+                    </div>
+                    <input type="hidden" id="dtp_input1" value="" />
+                    To
+                    <div
+                      className="input-group date form_date"
+                      data-date="2014-06-14T05:25:07Z"
+                      data-date-format="dd-mm-yyyy"
+                      data-link-field="dtp_input2"
+                    >
+                      <input type="text" className="form-control" />
+                      <span class="input-group-text">
+                        <i className="fa fa-th" />
+                      </span>
+                    </div>
+                    <input type="hidden" id="dtp_input2" value="" />
+                    <div className="padding"></div>
+                    <h4>By price:</h4>
+                    Between <div id="price1">$300</div> to{" "}
+                    <div id="price2">$800</div>
+                    <div className="slider-primary">
+                      <div
+                        className="slider slider-horizontal"
+                        style={{ width: "152px" }}
+                      >
+                        <div className="slider-track">
+                          <div
+                            className="slider-selection"
+                            style={{ left: "30%", width: "50%" }}
+                          ></div>
+                          <div
+                            className="slider-handle round"
+                            style={{ left: "30%" }}
+                          ></div>
+                          <div
+                            className="slider-handle round"
+                            style={{ left: "80%" }}
+                          ></div>
+                        </div>
+                        <div
+                          className="tooltip top hide"
+                          style={{ top: "-30px", left: "50.1px" }}
+                        >
+                          <div className="tooltip-arrow"></div>
+                          <div className="tooltip-inner">300 : 800</div>
+                        </div>
+                        <input
+                          type="text"
+                          className="slider"
+                          value=""
+                          data-slider-min="0"
+                          data-slider-max="1000"
+                          data-slider-step="1"
+                          data-slider-value="[300,800]"
+                          data-slider-tooltip="hide"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="col-md-9">
+                    <h2>
+                      <i className="fa fa-file-o"></i> Result
+                    </h2>
+                    <hr />
+
+                    <div className="input-group">
+                      <input
+                        type="text"
+                        className="form-control"
+                        value="web development"
+                      />
+                      <span className="input-group-btn">
+                        <button className="btn btn-primary" type="button">
+                          <i className="fa fa-search"></i>
+                        </button>
+                      </span>
+                    </div>
+
+                    <p>Showing all results matching "web development"</p>
+
+                    <div className="padding"></div>
+
+                    <div className="row">
+                      <div className="col-sm-6">
+                        <div className="btn-group">
+                          <button
+                            type="button"
+                            className="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown"
+                          >
+                            Order by <span className="caret"></span>
+                          </button>
+                          <ul className="dropdown-menu" role="menu">
+                            <li>
+                              <a href="/">Name</a>
+                            </li>
+                            <li>
+                              <a href="/">Date</a>
+                            </li>
+                            <li>
+                              <a href="/">View</a>
+                            </li>
+                            <li>
+                              <a href="/">Rating</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div className="col-md-6 text-right">
+                        <div className="btn-group">
+                          <button
+                            type="button"
+                            className="btn btn-default active"
+                          >
+                            <i className="fa fa-list"></i>
+                          </button>
+                          <button type="button" className="btn btn-default">
+                            <i className="fa fa-th"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="table-responsive">
+                      <table className="table table-hover">
+                        <tbody>
+                          {articles.articles.map((article) => (
+                            <Link to={`/shop/article${article.name}`}>
+                              <ShopCard article={article} />
+                            </Link>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <nav aria-label="Page navigation example">
+                      <ul class="pagination">
+                        <li class="page-item">
+                          <a class="page-link" href="/" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                          </a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="/">
+                            1
+                          </a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="/">
+                            2
+                          </a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="/">
+                            3
+                          </a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="/" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

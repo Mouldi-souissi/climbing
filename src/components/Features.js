@@ -5,7 +5,7 @@ import Feature3 from "../assets/feature3.jpg";
 const Features = () => {
   return (
     <div className="container">
-      <hr className="featurette-divider" />
+      {/* <hr className="featurette-divider" /> */}
 
       <div className="row featurette d-flex align-items-center mb-5 mt-5">
         <div className="col-md-7">
@@ -81,7 +81,7 @@ const Features = () => {
         </div>
       </div>
 
-      <hr className="featurette-divider" />
+      {/* <hr className="featurette-divider" /> */}
     </div>
   );
 };
