@@ -4,7 +4,7 @@ export const GlobalContext = React.createContext();
 
 class GlobalProvider extends Component {
   // Context state
-  state = { isConnected: "ggh" };
+  state = { isConnected: "" };
 
   // Method to update state
   login = (login, password) => {
