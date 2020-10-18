@@ -80,7 +80,7 @@ function ShopArticleDetails() {
             <h2 className="name">
               Product Name Title Here
               <small>
-                Product by <a href="javascript:void(0);">Adeline</a>
+                Product by <a href="/">Adeline</a>
               </small>
               <i className="fa fa-star fa-2x text-primary"></i>
               <i className="fa fa-star fa-2x text-primary"></i>
@@ -90,7 +90,7 @@ function ShopArticleDetails() {
               <span className="fa fa-2x">
                 <h5>(109) Votes</h5>
               </span>
-              <a href="javascript:void(0);">109 customer reviews</a>
+              <a href="/">109 customer reviews</a>
             </h2>
             <hr />
             <h3 className="price-container">
@@ -100,12 +100,12 @@ function ShopArticleDetails() {
             <div className="certified">
               <ul>
                 <li>
-                  <a href="javascript:void(0);">
+                  <a href="/">
                     Delivery time<span>7 Working Days</span>
                   </a>
                 </li>
                 <li>
-                  <a href="javascript:void(0);">
+                  <a href="/">
                     Certified<span>Quality Assured</span>
                   </a>
                 </li>
@@ -183,7 +183,7 @@ function ShopArticleDetails() {
                         Submit Review
                       </button>
                       <a
-                        href="javascript:void(0);"
+                        href="/"
                         className="btn btn-link profile-link-btn"
                         rel="tooltip"
                         data-placement="bottom"
@@ -193,7 +193,7 @@ function ShopArticleDetails() {
                         <i className="fa fa-location-arrow"></i>
                       </a>
                       <a
-                        href="javascript:void(0);"
+                        href="/"
                         className="btn btn-link profile-link-btn"
                         rel="tooltip"
                         data-placement="bottom"
@@ -203,7 +203,7 @@ function ShopArticleDetails() {
                         <i className="fa fa-microphone"></i>
                       </a>
                       <a
-                        href="javascript:void(0);"
+                        href="/"
                         className="btn btn-link profile-link-btn"
                         rel="tooltip"
                         data-placement="bottom"
@@ -213,7 +213,7 @@ function ShopArticleDetails() {
                         <i className="fa fa-camera"></i>
                       </a>
                       <a
-                        href="javascript:void(0);"
+                        href="/"
                         className="btn btn-link profile-link-btn"
                         rel="tooltip"
                         data-placement="bottom"
@@ -231,9 +231,10 @@ function ShopArticleDetails() {
                         <img
                           src="https://bootdey.com/img/Content/avatar/avatar1.png"
                           className="online"
+                          alt="pic"
                         />
                         <span className="message-text">
-                          <a href="javascript:void(0);" className="username">
+                          <a href="/" className="username">
                             Alisha Molly
                             <span className="badge">Purchase Verified</span>
                             <span className="pull-right">
@@ -251,7 +252,7 @@ function ShopArticleDetails() {
                         </span>
                         <ul className="list-inline font-xs">
                           <li>
-                            <a href="javascript:void(0);" className="text-info">
+                            <a href="/" className="text-info">
                               <i className="fa fa-thumbs-up"></i> This was
                               helpful (22)
                             </a>
@@ -268,9 +269,10 @@ function ShopArticleDetails() {
                         <img
                           src="https://bootdey.com/img/Content/avatar/avatar2.png"
                           className="online"
+                          alt="pic"
                         />
                         <span className="message-text">
-                          <a href="javascript:void(0);" className="username">
+                          <a href="/" className="username">
                             Aragon Zarko
                             <span className="badge">Purchase Verified</span>
                             <span className="pull-right">
@@ -285,7 +287,7 @@ function ShopArticleDetails() {
                         </span>
                         <ul className="list-inline font-xs">
                           <li>
-                            <a href="javascript:void(0);" className="text-info">
+                            <a href="/" className="text-info">
                               <i className="fa fa-thumbs-up"></i> This was
                               helpful (22)
                             </a>
@@ -306,10 +308,7 @@ function ShopArticleDetails() {
             <hr />
             <div className="row">
               <div className="col-sm-12 col-md-6 col-lg-6">
-                <a
-                  href="javascript:void(0);"
-                  className="btn btn-success btn-lg"
-                >
+                <a href="/" className="btn btn-success btn-lg">
                   Add to cart ($129.54)
                 </a>
               </div>

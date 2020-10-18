@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { GlobalContext } from "../GlobalContext";
 
 const SignIn = () => {
-  const { isConnected, login } = useContext(GlobalContext);
+  const { login } = useContext(GlobalContext);
   const [data, setData] = useState("");
 
   const handleInput = (e) => {
@@ -13,6 +13,13 @@ const SignIn = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     login(data.login, data.password);
+  };
+
+  let passwordRef = null;
+  let buttonRef = null;
+  const handleFocus = (name) => {
+    name.focus();
+    console.log(name);
   };
 
   return (
@@ -32,6 +39,9 @@ const SignIn = () => {
               placeholder="Email"
               name="login"
               onChange={handleInput}
+              onKeyUp={(e) => {
+                e.keyCode === 13 && handleFocus(passwordRef);
+              }}
             />
           </div>
           <div className="form-group">
@@ -42,6 +52,10 @@ const SignIn = () => {
               placeholder="Password"
               name="password"
               onChange={handleInput}
+              ref={(input) => (passwordRef = input)}
+              onKeyUp={(e) => {
+                e.keyCode === 13 && handleFocus(buttonRef);
+              }}
             />
           </div>
           <div className="form-group">
@@ -49,6 +63,7 @@ const SignIn = () => {
               type="button"
               className="btn btn-block create-account"
               onClick={handleLogin}
+              ref={(input) => (buttonRef = input)}
             >
               Login
             </button>
