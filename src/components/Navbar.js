@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import GlobalContext from "../GlobalContext";
 
 const Navbar = () => {
   const { isConnected } = useContext(GlobalContext);
+  let history = useHistory();
   const handleLogout = () => {
     window.localStorage.removeItem("token");
+    history.push("/");
   };
   return (
     <nav className="navbar navbar-light navbar-expand-lg transparent">
@@ -31,8 +33,8 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/posts" activeclassname="active">
-              Posts
+            <NavLink className="nav-link" to="/blog" activeclassname="active">
+              Blog
             </NavLink>
           </li>
           <li className="nav-item">
@@ -49,18 +51,32 @@ const Navbar = () => {
         <div role="navigation" className="mt-3 mt-lg-0 mt-md-0 ml-auto p-2">
           <div className="d-flex align-items-center">
             {isConnected ? (
-              <div>
+              <div className="d-flex">
+                {/* <i
+                  className="fa fa-user-circle-o mr-5 fa-2x "
+                  aria-hidden="true"
+                /> */}
+                <Link
+                  to="/profile"
+                  className="d-flex align-items-end"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <div className="avatar-nav mr-3">
+                    <i className="fa fa-circle greenDot" aria-hidden="true" />
+                  </div>
+                  <h6 className="mr-3 text-muted">Mouldi</h6>
+                </Link>
                 <button
-                  className="btn btn-success"
+                  className="btn btn-outline-warning"
                   type="button"
                   onClick={handleLogout}
                 >
-                  <i
+                  {/* <i
                     className="fa fa-sign-out mr-1"
                     aria-hidden="true"
                     style={{ color: "white" }}
-                  />
-                  Exit
+                  /> */}
+                  Sign out
                 </button>
               </div>
             ) : (

@@ -15,6 +15,9 @@ class GlobalProvider extends Component {
       });
     }
   };
+  componentDidMount() {
+    this.setState({ isConnected: localStorage.getItem("token") });
+  }
 
   render() {
     const { children } = this.props;

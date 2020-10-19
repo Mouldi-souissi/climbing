@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ShopCard = ({ article }) => {
   return (
@@ -45,11 +46,14 @@ const ShopCard = ({ article }) => {
       <td className="image">
         <img src={article.pics} alt="" />
       </td>
-      <td className="product">
-        <strong>{article.name}</strong>
-        <br />
-        This is the product description.
-      </td>
+      <Link to={`/shop/article${article.name}`}>
+        <td className="product">
+          <strong>{article.name}</strong>
+          <br />
+          This is the product description.
+        </td>
+      </Link>
+
       <td className="rate text-right">
         <span>
           <i className="fa fa-star"></i>

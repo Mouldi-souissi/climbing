@@ -1,14 +1,15 @@
 import React from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import SignUp from "./components/SignUp";
+import SignUp from "./pages/SignUp";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
-import SignIn from "./components/SignIn";
+import SignIn from "./pages/SignIn";
 import Shop from "./pages/Shop";
 import ShopArticleDetails from "./components/ShopArticleDetails";
 import Page404 from "./pages/Page404";
 import { PrivateRoute } from "./PrivateRoute";
+import Blog from "./pages/Blog";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             path="/shop/article:id"
             component={ShopArticleDetails}
           />
+          <PrivateRoute exact path="/blog" component={Blog} />
           <Route component={Page404} />
         </Switch>
       </Router>

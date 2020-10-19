@@ -10,14 +10,14 @@ function ShopArticleDetails() {
         <div className="row">
           <div
             id="carouselExampleIndicators"
-            class="carousel slide col-md-5 col-sm-12 col-xs-12"
+            className="carousel slide col-md-5 col-sm-12 col-xs-12"
             data-ride="carousel"
           >
-            <ol class="carousel-indicators">
+            <ol className="carousel-indicators">
               <li
                 data-target="#carouselExampleIndicators"
                 data-slide-to="0"
-                class="active"
+                className="active"
               ></li>
               <li
                 data-target="#carouselExampleIndicators"
@@ -28,52 +28,52 @@ function ShopArticleDetails() {
                 data-slide-to="2"
               ></li>
             </ol>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
+            <div className="carousel-inner">
+              <div className="carousel-item active">
                 <img
                   src="https://via.placeholder.com/700x400/FFB6C1/000000"
-                  class="d-block w-100"
+                  className="d-block w-100"
                   alt="..."
                 />
               </div>
-              <div class="carousel-item">
+              <div className="carousel-item">
                 <img
                   src="https://via.placeholder.com/700x400/87CEFA/000000"
-                  class="d-block w-100"
+                  className="d-block w-100"
                   alt="..."
                 />
               </div>
-              <div class="carousel-item">
+              <div className="carousel-item">
                 <img
                   src="https://via.placeholder.com/700x400/87CEFA/000000"
-                  class="d-block w-100"
+                  className="d-block w-100"
                   alt="..."
                 />
               </div>
             </div>
             <a
-              class="carousel-control-prev"
+              className="carousel-control-prev"
               href="#carouselExampleIndicators"
               role="button"
               data-slide="prev"
             >
               <span
-                class="carousel-control-prev-icon"
+                className="carousel-control-prev-icon"
                 aria-hidden="true"
               ></span>
-              <span class="sr-only">Previous</span>
+              <span className="sr-only">Previous</span>
             </a>
             <a
-              class="carousel-control-next"
+              className="carousel-control-next"
               href="#carouselExampleIndicators"
               role="button"
               data-slide="next"
             >
               <span
-                class="carousel-control-next-icon"
+                className="carousel-control-next-icon"
                 aria-hidden="true"
               ></span>
-              <span class="sr-only">Next</span>
+              <span className="sr-only">Next</span>
             </a>
           </div>
           <div className="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
@@ -168,7 +168,7 @@ function ShopArticleDetails() {
                   <form
                     method="post"
                     className="well padding-bottom-10"
-                    onsubmit="return false;"
+                    onSubmit={() => console.log("submit")}
                   >
                     <textarea
                       rows="2"

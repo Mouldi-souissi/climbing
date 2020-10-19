@@ -7,7 +7,10 @@ const Features = () => {
     <div className="container">
       {/* <hr className="featurette-divider" /> */}
 
-      <div className="row featurette d-flex align-items-center mb-5 mt-5">
+      <div
+        className="row featurette d-flex align-items-center mb-5 mt-5"
+        data-aos="fade-left"
+      >
         <div className="col-md-7">
           <h2 className="featurette-heading">
             Participate in climbing and hiking events.{" "}
@@ -31,7 +34,10 @@ const Features = () => {
         </div>
       </div>
       <hr className="featurette-divider" />
-      <div className="row featurette d-flex align-items-center mb-5 mt-5">
+      <div
+        className="row featurette d-flex align-items-center mb-5 mt-5 "
+        data-aos="fade-right"
+      >
         <div className="col-md-7 order-md-2">
           <h2 className="featurette-heading">
             Organize events.{" "}
@@ -57,7 +63,10 @@ const Features = () => {
 
       <hr className="featurette-divider " />
 
-      <div className="row featurette d-flex align-items-center mb-5 mt-5">
+      <div
+        className="row featurette d-flex align-items-center mb-5 mt-5"
+        data-aos="fade-left"
+      >
         <div className="col-md-7">
           <h2 className="featurette-heading">
             And lastly, you can sell or buy equipment.{" "}

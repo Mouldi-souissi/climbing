@@ -1,11 +1,11 @@
 import ShopCard from "../components/ShopCard";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
 const Shop = () => {
   const [articles, setArticles] = useState({
     articles: [
       {
+        id: 1,
         name: "bag",
         price: 200,
         description: "7aja nthifa",
@@ -13,6 +13,7 @@ const Shop = () => {
           "https://ae01.alicdn.com/kf/HTB1PHEkOVXXXXXwXpXXq6xXFXXXW/2017-Canvas-Leather-Crossbody-Bag-Men-Military-Army-Vintage-Messenger-Bags-Large-Shoulder-Bag-Casual-Travel.jpg",
       },
       {
+        id: 2,
         name: "5ima",
         price: 300,
         description: "7aja nthifa",
@@ -20,6 +21,7 @@ const Shop = () => {
           "https://ae01.alicdn.com/kf/HTB1PHEkOVXXXXXwXpXXq6xXFXXXW/2017-Canvas-Leather-Crossbody-Bag-Men-Military-Army-Vintage-Messenger-Bags-Large-Shoulder-Bag-Casual-Travel.jpg",
       },
       {
+        id: 3,
         name: "canne",
         price: 200,
         description: "7aja nthifa",
@@ -77,12 +79,12 @@ const Shop = () => {
                     >
                       <input type="text" className="form-control" />
                       <div className="input-group-append">
-                        <span class="input-group-text">
+                        <span className="input-group-text">
                           <i className="fa fa-th" />
                         </span>
                       </div>
                     </div>
-                    <input type="hidden" id="dtp_input1" value="" />
+                    <input type="hidden" id="dtp_input1" defaultValue="" />
                     To
                     <div
                       className="input-group date form_date"
@@ -91,11 +93,11 @@ const Shop = () => {
                       data-link-field="dtp_input2"
                     >
                       <input type="text" className="form-control" />
-                      <span class="input-group-text">
+                      <span className="input-group-text">
                         <i className="fa fa-th" />
                       </span>
                     </div>
-                    <input type="hidden" id="dtp_input2" value="" />
+                    <input type="hidden" id="dtp_input2" defaultValue="" />
                     <div className="padding"></div>
                     <h4>By price:</h4>
                     Between <div id="price1">$300</div> to{" "}
@@ -129,7 +131,7 @@ const Shop = () => {
                         <input
                           type="text"
                           className="slider"
-                          value=""
+                          defaultValue=""
                           data-slider-min="0"
                           data-slider-max="1000"
                           data-slider-step="1"
@@ -150,7 +152,7 @@ const Shop = () => {
                       <input
                         type="text"
                         className="form-control"
-                        value="web development"
+                        defaultValue="web development"
                       />
                       <span className="input-group-btn">
                         <button className="btn btn-primary" type="button">
@@ -209,38 +211,40 @@ const Shop = () => {
                       <table className="table table-hover">
                         <tbody>
                           {articles.articles.map((article) => (
-                            <Link to={`/shop/article${article.name}`}>
-                              <ShopCard article={article} />
-                            </Link>
+                            <ShopCard article={article} key={article.id} />
                           ))}
                         </tbody>
                       </table>
                     </div>
 
                     <nav aria-label="Page navigation example">
-                      <ul class="pagination">
-                        <li class="page-item">
-                          <a class="page-link" href="/" aria-label="Previous">
+                      <ul className="pagination">
+                        <li className="page-item">
+                          <a
+                            className="page-link"
+                            href="/"
+                            aria-label="Previous"
+                          >
                             <span aria-hidden="true">&laquo;</span>
                           </a>
                         </li>
-                        <li class="page-item">
-                          <a class="page-link" href="/">
+                        <li className="page-item">
+                          <a className="page-link" href="/">
                             1
                           </a>
                         </li>
-                        <li class="page-item">
-                          <a class="page-link" href="/">
+                        <li className="page-item">
+                          <a className="page-link" href="/">
                             2
                           </a>
                         </li>
-                        <li class="page-item">
-                          <a class="page-link" href="/">
+                        <li className="page-item">
+                          <a className="page-link" href="/">
                             3
                           </a>
                         </li>
-                        <li class="page-item">
-                          <a class="page-link" href="/" aria-label="Next">
+                        <li className="page-item">
+                          <a className="page-link" href="/" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                           </a>
                         </li>

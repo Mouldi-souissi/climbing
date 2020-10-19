@@ -7,7 +7,6 @@ const SignIn = () => {
 
   const handleInput = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
-    console.log(e.target.value);
   };
 
   const handleLogin = (e) => {
@@ -19,11 +18,10 @@ const SignIn = () => {
   let buttonRef = null;
   const handleFocus = (name) => {
     name.focus();
-    console.log(name);
   };
 
   return (
-    <div className="sign-up">
+    <div className="sign-up bg-light">
       <div className="registration-form">
         <form>
           <div className="form-icon">

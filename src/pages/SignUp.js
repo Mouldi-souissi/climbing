@@ -2,7 +2,7 @@ import React from "react";
 
 const SignUp = () => {
   return (
-    <div className="sign-up">
+    <div className="sign-up bg-light">
       <div className="registration-form">
         <form>
           <div className="form-icon">
