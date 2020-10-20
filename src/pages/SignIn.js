@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../GlobalContext";
 
 const SignIn = () => {
@@ -14,12 +14,16 @@ const SignIn = () => {
     login(data.login, data.password);
   };
 
+  let logindRef = null;
   let passwordRef = null;
   let buttonRef = null;
   const handleFocus = (name) => {
     name.focus();
   };
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    logindRef.focus();
+  }, []);
   return (
     <div className="sign-up bg-light">
       <div className="registration-form">
@@ -29,25 +33,30 @@ const SignIn = () => {
               <i className="icon icon-user"></i>
             </span>
           </div>
-          <div className="form-group">
+          <div className="form__div">
             <input
+              autocomplete="off"
               type="text"
-              className="form-control item"
+              className="form__input"
               id="email"
-              placeholder="Email"
+              placeholder=" "
               name="login"
               onChange={handleInput}
+              ref={(input) => (logindRef = input)}
               onKeyUp={(e) => {
                 e.keyCode === 13 && handleFocus(passwordRef);
               }}
             />
+            <label for="" class="form__label">
+              Email
+            </label>
           </div>
-          <div className="form-group">
+          <div className="form__div">
             <input
               type="password"
-              className="form-control item"
+              className="form__input"
               id="password"
-              placeholder="Password"
+              placeholder=" "
               name="password"
               onChange={handleInput}
               ref={(input) => (passwordRef = input)}
@@ -55,6 +64,9 @@ const SignIn = () => {
                 e.keyCode === 13 && handleFocus(buttonRef);
               }}
             />
+            <label for="" class="form__label">
+              Password
+            </label>
           </div>
           <div className="form-group">
             <button

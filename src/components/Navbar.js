@@ -3,11 +3,13 @@ import { Link, NavLink, useHistory } from "react-router-dom";
 import GlobalContext from "../GlobalContext";
 
 const Navbar = () => {
-  const { isConnected } = useContext(GlobalContext);
+  const { isConnected, logOut } = useContext(GlobalContext);
+  // let isConnected = localStorage.getItem("token");
   let history = useHistory();
   const handleLogout = () => {
     window.localStorage.removeItem("token");
     history.push("/");
+    logOut();
   };
   return (
     <nav className="navbar navbar-light navbar-expand-lg transparent">

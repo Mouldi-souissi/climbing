@@ -1,5 +1,5 @@
 import ShopCard from "../components/ShopCard";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Shop = () => {
   const [articles, setArticles] = useState({
@@ -29,6 +29,10 @@ const Shop = () => {
       },
     ],
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="shop" style={{ paddingTop: "100px" }}>
       <div className="container">
