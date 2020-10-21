@@ -50,6 +50,7 @@ const Navbar = () => {
             </NavLink>
           </li>
         </ul>
+
         <div role="navigation" className="mt-3 mt-lg-0 mt-md-0 ml-auto p-2">
           <div className="d-flex align-items-center">
             {isConnected ? (
@@ -58,6 +59,7 @@ const Navbar = () => {
                   className="fa fa-user-circle-o mr-5 fa-2x "
                   aria-hidden="true"
                 /> */}
+
                 <Link
                   to="/profile"
                   className="d-flex align-items-end"
@@ -69,15 +71,15 @@ const Navbar = () => {
                   <h6 className="mr-3 text-muted">Mouldi</h6>
                 </Link>
                 <button
-                  className="btn btn-outline-warning"
+                  className="btn btn-primary"
                   type="button"
                   onClick={handleLogout}
                 >
-                  {/* <i
+                  <i
                     className="fa fa-sign-out mr-1"
                     aria-hidden="true"
                     style={{ color: "white" }}
-                  /> */}
+                  />
                   Sign out
                 </button>
               </div>

@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
 import { GlobalContext } from "../GlobalContext";
 
-const SignIn = () => {
-  const { login } = useContext(GlobalContext);
+const SignIn = (props) => {
+  const { login, isConnected } = useContext(GlobalContext);
   const [data, setData] = useState("");
 
   const handleInput = (e) => {
@@ -12,6 +13,7 @@ const SignIn = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     login(data.login, data.password);
+    // this.props.history.push("/blog");
   };
 
   let logindRef = null;
@@ -24,6 +26,9 @@ const SignIn = () => {
     window.scrollTo(0, 0);
     logindRef.focus();
   }, []);
+  if (isConnected) {
+    return <Redirect to="/" />;
+  }
   return (
     <div className="sign-up bg-light">
       <div className="registration-form">

@@ -2,9 +2,10 @@ import React from "react";
 import Feature1 from "../assets/feature1.jpg";
 import Feature2 from "../assets/feature2.jpg";
 import Feature3 from "../assets/feature3.jpg";
+import Bonus from "./Bonus";
 const Features = () => {
   return (
-    <div className="container">
+    <div className="container-fluid">
       {/* <hr className="featurette-divider" /> */}
 
       <div
@@ -33,7 +34,7 @@ const Features = () => {
           />
         </div>
       </div>
-      <hr className="featurette-divider" />
+
       <div
         className="row featurette d-flex align-items-center mb-5 mt-5 "
         data-aos="fade-right"
@@ -43,7 +44,7 @@ const Features = () => {
             Organize events.{" "}
             <span className="text-muted">It takes just few clicks.</span>
           </h2>
-          <p className="lead">
+          <p className="lead mx-5">
             Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id
             ligula porta felis euismod semper. Praesent commodo cursus magna,
             vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
@@ -60,8 +61,6 @@ const Features = () => {
           />
         </div>
       </div>
-
-      <hr className="featurette-divider " />
 
       <div
         className="row featurette d-flex align-items-center mb-5 mt-5"
