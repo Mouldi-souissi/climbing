@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import blog from "../assets/blog.jpg";
 
 function BlogCard({ post }) {
   const textLimit = (text) => {
@@ -11,33 +12,33 @@ function BlogCard({ post }) {
     }
   };
   return (
-    <div className="col-sm-6">
-      <div className="blog-grid">
-        <div className="blog-img">
-          <div className="date">
-            <span>04</span>
-            <label>FEB</label>
-          </div>
-          <a href="/">
-            <img
-              src="https://via.placeholder.com/400x200/FFB6C1/000000"
-              title=""
-              alt=""
-            />
-          </a>
+    <div className="col-lg-12 blog-card" data-aos="zoom-in">
+      <div className="card-img-top">
+        <div className="date">
+          <span>04</span>
+          <label>FEB</label>
         </div>
-        <div className="blog-info">
-          <h5>{post.title}</h5>
-          <p>{textLimit(post.body)}</p>
-          <div className="btn-bar">
-            <div className="px-btn-arrow">
-              <Link
-                to={`/blog/post${post.id}`}
-                style={{ textDecoration: "none" }}
-              >
-                <span>Read More</span>
-              </Link>
-              <i className="arrow"></i>
+        <Link to={`/blog/post${post.id}`} style={{ textDecoration: "none" }}>
+          <img src={blog} title="" alt="" />
+        </Link>
+      </div>
+
+      <div className="card-body">
+        <h5 className="card-title">{post.title}</h5>
+        <p>{textLimit(post.body)}</p>
+        <div className="btn-bar ">
+          <Link to={`/blog/post${post.id}`} style={{ textDecoration: "none" }}>
+            <span>Read More</span>
+            <i class="fa fa-arrow-right ml-2" aria-hidden="true" />
+          </Link>
+          <div className="d-flex float-right">
+            <div className="like mr-3">
+              <i class="fa fa-heart mr-2" aria-hidden="true" />
+              <span>10</span>
+            </div>
+            <div className="comment">
+              <i class="fa fa-comment mr-2" aria-hidden="true" />
+              <span>10</span>
             </div>
           </div>
         </div>

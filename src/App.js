@@ -10,6 +10,7 @@ import ShopArticleDetails from "./components/ShopArticleDetails";
 import Page404 from "./pages/Page404";
 import { PrivateRoute } from "./PrivateRoute";
 import Blog from "./pages/Blog";
+import BlogDetails from "./pages/BlogDetails";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             component={ShopArticleDetails}
           />
           <PrivateRoute exact path="/blog" component={Blog} />
+          <PrivateRoute exact path="/blog/post:id" component={BlogDetails} />
           <Route component={Page404} />
         </Switch>
       </Router>

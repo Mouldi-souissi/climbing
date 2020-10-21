@@ -24,8 +24,11 @@ function Blog() {
         integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
         crossOrigin="anonymous"
       />
-      <section className="blog-listing gray-bg pt-5">
-        <div className="container">
+      <section
+        className="blog-listing gray-bg pt-5"
+        style={{ marginTop: "50px" }}
+      >
+        <div className="container-fluid">
           <div className="row align-items-start">
             <div className="col-lg-8 m-15px-tb">
               <div className="row">
@@ -41,35 +44,7 @@ function Blog() {
               </div>
             </div>
 
-            <div className="col-lg-4 m-15px-tb blog-aside">
-              <div className="widget widget-author">
-                <div className="widget-title">
-                  <h3>Author</h3>
-                </div>
-                <div className="widget-body">
-                  <div className="media align-items-center">
-                    <div className="avatar">
-                      <img
-                        src="https://bootdey.com/img/Content/avatar/avatar6.png"
-                        title=""
-                        alt=""
-                      />
-                    </div>
-                    <div className="media-body">
-                      <h6>
-                        Hello, I'm
-                        <br /> Rachel Roth
-                      </h6>
-                    </div>
-                  </div>
-                  <p>
-                    I design and develop services for customers of all sizes,
-                    specializing in creating stylish, modern websites, web
-                    services and online stores
-                  </p>
-                </div>
-              </div>
-
+            <div className="col-lg-4 m-15px-tb blog-aside fixed">
               <div className="widget widget-post">
                 <div className="widget-title">
                   <h3>Trending Now</h3>
