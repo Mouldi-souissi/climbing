@@ -3,10 +3,10 @@ import React from "react";
 function BlogDetails() {
   return (
     <div>
-      <div class="blog-single gray-bg">
+      <div class="blog-single gray-bg" style={{ marginTop: "50px" }}>
         <div class="container">
           <div class="row align-items-start">
-            <div class="col-lg-8 m-15px-tb">
+            <div class="col-lg-8 ">
               <article class="article">
                 <div class="article-img">
                   <img
@@ -138,7 +138,8 @@ function BlogDetails() {
                 </form>
               </div>
             </div>
-            <div class="col-lg-4 m-15px-tb blog-aside">
+
+            <div class="col-lg-4 blog-aside">
               <div class="widget widget-author">
                 <div class="widget-title">
                   <h3>Author</h3>
@@ -167,16 +168,9 @@ function BlogDetails() {
                 </div>
               </div>
 
-              <div class="widget widget-post">
-                <div class="widget-title">
-                  <h3>Trending Now</h3>
-                </div>
-                <div class="widget-body"></div>
-              </div>
-
               <div class="widget widget-latest-post">
                 <div class="widget-title">
-                  <h3>Latest Post</h3>
+                  <h3>Trending Now</h3>
                 </div>
                 <div class="widget-body">
                   <div class="latest-post-aside media">

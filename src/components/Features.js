@@ -9,8 +9,9 @@ const Features = () => {
       {/* <hr className="featurette-divider" /> */}
 
       <div
-        className="row featurette d-flex align-items-center mb-5 mt-5"
+        className="row featurette d-flex align-items-center mt-5"
         data-aos="fade-left"
+        style={{ marginBottom: "100px" }}
       >
         <div className="col-md-7">
           <h2 className="featurette-heading">
@@ -36,8 +37,9 @@ const Features = () => {
       </div>
 
       <div
-        className="row featurette d-flex align-items-center mb-5 mt-5 "
+        className="row featurette d-flex align-items-center"
         data-aos="fade-right"
+        style={{ marginBottom: "100px" }}
       >
         <div className="col-md-7 order-md-2">
           <h2 className="featurette-heading">
@@ -63,7 +65,7 @@ const Features = () => {
       </div>
 
       <div
-        className="row featurette d-flex align-items-center mb-5 mt-5"
+        className="row featurette d-flex align-items-center mb-5"
         data-aos="fade-left"
       >
         <div className="col-md-7">

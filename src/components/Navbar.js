@@ -65,7 +65,7 @@ const Navbar = () => {
                   className="d-flex align-items-end"
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  <div className="avatar-nav mr-3">
+                  <div className="avatar-nav mr-2">
                     <i className="fa fa-circle greenDot" aria-hidden="true" />
                   </div>
                   <h6 className="mr-3 text-muted">Mouldi</h6>

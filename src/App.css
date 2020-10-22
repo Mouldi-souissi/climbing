@@ -2,7 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* overflow-x: hidden; */
+}
+body {
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
 }
 
 button:focus {
@@ -716,9 +720,10 @@ button:focus {
 }
 
 /* blog  */
-/* .blog-card i {
-  text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.336);
-} */
+.blog-card {
+  position: relative;
+}
+
 .like i:hover {
   color: #50bb92;
   /* font-size: 20px; */
@@ -728,34 +733,26 @@ button:focus {
   color: #50bb92;
 }
 
-.blog-card {
-  box-shadow: 0 0 30px rgba(10, 10, 10, 0.125);
-  border-radius: 5px;
-  overflow: hidden;
-  background: #ffffff;
-  margin-left: 15px;
-  margin-bottom: 15px;
-  padding: 0;
+.blog-card .card-img-top {
+  object-fit: cover;
+  height: 300px;
 }
-.blog-card .blog-img {
-  position: relative;
-}
-.blog-card .card-img-top .date {
+.blog-card .date {
   position: absolute;
   background: #fc5356;
   color: #ffffff;
   padding: 8px 15px;
-  left: 10px;
-  top: 10px;
+  left: 30px;
+  top: 30px;
   border-radius: 4px;
 }
-.blog-card .card-img-top .date span {
+.blog-card .date span {
   font-size: 22px;
   display: block;
   line-height: 22px;
   font-weight: 700;
 }
-.blog-card.card-img-top .date label {
+.blog-card .date label {
   font-size: 14px;
   margin: 0;
 }
@@ -769,15 +766,7 @@ button:focus {
   z-index: 50;
 } */
 .blog-aside .widget {
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.125);
-  border-radius: 5px;
-  overflow: hidden;
-  background: #ffffff;
-  margin-top: 15px;
   margin-bottom: 15px;
-  width: 100%;
-  display: inline-block;
-  vertical-align: top;
 }
 .blog-aside .widget-body {
   padding: 15px;
