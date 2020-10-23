@@ -14,6 +14,19 @@ const LandingPage = () => {
       <Bonus />
       <Features />
       <Bonus />
+
+      <div className="go-up float-right">
+        <i
+          className="fa fa-arrow-up btn btn-primary mb-3 btn-lg px-3 py-3 mt-3 mr-3"
+          aria-hidden="true"
+          onClick={() =>
+            window.scroll({
+              top: 0,
+              behavior: "smooth",
+            })
+          }
+        ></i>
+      </div>
       <Footer />
     </div>
   );

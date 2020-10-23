@@ -14,8 +14,9 @@ function BlogCard({ post }) {
   return (
     <div className="col-lg-12">
       <div
-        className="blog-card card shadow-sm p-3 mb-5 rounded"
+        className="blog-card card shadow-sm p-3 mb-5"
         data-aos="zoom-in"
+        style={{ borderRadius: "20px" }}
       >
         <div className="date">
           <span>04</span>

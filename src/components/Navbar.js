@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import GlobalContext from "../GlobalContext";
+import Bonus2 from "./Bonus2";
 
 const Navbar = () => {
   const { isConnected, logOut } = useContext(GlobalContext);
@@ -14,7 +15,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-light navbar-expand-lg ">
       <Link className="navbar-brand" to="/">
-        Climbing
+        <Bonus2 />
       </Link>
       <button
         className="navbar-toggler"
@@ -56,10 +57,10 @@ const Navbar = () => {
             {isConnected ? (
               <div className="d-flex">
                 {/* <i
-                  className="fa fa-user-circle-o mr-5 fa-2x "
+                  class="fa fa-search mr-2 align-self-center fa-lg text-muted btn"
                   aria-hidden="true"
+                  onClick={showSearch}
                 /> */}
-
                 <Link
                   to="/profile"
                   className="d-flex align-items-end"

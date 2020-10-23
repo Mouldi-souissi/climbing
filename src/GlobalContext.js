@@ -25,6 +25,7 @@ class GlobalProvider extends Component {
       this.setState({ posts: res.data })
     );
   };
+
   componentDidMount() {
     this.setState({ isConnected: localStorage.getItem("token") });
   }

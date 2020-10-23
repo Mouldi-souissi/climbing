@@ -2,16 +2,21 @@ import React from "react";
 import blogL from "../assets/blogL.jpg";
 import blogL2 from "../assets/blogL2.jpg";
 import blogL3 from "../assets/blogL3.jpg";
+import Bonus from "./Bonus";
 
 function BlogSidebar() {
   return (
     <div className="col-lg-4 blog-aside">
-      <div className="widget widget-latest-post shadow-sm card">
+      <div
+        className="widget widget-latest-post shadow-sm card"
+        data-aos="flip-up"
+      >
         <div className="widget-title text-center">
           <h3>Trending Now</h3>
+          <Bonus />
         </div>
         <div className="widget-body">
-          <div className="latest-post-aside media">
+          <div className="latest-post-aside media ">
             <div className="lpa-left media-body">
               <div className="lpa-title">
                 <h5>
@@ -82,9 +87,10 @@ function BlogSidebar() {
         </div>
       </div>
 
-      <div className="widget widget-tags shadow-sm card">
+      <div className="widget widget-tags shadow-sm card" data-aos="flip-up">
         <div className="widget-title text-center">
           <h3>Latest Tags</h3>
+          <Bonus />
         </div>
         <div className="widget-body">
           <div className="nav tag-cloud">

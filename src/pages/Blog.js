@@ -3,12 +3,14 @@ import BlogCard from "../components/BlogCard";
 import Pagination from "../components/Pagination";
 import GlobalContext from "../GlobalContext";
 import BlogSidebar from "../components/BlogSidebar";
+import SearchBar from "../components/SearchBar";
 
 function Blog() {
   const { posts, getBlog } = useContext(GlobalContext);
 
   useEffect(() => {
     getBlog();
+    window.scrollTo(0, 0);
   }, []);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,6 +21,7 @@ function Blog() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
     <section className="blog-listing pt-5" style={{ marginTop: "50px" }}>
+      <SearchBar />
       <div className="container-fluid">
         <div className="row align-items-start">
           <div className="col-lg-8">
