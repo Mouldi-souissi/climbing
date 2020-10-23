@@ -12,7 +12,7 @@ const Navbar = () => {
     logOut();
   };
   return (
-    <nav className="navbar navbar-light navbar-expand-lg transparent">
+    <nav className="navbar navbar-light navbar-expand-lg ">
       <Link className="navbar-brand" to="/">
         Climbing
       </Link>

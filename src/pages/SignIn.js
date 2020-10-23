@@ -27,7 +27,7 @@ const SignIn = (props) => {
     logindRef.focus();
   }, []);
   if (isConnected) {
-    return <Redirect to="/" />;
+    return <Redirect to="/blog" />;
   }
   return (
     <div className="sign-up bg-light">

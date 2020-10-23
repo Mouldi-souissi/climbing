@@ -2,7 +2,7 @@ import React from "react";
 import Feature1 from "../assets/feature1.jpg";
 import Feature2 from "../assets/feature2.jpg";
 import Feature3 from "../assets/feature3.jpg";
-import Bonus from "./Bonus";
+
 const Features = () => {
   return (
     <div className="container-fluid">

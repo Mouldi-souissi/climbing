@@ -3,38 +3,38 @@ import React from "react";
 function BlogDetails() {
   return (
     <div>
-      <div class="blog-single gray-bg" style={{ marginTop: "50px" }}>
-        <div class="container">
-          <div class="row align-items-start">
-            <div class="col-lg-8 ">
-              <article class="article">
-                <div class="article-img">
+      <div className="blog-single gray-bg" style={{ marginTop: "50px" }}>
+        <div className="container">
+          <div className="row align-items-start">
+            <div className="col-lg-8 ">
+              <article className="article">
+                <div className="article-img">
                   <img
                     src="https://via.placeholder.com/800x350/87CEFA/000000"
                     title=""
                     alt=""
                   />
                 </div>
-                <div class="article-title">
+                <div className="article-title">
                   <h6>
                     <a href="/">Lifestyle</a>
                   </h6>
                   <h2>They Now Bade Farewell To The Kind But Unseen People</h2>
-                  <div class="media">
-                    <div class="avatar">
+                  <div className="media">
+                    <div className="avatar">
                       <img
                         src="https://bootdey.com/img/Content/avatar/avatar1.png"
                         title=""
                         alt=""
                       />
                     </div>
-                    <div class="media-body">
+                    <div className="media-body">
                       <label>Rachel Roth</label>
                       <span>26 FEB 2020</span>
                     </div>
                   </div>
                 </div>
-                <div class="article-content">
+                <div className="article-content">
                   <p>
                     Aenean eleifend ante maecenas pulvinar montes lorem et pede
                     dis dolor pretium donec dictum. Vici consequat justo enim.
@@ -64,7 +64,7 @@ function BlogDetails() {
                       sed do eiusmod tempor incididunt ut labore et dolore magna
                       aliqua. Ut enim ad minim veniam.
                     </p>
-                    <p class="blockquote-footer">
+                    <p className="blockquote-footer">
                       Someone famous in{" "}
                       <cite title="Source Title">Dick Grayson</cite>
                     </p>
@@ -80,7 +80,7 @@ function BlogDetails() {
                     deserunt mollit anim id est laborum.
                   </p>
                 </div>
-                <div class="nav tag-cloud">
+                <div className="nav tag-cloud">
                   <a href="/">Design</a>
                   <a href="/">Development</a>
                   <a href="/">Travel</a>
@@ -90,47 +90,47 @@ function BlogDetails() {
                   <a href="/">Managment</a>
                 </div>
               </article>
-              <div class="contact-form article-comment">
+              <div className="contact-form article-comment">
                 <h4>Leave a Reply</h4>
                 <form id="contact-form" method="POST">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
+                  <div className="row">
+                    <div className="col-md-6">
+                      <div className="form-group">
                         <input
                           name="Name"
                           id="name"
                           placeholder="Name *"
-                          class="form-control"
+                          className="form-control"
                           type="text"
                         />
                       </div>
                     </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
+                    <div className="col-md-6">
+                      <div className="form-group">
                         <input
                           name="Email"
                           id="email"
                           placeholder="Email *"
-                          class="form-control"
+                          className="form-control"
                           type="email"
                         />
                       </div>
                     </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
+                    <div className="col-md-12">
+                      <div className="form-group">
                         <textarea
                           name="message"
                           id="message"
                           placeholder="Your message *"
                           rows="4"
-                          class="form-control"
+                          className="form-control"
                         ></textarea>
                       </div>
                     </div>
-                    <div class="col-md-12">
-                      <div class="send">
-                        <button class="px-btn theme">
-                          <span>Submit</span> <i class="arrow"></i>
+                    <div className="col-md-12">
+                      <div className="send">
+                        <button className="px-btn theme">
+                          <span>Submit</span> <i className="arrow"></i>
                         </button>
                       </div>
                     </div>
@@ -139,21 +139,21 @@ function BlogDetails() {
               </div>
             </div>
 
-            <div class="col-lg-4 blog-aside">
-              <div class="widget widget-author">
-                <div class="widget-title">
+            <div className="col-lg-4 blog-aside">
+              <div className="widget widget-author">
+                <div className="widget-title">
                   <h3>Author</h3>
                 </div>
-                <div class="widget-body">
-                  <div class="media align-items-center">
-                    <div class="avatar">
+                <div className="widget-body">
+                  <div className="media align-items-center">
+                    <div className="avatar">
                       <img
                         src="https://bootdey.com/img/Content/avatar/avatar6.png"
                         title=""
                         alt=""
                       />
                     </div>
-                    <div class="media-body">
+                    <div className="media-body">
                       <h6>
                         Hello, I'm
                         <br /> Rachel Roth
@@ -168,30 +168,30 @@ function BlogDetails() {
                 </div>
               </div>
 
-              <div class="widget widget-latest-post">
-                <div class="widget-title">
+              <div className="widget widget-latest-post">
+                <div className="widget-title">
                   <h3>Trending Now</h3>
                 </div>
-                <div class="widget-body">
-                  <div class="latest-post-aside media">
-                    <div class="lpa-left media-body">
-                      <div class="lpa-title">
+                <div className="widget-body">
+                  <div className="latest-post-aside media">
+                    <div className="lpa-left media-body">
+                      <div className="lpa-title">
                         <h5>
                           <a href="/">
                             Prevent 75% of visitors from google analytics
                           </a>
                         </h5>
                       </div>
-                      <div class="lpa-meta">
-                        <a class="name" href="/">
+                      <div className="lpa-meta">
+                        <a className="name" href="/">
                           Rachel Roth
                         </a>
-                        <a class="date" href="/">
+                        <a className="date" href="/">
                           26 FEB 2020
                         </a>
                       </div>
                     </div>
-                    <div class="lpa-right">
+                    <div className="lpa-right">
                       <a href="/">
                         <img
                           src="https://via.placeholder.com/400x200/FFB6C1/000000"
@@ -201,25 +201,25 @@ function BlogDetails() {
                       </a>
                     </div>
                   </div>
-                  <div class="latest-post-aside media">
-                    <div class="lpa-left media-body">
-                      <div class="lpa-title">
+                  <div className="latest-post-aside media">
+                    <div className="lpa-left media-body">
+                      <div className="lpa-title">
                         <h5>
                           <a href="/">
                             Prevent 75% of visitors from google analytics
                           </a>
                         </h5>
                       </div>
-                      <div class="lpa-meta">
-                        <a class="name" href="/">
+                      <div className="lpa-meta">
+                        <a className="name" href="/">
                           Rachel Roth
                         </a>
-                        <a class="date" href="/">
+                        <a className="date" href="/">
                           26 FEB 2020
                         </a>
                       </div>
                     </div>
-                    <div class="lpa-right">
+                    <div className="lpa-right">
                       <a href="/">
                         <img
                           src="https://via.placeholder.com/400x200/FFB6C1/000000"
@@ -229,25 +229,25 @@ function BlogDetails() {
                       </a>
                     </div>
                   </div>
-                  <div class="latest-post-aside media">
-                    <div class="lpa-left media-body">
-                      <div class="lpa-title">
+                  <div className="latest-post-aside media">
+                    <div className="lpa-left media-body">
+                      <div className="lpa-title">
                         <h5>
                           <a href="/">
                             Prevent 75% of visitors from google analytics
                           </a>
                         </h5>
                       </div>
-                      <div class="lpa-meta">
-                        <a class="name" href="/">
+                      <div className="lpa-meta">
+                        <a className="name" href="/">
                           Rachel Roth
                         </a>
-                        <a class="date" href="/">
+                        <a className="date" href="/">
                           26 FEB 2020
                         </a>
                       </div>
                     </div>
-                    <div class="lpa-right">
+                    <div className="lpa-right">
                       <a href="/">
                         <img
                           src="https://via.placeholder.com/400x200/FFB6C1/000000"
@@ -260,12 +260,12 @@ function BlogDetails() {
                 </div>
               </div>
 
-              <div class="widget widget-tags">
-                <div class="widget-title">
+              <div className="widget widget-tags">
+                <div className="widget-title">
                   <h3>Latest Tags</h3>
                 </div>
-                <div class="widget-body">
-                  <div class="nav tag-cloud">
+                <div className="widget-body">
+                  <div className="nav tag-cloud">
                     <a href="/">Design</a>
                     <a href="/">Development</a>
                     <a href="/">Travel</a>

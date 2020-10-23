@@ -14,7 +14,7 @@ function BlogCard({ post }) {
   return (
     <div className="col-lg-12">
       <div
-        className="blog-card card shadow p-3 mb-5 rounded"
+        className="blog-card card shadow-sm p-3 mb-5 rounded"
         data-aos="zoom-in"
       >
         <div className="date">
@@ -35,15 +35,15 @@ function BlogCard({ post }) {
               style={{ textDecoration: "none" }}
             >
               <span>Read More</span>
-              <i class="fa fa-arrow-right ml-2" aria-hidden="true" />
+              <i className="fa fa-arrow-right ml-2" aria-hidden="true" />
             </Link>
             <div className="d-flex float-right">
               <div className="like mr-3">
-                <i class="fa fa-heart mr-2" aria-hidden="true" />
+                <i className="fa fa-heart mr-2" aria-hidden="true" />
                 <span>10</span>
               </div>
               <div className="comment">
-                <i class="fa fa-comment mr-2" aria-hidden="true" />
+                <i className="fa fa-comment mr-2" aria-hidden="true" />
                 <span>10</span>
               </div>
             </div>
