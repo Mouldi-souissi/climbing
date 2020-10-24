@@ -2,28 +2,21 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="footer bg-light pt-4 pb-4">
+    <footer className="footer bg-light pt-4 pb-4" style={{ marginTop: "auto" }}>
       <div className="container">
         <div className="row">
           <div className="col-lg-6 my-auto h-100 text-center text-lg-left">
             <ul className="list-inline mb-2">
-              <li className="list-inline-item">
+              <li className="list-inline-item mr-3">
                 <a href="/License">License Agreement</a>
               </li>
-              <li className="list-inline-item">
-                <span>⋅</span>
-              </li>
-              <li className="list-inline-item">
+
+              <li className="list-inline-item mr-3">
                 <a href="/TermsOfUse">Terms of Use</a>
               </li>
-              <li className="list-inline-item">
-                <span>⋅</span>
-              </li>
+
               <li className="list-inline-item">
                 <a href="/PrivacyPolicy">Privacy Policy</a>
-              </li>
-              <li className="list-inline-item">
-                <span>⋅</span>
               </li>
             </ul>
             <p className="text-muted small mb-4 mb-lg-0">

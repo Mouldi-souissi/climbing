@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Bonus from "../components/Bonus";
 import Features from "../components/Features";
-import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 
 const LandingPage = () => {
@@ -27,7 +26,6 @@ const LandingPage = () => {
           }
         ></i>
       </div>
-      <Footer />
     </div>
   );
 };

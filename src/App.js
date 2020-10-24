@@ -11,16 +11,18 @@ import Page404 from "./pages/Page404";
 import { PrivateRoute } from "./PrivateRoute";
 import Blog from "./pages/Blog";
 import BlogDetails from "./pages/BlogDetails";
+import SignInUp from "./components/SignInUp";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{ position: "relative", minHeight: "100vh" }}>
       <Router>
         <Route path="/" component={Navbar} />
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/signUp" component={SignUp} />
-          <Route exact path="/signIn" component={SignIn} />
+          {/* <Route exact path="/signIn" component={SignIn} /> */}
+          <Route exact path="/signIn" component={SignInUp} />
           <PrivateRoute exact path="/shop" component={Shop} />
           <PrivateRoute
             exact

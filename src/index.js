@@ -4,10 +4,12 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { GlobalProvider } from "./GlobalContext";
+import Footer from "./components/Footer";
 
 ReactDOM.render(
   <GlobalProvider>
     <App />
+    <Footer />
   </GlobalProvider>,
   document.getElementById("root")
 );

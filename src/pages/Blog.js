@@ -28,7 +28,7 @@ function Blog() {
             <div className="row">
               {currentPosts &&
                 currentPosts.map((post) => (
-                  <BlogCard post={post} key={post.id} />
+                  <BlogCard post={post} key={post.publishedAt} />
                 ))}
               <Pagination
                 postsPerPage={postsPerPage}
@@ -38,7 +38,7 @@ function Blog() {
             </div>
           </div>
 
-          <BlogSidebar />
+          <BlogSidebar posts={posts.slice(0, 7)} />
         </div>
 
         <div className="go-up float-right">

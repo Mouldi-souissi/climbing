@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import blog from "../assets/blog.jpg";
 
 function BlogCard({ post }) {
   const textLimit = (text) => {
@@ -23,16 +22,25 @@ function BlogCard({ post }) {
           <label>FEB</label>
         </div>
         <div className="img">
-          <Link to={`/blog/post${post.id}`} style={{ textDecoration: "none" }}>
-            <img src={blog} alt="" className="card-img-top" />
+          <Link
+            to={`/blog/post${post.source.id}`}
+            style={{ textDecoration: "none" }}
+          >
+            {post.urlToImage ? (
+              <img src={post.urlToImage} alt="" className="card-img-top" />
+            ) : (
+              <div className="card-img-top bg-dark d-flex align-items-center">
+                <p className="mx-auto text-white">No image</p>
+              </div>
+            )}
           </Link>
         </div>
         <div className="card-body">
           <h5 className="card-title font-weight-bold">{post.title}</h5>
-          <p>{textLimit(post.body)}</p>
+          <p>{post.content}</p>
           <div className="btn-bar ">
             <Link
-              to={`/blog/post${post.id}`}
+              to={`/blog/post${post.source.id}`}
               style={{ textDecoration: "none" }}
             >
               <span>Read More</span>

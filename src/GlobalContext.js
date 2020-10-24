@@ -1,11 +1,11 @@
-import Axios from "axios";
+import axios from "axios";
 import React, { Component } from "react";
 
 export const GlobalContext = React.createContext();
 
 class GlobalProvider extends Component {
   // Context state
-  state = { isConnected: "", posts: [] };
+  state = { isConnected: "", posts: [], post: "" };
 
   // Method to update state
   login = (login, password) => {
@@ -21,9 +21,23 @@ class GlobalProvider extends Component {
   };
 
   getBlog = () => {
-    Axios.get("https://jsonplaceholder.typicode.com/posts").then((res) =>
-      this.setState({ posts: res.data })
-    );
+    // axios
+    //   .get("https://jsonplaceholder.typicode.com/posts")
+    //   .then((res) => this.setState({ posts: res.data }))
+    //   .catch((err) => console.log(err));
+    axios
+      .get(
+        "http://newsapi.org/v2/top-headlines?country=us&apiKey=35a21465f13d4792be5906b1af6a851c"
+      )
+      .then((res) => this.setState({ posts: res.data.articles }))
+      .catch((err) => console.log(err));
+  };
+
+  getPostById = (id) => {
+    this.getBlog();
+    this.setState({
+      post: this.state.posts.filter((post) => post.source.id === id),
+    });
   };
 
   componentDidMount() {
@@ -32,8 +46,8 @@ class GlobalProvider extends Component {
 
   render() {
     const { children } = this.props;
-    const { isConnected, posts } = this.state;
-    const { login, logOut, getBlog } = this;
+    const { isConnected, posts, post } = this.state;
+    const { login, logOut, getBlog, getPostById } = this;
 
     return (
       <GlobalContext.Provider
@@ -43,6 +57,8 @@ class GlobalProvider extends Component {
           logOut,
           getBlog,
           posts,
+          getPostById,
+          post,
         }}
       >
         {children}
