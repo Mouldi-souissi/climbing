@@ -23,7 +23,7 @@ function BlogCard({ post }) {
         </div>
         <div className="img">
           <Link
-            to={`/blog/post${post.source.id}`}
+            to={`/blog/post${post.publishedAt}`}
             style={{ textDecoration: "none" }}
           >
             {post.urlToImage ? (
@@ -40,7 +40,7 @@ function BlogCard({ post }) {
           <p>{post.content}</p>
           <div className="btn-bar ">
             <Link
-              to={`/blog/post${post.source.id}`}
+              to={`/blog/post${post.publishedAt}`}
               style={{ textDecoration: "none" }}
             >
               <span>Read More</span>

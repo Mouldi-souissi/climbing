@@ -4,12 +4,13 @@ import BlogSidebar from "../components/BlogSidebar";
 import GlobalContext from "../GlobalContext";
 
 function BlogDetails() {
-  const { posts, getBlog } = useContext(GlobalContext);
+  const { posts, getBlog, getPostById, post } = useContext(GlobalContext);
   const { id } = useParams();
-  const post = "";
 
   useEffect(() => {
     getBlog();
+    getPostById(id);
+    window.scroll(0, 0);
   }, []);
   return (
     <div>
@@ -17,13 +18,12 @@ function BlogDetails() {
         <div className="container">
           <div className="row align-items-start">
             <div className="col-lg-8 ">
-              <article className="article">
+              <article
+                className="article card shadow-sm"
+                style={{ borderRadius: "20px" }}
+              >
                 <div className="article-img">
-                  <img
-                    src="https://via.placeholder.com/800x350/87CEFA/000000"
-                    title=""
-                    alt=""
-                  />
+                  <img src={post.urlToImage} title="" alt="" />
                 </div>
                 <div className="article-title">
                   <h6>
@@ -142,7 +142,12 @@ function BlogDetails() {
                 </form>
               </div>
             </div>
-            <BlogSidebar posts={posts.slice(0, 7)} />
+
+            <BlogSidebar
+              posts={posts.slice(0, 7)}
+              showAuthor={true}
+              post={post}
+            />
           </div>
         </div>
       </div>

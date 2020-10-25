@@ -34,10 +34,16 @@ class GlobalProvider extends Component {
   };
 
   getPostById = (id) => {
-    this.getBlog();
-    this.setState({
-      post: this.state.posts.filter((post) => post.source.id === id),
-    });
+    axios
+      .get(
+        "http://newsapi.org/v2/top-headlines?country=us&apiKey=35a21465f13d4792be5906b1af6a851c"
+      )
+      .then((res) =>
+        this.setState({
+          post: res.data.articles.filter((post) => post.publishedAt === id)[0],
+        })
+      )
+      .catch((err) => console.log(err));
   };
 
   componentDidMount() {
