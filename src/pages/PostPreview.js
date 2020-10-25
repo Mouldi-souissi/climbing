@@ -1,17 +1,6 @@
-import React, { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import BlogSidebar from "../components/BlogSidebar";
-import GlobalContext from "../GlobalContext";
+import React from "react";
 
-function BlogDetails() {
-  const { posts, getBlog, getPostById, post } = useContext(GlobalContext);
-  const { id } = useParams();
-
-  useEffect(() => {
-    getBlog();
-    getPostById(id);
-    window.scroll(0, 0);
-  }, []);
+function PostPreview() {
   return (
     <div>
       <div className="blog-single gray-bg" style={{ marginTop: "50px" }}>
@@ -122,12 +111,6 @@ function BlogDetails() {
                 </form>
               </div>
             </div>
-
-            <BlogSidebar
-              posts={posts.slice(0, 7)}
-              showAuthor={true}
-              post={post}
-            />
           </div>
         </div>
       </div>
@@ -135,4 +118,4 @@ function BlogDetails() {
   );
 }
 
-export default BlogDetails;
+export default PostPreview;

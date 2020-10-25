@@ -71,11 +71,18 @@ button:focus {
 .hero-text {
   text-shadow: 1px 2px rgba(0, 0, 0, 0.5);
 }
-/* .hero-inner {
+/* .hero-inner ::before {
   border-radius: 20px;
-
   background: rgba(255, 255, 255, 0.5);
+  width: 80%;
+  height: 50%;
+  padding-top: 6%;
 } */
+
+.card p::first-letter {
+  color: #12b79c;
+  font-size: xx-large;
+}
 
 /* bonus */
 
@@ -742,6 +749,9 @@ button:focus {
 .blog-card {
   position: relative;
 }
+.blog-card .card-title {
+  font-weight: 700;
+}
 
 .like i:hover {
   color: #0275d8;
@@ -934,57 +944,11 @@ button:focus {
   display: block;
   font-size: 12px;
 }
-.article .article-content h1,
-.article .article-content h2,
-.article .article-content h3,
-.article .article-content h4,
-.article .article-content h5,
-.article .article-content h6 {
-  color: #20247b;
-  font-weight: 600;
-  margin-bottom: 15px;
-}
-.article .article-content blockquote {
-  max-width: 600px;
-  padding: 15px 0 30px 0;
-  margin: 0;
-}
-.article .article-content blockquote p {
-  font-size: 20px;
-  font-weight: 500;
-  color: #fc5356;
-  margin: 0;
-}
-.article .article-content blockquote .blockquote-footer {
-  color: #20247b;
-  font-size: 16px;
-}
-.article .article-content blockquote .blockquote-footer cite {
-  font-weight: 600;
-}
-.article .tag-cloud {
-  padding-top: 10px;
-}
 
-.article-comment {
-  box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
-  border-radius: 5px;
-  overflow: hidden;
-  background: #ffffff;
-  padding: 20px;
-}
-.article-comment h4 {
-  color: #20247b;
-  font-weight: 700;
-  margin-bottom: 25px;
-  font-size: 22px;
-}
 img {
   max-width: 100%;
-}
-img {
-  vertical-align: middle;
   border-style: none;
+  vertical-align: middle;
 }
 
 /* sign in up */
@@ -1210,8 +1174,8 @@ img {
 
 .sausage-dog-animation {
   height: 5rem;
-  max-height: 80vh;
-  max-width: 80vw;
+  /* max-height: 80vh;
+  max-width: 80vw; */
 }
 
 .ear,

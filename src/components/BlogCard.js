@@ -1,25 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
+var moment = require("moment");
 
 function BlogCard({ post }) {
   const textLimit = (text) => {
-    const limit = 150;
+    const limit = 50;
     if (text.length > limit) {
       return text.substring(0, limit).concat("...");
     } else {
       return text;
     }
   };
+  let month = moment(post.publishedAt).format("MMM");
+  let day = moment(post.publishedAt).format("D");
+
   return (
-    <div className="col-lg-12">
+    <div className="col-lg-6">
       <div
         className="blog-card card shadow-sm p-3 mb-5"
-        data-aos="zoom-in"
+        data-aos="fade-right"
         style={{ borderRadius: "20px" }}
       >
         <div className="date">
-          <span>04</span>
-          <label>FEB</label>
+          <span>{day}</span>
+          <label style={{ textTransform: "uppercase" }}>{month}</label>
         </div>
         <div className="img">
           <Link
@@ -36,7 +40,14 @@ function BlogCard({ post }) {
           </Link>
         </div>
         <div className="card-body">
-          <h5 className="card-title font-weight-bold">{post.title}</h5>
+          <h4
+            className="card-title mb-3"
+            data-toggle="tooltip"
+            data-placement="top"
+            title={post.title}
+          >
+            {textLimit(post.title)}
+          </h4>
           <p>{post.content}</p>
           <div className="btn-bar ">
             <Link
@@ -53,7 +64,7 @@ function BlogCard({ post }) {
               </div>
               <div className="comment">
                 <i className="fa fa-comment mr-2" aria-hidden="true" />
-                <span>10</span>
+                <span>7</span>
               </div>
             </div>
           </div>

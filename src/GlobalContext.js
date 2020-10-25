@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
+import { Redirect, useHistory } from "react-router-dom";
 
 export const GlobalContext = React.createContext();
 
@@ -46,6 +47,10 @@ class GlobalProvider extends Component {
       .catch((err) => console.log(err));
   };
 
+  createPost = (title, image, content) => {
+    window.open("/postPreview");
+  };
+
   componentDidMount() {
     this.setState({ isConnected: localStorage.getItem("token") });
   }
@@ -53,7 +58,7 @@ class GlobalProvider extends Component {
   render() {
     const { children } = this.props;
     const { isConnected, posts, post } = this.state;
-    const { login, logOut, getBlog, getPostById } = this;
+    const { login, logOut, getBlog, getPostById, createPost } = this;
 
     return (
       <GlobalContext.Provider
@@ -65,6 +70,7 @@ class GlobalProvider extends Component {
           posts,
           getPostById,
           post,
+          createPost,
         }}
       >
         {children}

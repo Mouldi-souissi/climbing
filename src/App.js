@@ -12,6 +12,7 @@ import { PrivateRoute } from "./PrivateRoute";
 import Blog from "./pages/Blog";
 import BlogDetails from "./pages/BlogDetails";
 import SignInUp from "./components/SignInUp";
+import CreatePost from "./pages/CreatePost";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           />
           <PrivateRoute exact path="/blog" component={Blog} />
           <PrivateRoute exact path="/blog/post:id" component={BlogDetails} />
+          <PrivateRoute exact path="/createPost" component={CreatePost} />
           <Route component={Page404} />
         </Switch>
       </Router>
