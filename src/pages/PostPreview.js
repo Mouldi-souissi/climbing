@@ -1,9 +1,13 @@
 import React from "react";
 
-function PostPreview() {
+function PostPreview({ image, title, content }) {
+  React.useEffect(() => {
+    var justHtmlContent = document.getElementById("justHtml");
+    justHtmlContent.innerHTML = content;
+  }, [content]);
   return (
     <div>
-      <div className="blog-single gray-bg" style={{ marginTop: "50px" }}>
+      <div className="blog-single " style={{ marginTop: "50px" }}>
         <div className="container-fluid">
           <div className="row align-items-start">
             <div className="col-lg-8 ">
@@ -12,13 +16,13 @@ function PostPreview() {
                 style={{ borderRadius: "20px" }}
               >
                 <div className="article-img">
-                  <img src={post.urlToImage} title="" alt="" />
+                  <img src={image} title="" alt="" />
                 </div>
                 <div className="article-title">
                   <h6>
                     <a href="/">Lifestyle</a>
                   </h6>
-                  <h2>{post.title}</h2>
+                  <h2>{title}</h2>
                   <div className="media">
                     <div className="avatar">
                       <img
@@ -34,7 +38,7 @@ function PostPreview() {
                   </div>
                 </div>
                 <div className="article-content">
-                  <p>{post.content}</p>
+                  <p id="justHtml"></p>
                 </div>
                 <div className="nav tag-cloud mt-5">
                   <a href="/" className="btn btn-primary mr-2 mb-1">

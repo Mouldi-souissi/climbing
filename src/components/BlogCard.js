@@ -31,7 +31,7 @@ function BlogCard({ post }) {
             style={{ textDecoration: "none" }}
           >
             {post.urlToImage ? (
-              <img src={post.urlToImage} alt="" className="card-img-top" />
+              <img src={post.urlToImage} alt="" className="card-img-top h-50" />
             ) : (
               <div className="card-img-top bg-dark d-flex align-items-center">
                 <p className="mx-auto text-white">No image</p>
