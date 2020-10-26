@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 
 export const GlobalContext = React.createContext();
 
@@ -65,8 +65,7 @@ class GlobalProvider extends Component {
   };
 
   componentDidMount() {
-    let decoded = jwt_decode(localStorage.getItem("token"));
-    this.setState({ isConnected: decoded });
+    this.setState({ isConnected: localStorage.getItem("token") });
   }
 
   render() {

@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import GlobalContext from "../GlobalContext";
 import Bonus2 from "./Bonus2";
+import jwt_decode from "jwt-decode";
 
 const Navbar = () => {
+  const [name, setName] = useState("");
   const { isConnected, logOut } = useContext(GlobalContext);
   // let isConnected = localStorage.getItem("token");
   let history = useHistory();
@@ -12,6 +14,10 @@ const Navbar = () => {
     history.push("/");
     logOut();
   };
+  useEffect(() => {
+    let decoded = jwt_decode(localStorage.getItem("token"));
+    setName(decoded.name);
+  }, []);
   return (
     <nav className="navbar navbar-light navbar-expand-lg ">
       <Link className="navbar-brand" to="/">
@@ -69,7 +75,7 @@ const Navbar = () => {
                   <div className="avatar-nav mr-2">
                     <i className="fa fa-circle greenDot" aria-hidden="true" />
                   </div>
-                  <h6 className="mr-3 text-muted">Mouldi</h6>
+                  <h6 className="mr-3 text-muted">{name}</h6>
                 </Link>
                 <button
                   className="btn btn-primary"
