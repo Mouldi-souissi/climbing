@@ -21,7 +21,7 @@ function SearchBar() {
           placeholder="Search . . ."
         ></input>
         <button className="btn btn-primary">
-          <i class="fa fa-search fa-lg" aria-hidden="true" />
+          <i className="fa fa-search fa-lg" aria-hidden="true" />
         </button>
       </div>
     </div>

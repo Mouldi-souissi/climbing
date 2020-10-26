@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 export const GlobalContext = React.createContext();
 
@@ -9,13 +9,26 @@ class GlobalProvider extends Component {
   state = { isConnected: "", posts: [], post: "" };
 
   // Method to update state
-  login = (login, password) => {
-    if (login === "mouldi" && password === "mouldi") {
-      localStorage.setItem("token", "token");
-      this.setState({
-        isConnected: true,
-      });
-    }
+  register = (email, password, name) => {
+    axios
+      .post("http://localhost:5000/api/user/register", {
+        email,
+        password,
+        name,
+      })
+      .then(() => this.login(email, password))
+      .catch((err) => console.log(err));
+  };
+  login = (email, password) => {
+    axios
+      .post("http://localhost:5000/api/user/login", { email, password })
+      .then((res) => {
+        localStorage.setItem("token", res.data);
+        this.setState({
+          isConnected: true,
+        });
+      })
+      .catch((err) => console.log(err));
   };
   logOut = () => {
     this.setState({ isConnected: "" });
@@ -52,13 +65,14 @@ class GlobalProvider extends Component {
   };
 
   componentDidMount() {
-    this.setState({ isConnected: localStorage.getItem("token") });
+    let decoded = jwt_decode(localStorage.getItem("token"));
+    this.setState({ isConnected: decoded });
   }
 
   render() {
     const { children } = this.props;
     const { isConnected, posts, post } = this.state;
-    const { login, logOut, getBlog, getPostById, createPost } = this;
+    const { login, logOut, getBlog, getPostById, createPost, register } = this;
 
     return (
       <GlobalContext.Provider
@@ -71,6 +85,7 @@ class GlobalProvider extends Component {
           getPostById,
           post,
           createPost,
+          register,
         }}
       >
         {children}

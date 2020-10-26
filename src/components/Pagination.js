@@ -36,13 +36,13 @@ function Pagination({ postsPerPage, totalPosts, paginate }) {
         </li> */}
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
-            <a
+            <button
               onClick={() => paginate(number)}
-              className="page-link"
+              className="btn page-link"
               style={{ cursor: "pointer" }}
             >
               {number}
-            </a>
+            </button>
           </li>
         ))}
       </ul>

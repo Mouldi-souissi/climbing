@@ -1,6 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { GlobalContext } from "../GlobalContext";
 
 const SignUp = () => {
+  const { register } = useContext(GlobalContext);
+  const [data, setData] = useState("");
+  const handleInput = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    register(data.email, data.password, data.name);
+  };
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -19,6 +30,8 @@ const SignUp = () => {
               className="form-control item"
               id="username"
               placeholder="Username"
+              name="name"
+              onChange={handleInput}
             />
           </div>
           <div className="form-group">
@@ -27,6 +40,8 @@ const SignUp = () => {
               className="form-control item"
               id="password"
               placeholder="Password"
+              name="password"
+              onChange={handleInput}
             />
           </div>
           <div className="form-group">
@@ -35,26 +50,17 @@ const SignUp = () => {
               className="form-control item"
               id="email"
               placeholder="Email"
+              name="email"
+              onChange={handleInput}
             />
           </div>
+
           <div className="form-group">
-            <input
-              type="text"
-              className="form-control item"
-              id="phone-number"
-              placeholder="Phone Number"
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control item"
-              id="birth-date"
-              placeholder="Birth Date"
-            />
-          </div>
-          <div className="form-group">
-            <button type="button" className="btn btn-block create-account">
+            <button
+              type="button"
+              className="btn btn-block create-account"
+              onClick={handleRegister}
+            >
               Create Account
             </button>
           </div>

@@ -1,13 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Bonus from "../components/Bonus";
-import GlobalContext from "../GlobalContext";
+// import GlobalContext from "../GlobalContext";
 import PostPreview from "./PostPreview";
 
 function CreatePost() {
   const [value, setValue] = useState("");
-  const { createPost } = useContext(GlobalContext);
+  // const { createPost } = useContext(GlobalContext);
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState("");
   const [image, setimage] = useState("");

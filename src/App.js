@@ -11,7 +11,6 @@ import Page404 from "./pages/Page404";
 import { PrivateRoute } from "./PrivateRoute";
 import Blog from "./pages/Blog";
 import BlogDetails from "./pages/BlogDetails";
-import SignInUp from "./components/SignInUp";
 import CreatePost from "./pages/CreatePost";
 
 function App() {
@@ -22,8 +21,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/signUp" component={SignUp} />
-          {/* <Route exact path="/signIn" component={SignIn} /> */}
-          <Route exact path="/signIn" component={SignInUp} />
+          <Route exact path="/signIn" component={SignIn} />
           <PrivateRoute exact path="/shop" component={Shop} />
           <PrivateRoute
             exact

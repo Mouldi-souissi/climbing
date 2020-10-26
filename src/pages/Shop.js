@@ -2,7 +2,7 @@ import ShopCard from "../components/ShopCard";
 import React, { useEffect, useState } from "react";
 
 const Shop = () => {
-  const [articles, setArticles] = useState({
+  const [articles] = useState({
     articles: [
       {
         id: 1,

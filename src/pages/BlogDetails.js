@@ -11,7 +11,7 @@ function BlogDetails() {
     getBlog();
     getPostById(id);
     window.scroll(0, 0);
-  }, []);
+  }, [getBlog, getPostById, id]);
   return (
     <div>
       <div className="blog-single gray-bg" style={{ marginTop: "50px" }}>

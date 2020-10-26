@@ -4,7 +4,6 @@ import BlogSidebarCard from "./BlogSidebarCard";
 import Bonus from "./Bonus";
 
 function BlogSidebar({ posts, showAuthor, post }) {
-  console.log(showAuthor);
   return (
     <div className="col-lg-4 blog-aside">
       {showAuthor && <BlogAuthorCard post={post} />}

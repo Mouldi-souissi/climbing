@@ -25,14 +25,14 @@ const SignIn = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
     logindRef.focus();
-  }, []);
+  }, [logindRef]);
   if (isConnected) {
     return <Redirect to="/blog" />;
   }
   return (
     <div className="sign-up bg-light">
       <div className="registration-form">
-        <form>
+        <form onSubmit={(e) => handleLogin(e)}>
           <div className="form-icon">
             <span>
               <i className="icon icon-user"></i>
@@ -75,9 +75,8 @@ const SignIn = (props) => {
           </div>
           <div className="form-group">
             <button
-              type="button"
               className="btn btn-block create-account"
-              onClick={handleLogin}
+              type="submit"
               ref={(input) => (buttonRef = input)}
             >
               Login
