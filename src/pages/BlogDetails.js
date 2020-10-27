@@ -23,7 +23,7 @@ function BlogDetails() {
                 style={{ borderRadius: "20px" }}
               >
                 <div className="article-img">
-                  <img src={post.urlToImage} title="" alt="" />
+                  <img src={post.image} title="" alt="" />
                 </div>
                 <div className="article-title">
                   <h6>

@@ -20,8 +20,8 @@ function BlogSidebarCard({ post }) {
       </div>
       <div className="lpa-right">
         <a href="/">
-          {post.urlToImage ? (
-            <img src={post.urlToImage} alt="" className="card-img-top" />
+          {post.image ? (
+            <img src={post.image} alt="" className="card-img-top" />
           ) : (
             <div className="card-img-top bg-dark d-flex align-items-center">
               <p className="mx-auto text-white">No image</p>

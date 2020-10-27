@@ -15,8 +15,9 @@ const Navbar = () => {
     logOut();
   };
   useEffect(() => {
-    let decoded = jwt_decode(localStorage.getItem("token"));
-    setName(decoded.name);
+    if (localStorage.getItem("token")) {
+      setName(jwt_decode(localStorage.getItem("token")).name);
+    }
   }, []);
   return (
     <nav className="navbar navbar-light navbar-expand-lg ">

@@ -48,7 +48,7 @@ const SignIn = (props) => {
               </div>
               <div className="form__div">
                 <input
-                  autocomplete="off"
+                  autoComplete="off"
                   type="text"
                   className="form__input"
                   id="email"
@@ -60,9 +60,7 @@ const SignIn = (props) => {
                     e.keyCode === 13 && handleFocus(passwordRef);
                   }}
                 />
-                <label for="" className="form__label">
-                  Email
-                </label>
+                <label className="form__label">Email</label>
               </div>
               <div className="form__div">
                 <input
@@ -77,9 +75,7 @@ const SignIn = (props) => {
                     e.keyCode === 13 && handleFocus(buttonRef);
                   }}
                 />
-                <label for="" className="form__label">
-                  Password
-                </label>
+                <label className="form__label">Password</label>
               </div>
               <div className="form-group">
                 <button

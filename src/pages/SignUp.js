@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../GlobalContext";
+import Bonus from "../components/Bonus";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const { register } = useContext(GlobalContext);
@@ -16,67 +18,88 @@ const SignUp = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className="sign-up bg-light">
-      <div className="registration-form">
-        <form>
-          <div className="form-icon">
-            <span>
-              <i className="icon icon-user"></i>
-            </span>
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control item"
-              id="username"
-              placeholder="Username"
-              name="name"
-              onChange={handleInput}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              className="form-control item"
-              id="password"
-              placeholder="Password"
-              name="password"
-              onChange={handleInput}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control item"
-              id="email"
-              placeholder="Email"
-              name="email"
-              onChange={handleInput}
-            />
-          </div>
-
-          <div className="form-group">
-            <button
-              type="button"
-              className="btn btn-block create-account"
-              onClick={handleRegister}
-            >
-              Create Account
-            </button>
-          </div>
-        </form>
-        <div className="social-media">
-          <h5>Sign up with social media</h5>
-          <div className="social-icons">
-            <a href="/fb">
-              <i className="icon-social-facebook" title="Facebook"></i>
-            </a>
-            <a href="/google">
-              <i className="icon-social-google" title="Google"></i>
-            </a>
-            <a href="/twitter">
-              <i className="icon-social-twitter" title="Twitter"></i>
-            </a>
+    <div className="container mx-auto" style={{ marginTop: "100px" }}>
+      <div className="row">
+        <div
+          className="shadow-sm card p-4 mx-auto mb-5 col-lg-6"
+          style={{ borderRadius: "20px" }}
+        >
+          <div className="card-body">
+            <form onSubmit={(e) => handleRegister(e)}>
+              <div className="form-icon">
+                <h3 className="text-center mb-3">Sign Up</h3>
+                <div className="avatar mx-auto" />
+              </div>
+              <div className="mb-4">
+                <Bonus />
+              </div>
+              <div className="form__div">
+                <input
+                  autoComplete="off"
+                  type="text"
+                  className="form__input"
+                  id="email"
+                  placeholder=" "
+                  name="email"
+                  onChange={handleInput}
+                />
+                <label className="form__label">Email</label>
+              </div>
+              <div className="form__div">
+                <input
+                  type="password"
+                  className="form__input"
+                  id="password"
+                  placeholder=" "
+                  name="password"
+                  onChange={handleInput}
+                />
+                <label className="form__label">Password</label>
+              </div>
+              <div className="form__div">
+                <input
+                  type="text"
+                  className="form__input"
+                  id="password"
+                  placeholder=" "
+                  name="name"
+                  onChange={handleInput}
+                />
+                <label className="form__label">Username</label>
+              </div>
+              <div className="form-group">
+                <button
+                  className="btn btn-block btn-primary create-account"
+                  type="submit"
+                >
+                  Register
+                </button>
+              </div>
+              <div className="text-center mt-5">
+                <Link to="/signUp"> Sign In </Link>
+                If you already have an account!
+              </div>
+              <p
+                className="text-center text-muted mt-3"
+                style={{ fontSize: "10px" }}
+              >
+                If you have forgot your password please click on this link
+              </p>
+              <div className="social-media text-center">
+                <h5>Sign up with social media</h5>
+                <div className="social-icons">
+                  <a href="/fb" className="mr-3">
+                    <i className="icon-social-facebook" title="Facebook"></i>
+                  </a>
+                  <a href="/google" className="mr-3">
+                    <i className="icon-social-google" title="Google"></i>
+                  </a>
+                  <a href="/twitter" className="mr-3">
+                    <i className="icon-social-twitter" title="Twitter"></i>
+                  </a>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>

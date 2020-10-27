@@ -35,15 +35,22 @@ class GlobalProvider extends Component {
   };
 
   getBlog = () => {
-    // axios
-    //   .get("https://jsonplaceholder.typicode.com/posts")
-    //   .then((res) => this.setState({ posts: res.data }))
-    //   .catch((err) => console.log(err));
     axios
       .get(
         "http://newsapi.org/v2/top-headlines?country=us&apiKey=35a21465f13d4792be5906b1af6a851c"
       )
       .then((res) => this.setState({ posts: res.data.articles }))
+      .catch((err) => console.log(err));
+  };
+
+  getAllPostes = () => {
+    axios
+      .get("http://localhost:5000/api/posts", {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
+      .then((res) => this.setState({ posts: res.data }))
       .catch((err) => console.log(err));
   };
 
@@ -54,7 +61,7 @@ class GlobalProvider extends Component {
       )
       .then((res) =>
         this.setState({
-          post: res.data.articles.filter((post) => post.publishedAt === id)[0],
+          post: res.data.filter((post) => post._id === id)[0],
         })
       )
       .catch((err) => console.log(err));
@@ -71,7 +78,15 @@ class GlobalProvider extends Component {
   render() {
     const { children } = this.props;
     const { isConnected, posts, post } = this.state;
-    const { login, logOut, getBlog, getPostById, createPost, register } = this;
+    const {
+      login,
+      logOut,
+      getBlog,
+      getPostById,
+      createPost,
+      register,
+      getAllPostes,
+    } = this;
 
     return (
       <GlobalContext.Provider
@@ -85,6 +100,7 @@ class GlobalProvider extends Component {
           post,
           createPost,
           register,
+          getAllPostes,
         }}
       >
         {children}

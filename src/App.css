@@ -79,7 +79,7 @@ button:focus {
   padding-top: 6%;
 } */
 
-.blog-card p::first-letter {
+.article h2::first-letter {
   color: #12b79c;
   font-size: xx-large;
 }

@@ -6,10 +6,11 @@ import BlogSidebar from "../components/BlogSidebar";
 import SearchBar from "../components/SearchBar";
 
 function Blog() {
-  const { posts, getBlog } = useContext(GlobalContext);
+  const { posts, getBlog, getAllPostes } = useContext(GlobalContext);
 
   useEffect(() => {
-    getBlog();
+    // getBlog();
+    getAllPostes();
     window.scrollTo(0, 0);
   }, [getBlog]);
 
@@ -28,7 +29,7 @@ function Blog() {
             <div className="row">
               {currentPosts &&
                 currentPosts.map((post) => (
-                  <BlogCard post={post} key={post.publishedAt} />
+                  <BlogCard post={post} key={post.date} />
                 ))}
               <Pagination
                 postsPerPage={postsPerPage}
@@ -43,7 +44,7 @@ function Blog() {
 
         <div className="go-up float-right">
           <i
-            className="fa fa-arrow-up btn btn-primary mb-3 btn-lg px-3 py-3"
+            className="fa fa-arrow-up btn btn-primary mb-3  px-3 py-3"
             aria-hidden="true"
             onClick={() =>
               window.scroll({

@@ -11,8 +11,8 @@ function BlogCard({ post }) {
       return text;
     }
   };
-  let month = moment(post.publishedAt).format("MMM");
-  let day = moment(post.publishedAt).format("D");
+  let month = moment(post.date).format("MMM");
+  let day = moment(post.date).format("D");
 
   return (
     <div className="col-lg-6">
@@ -26,12 +26,9 @@ function BlogCard({ post }) {
           <label style={{ textTransform: "uppercase" }}>{month}</label>
         </div>
         <div className="img">
-          <Link
-            to={`/blog/post${post.publishedAt}`}
-            style={{ textDecoration: "none" }}
-          >
-            {post.urlToImage ? (
-              <img src={post.urlToImage} alt="" className="card-img-top h-50" />
+          <Link to={`/blog/post${post._id}`} style={{ textDecoration: "none" }}>
+            {post.image ? (
+              <img src={post.image} alt="" className="card-img-top h-50" />
             ) : (
               <div className="card-img-top bg-dark d-flex align-items-center">
                 <p className="mx-auto text-white">No image</p>
@@ -51,7 +48,7 @@ function BlogCard({ post }) {
           <p>{post.content}</p>
           <div className="btn-bar ">
             <Link
-              to={`/blog/post${post.publishedAt}`}
+              to={`/blog/post${post._id}`}
               style={{ textDecoration: "none" }}
             >
               <span>Read More</span>
