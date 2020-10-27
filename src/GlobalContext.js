@@ -67,8 +67,19 @@ class GlobalProvider extends Component {
       .catch((err) => console.log(err));
   };
 
-  createPost = (title, image, content) => {
-    window.open("/postPreview");
+  createPost = ({ title, image, content }) => {
+    axios
+      .post(
+        "http://localhost:5000/api/posts/add",
+        { title, image, content, userId: "mouldi" },
+        {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        }
+      )
+      .then(() => this.getAllPostes)
+      .catch((err) => console.log(err));
   };
 
   componentDidMount() {

@@ -17,7 +17,7 @@ function BlogSidebar({ posts, showAuthor, post }) {
         </div>
         <div className="widget-body">
           {posts.map((post) => (
-            <BlogSidebarCard post={post} key={post.publishedAt} />
+            <BlogSidebarCard post={post} key={post._id} />
           ))}
         </div>
       </div>

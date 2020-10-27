@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 
 function BlogSidebarCard({ post }) {
   return (
@@ -14,7 +15,7 @@ function BlogSidebarCard({ post }) {
             {post.author}
           </a>
           <a className="date" href="/">
-            26 FEB 2020
+            {moment(post.date).calendar()}
           </a>
         </div>
       </div>

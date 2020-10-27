@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 var moment = require("moment");
 
 function BlogCard({ post }) {
+  // text limiting ...
   const textLimit = (text) => {
     const limit = 50;
     if (text.length > limit) {
@@ -11,8 +12,15 @@ function BlogCard({ post }) {
       return text;
     }
   };
+  // formatting date for date card
   let month = moment(post.date).format("MMM");
   let day = moment(post.date).format("D");
+
+  // turn html into string
+  React.useEffect(() => {
+    var content = document.getElementById(post._id);
+    content.innerHTML = post.content;
+  }, [post]);
 
   return (
     <div className="col-lg-6">
@@ -37,6 +45,9 @@ function BlogCard({ post }) {
           </Link>
         </div>
         <div className="card-body">
+          <p className="text-secondary text-center">
+            {moment(post.date).calendar()}
+          </p>
           <h4
             className="card-title mb-3"
             data-toggle="tooltip"
@@ -45,7 +56,7 @@ function BlogCard({ post }) {
           >
             {textLimit(post.title)}
           </h4>
-          <p>{post.content}</p>
+          <p id={post._id}></p>
           <div className="btn-bar ">
             <Link
               to={`/blog/post${post._id}`}

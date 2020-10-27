@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Bonus from "../components/Bonus";
-// import GlobalContext from "../GlobalContext";
+import GlobalContext from "../GlobalContext";
 import PostPreview from "./PostPreview";
 
 function CreatePost() {
-  const [value, setValue] = useState("");
-  // const { createPost } = useContext(GlobalContext);
-  const [show, setShow] = useState(false);
-  const [title, setTitle] = useState("");
-  const [image, setimage] = useState("");
+  const [content, setValue] = useState("");
+  let [data, setData] = useState("");
+  const { createPost } = useContext(GlobalContext);
+
+  const handleInput = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
   return (
     <div className="container" style={{ marginTop: "100px" }}>
       <div
@@ -25,7 +28,8 @@ function CreatePost() {
             <input
               type="text"
               class="form-control"
-              onChange={(e) => setTitle(e.target.value)}
+              name="title"
+              onChange={handleInput}
             />
           </div>
           <div class="form-group mt-3">
@@ -33,22 +37,27 @@ function CreatePost() {
             <input
               type="text"
               class="form-control"
-              onChange={(e) => setimage(e.target.value)}
+              onChange={handleInput}
+              name="image"
             />
           </div>
           <div class="form-group mt-3">
             <label>Content</label>
-            <ReactQuill theme="snow" value={value} onChange={setValue} />
+            <ReactQuill
+              theme="snow"
+              value={content}
+              onChange={setValue}
+              name="content"
+            />
           </div>
           <button
             className="btn btn-primary float-right btn-block w-25 mt-3"
-            onClick={() => setShow(true)}
+            onClick={() => createPost((data = { ...data, content }))}
           >
             Post
           </button>
         </div>
       </div>
-      {show && <PostPreview image={image} title={title} content={value} />}
     </div>
   );
 }

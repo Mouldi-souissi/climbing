@@ -6,13 +6,12 @@ import BlogSidebar from "../components/BlogSidebar";
 import SearchBar from "../components/SearchBar";
 
 function Blog() {
-  const { posts, getBlog, getAllPostes } = useContext(GlobalContext);
+  const { posts, getAllPostes } = useContext(GlobalContext);
 
   useEffect(() => {
-    // getBlog();
     getAllPostes();
     window.scrollTo(0, 0);
-  }, [getBlog]);
+  }, []);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
@@ -29,7 +28,7 @@ function Blog() {
             <div className="row">
               {currentPosts &&
                 currentPosts.map((post) => (
-                  <BlogCard post={post} key={post.date} />
+                  <BlogCard post={post} key={post._id} />
                 ))}
               <Pagination
                 postsPerPage={postsPerPage}
