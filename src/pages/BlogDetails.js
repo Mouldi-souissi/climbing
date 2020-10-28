@@ -4,14 +4,20 @@ import BlogSidebar from "../components/BlogSidebar";
 import GlobalContext from "../GlobalContext";
 
 function BlogDetails() {
-  const { posts, getBlog, getPostById, post } = useContext(GlobalContext);
+  const { posts, getAllPostes, getPostById, post } = useContext(GlobalContext);
   const { id } = useParams();
 
   useEffect(() => {
-    getBlog();
+    getAllPostes();
     getPostById(id);
+    //  html to text
+    let content = document.getElementById(post._id);
+    if (content) {
+      content.innerHTML = post.content;
+    }
+    // scroller position top
     window.scroll(0, 0);
-  }, [getBlog, getPostById, id]);
+  }, [getAllPostes, getPostById, id, post._id, post.content]);
   return (
     <div>
       <div className="blog-single gray-bg" style={{ marginTop: "50px" }}>
@@ -45,7 +51,7 @@ function BlogDetails() {
                   </div>
                 </div>
                 <div className="article-content">
-                  <p>{post.content}</p>
+                  <p id={post._id}></p>
                 </div>
                 <div className="nav tag-cloud mt-5">
                   <a href="/" className="btn btn-primary mr-2 mb-1">

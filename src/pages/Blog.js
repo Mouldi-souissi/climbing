@@ -11,7 +11,7 @@ function Blog() {
   useEffect(() => {
     getAllPostes();
     window.scrollTo(0, 0);
-  }, []);
+  }, [getAllPostes]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);

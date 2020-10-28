@@ -18,8 +18,10 @@ function BlogCard({ post }) {
 
   // turn html into string
   React.useEffect(() => {
-    var content = document.getElementById(post._id);
-    content.innerHTML = post.content;
+    let content = document.getElementById(post._id);
+    if (content) {
+      content.innerHTML = post.content;
+    }
   }, [post]);
 
   return (

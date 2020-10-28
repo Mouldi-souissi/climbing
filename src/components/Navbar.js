@@ -63,32 +63,49 @@ const Navbar = () => {
           <div className="d-flex align-items-center">
             {isConnected ? (
               <div className="d-flex">
-                {/* <i
-                  class="fa fa-search mr-2 align-self-center fa-lg text-muted btn"
-                  aria-hidden="true"
-                  onClick={showSearch}
-                /> */}
+                <div class="btn-group mr-3">
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary dropdown-toggle font-weight-bold"
+                    data-toggle="dropdown"
+                    data-display="static"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Add
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-lg-right">
+                    <Link to="/createPost">
+                      <button class="dropdown-item" type="button">
+                        Post
+                      </button>
+                    </Link>
+                    <button class="dropdown-item" type="button">
+                      Event
+                    </button>
+                  </div>
+                </div>
                 <Link
                   to="/profile"
                   className="d-flex align-items-end"
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
                   <div className="avatar-nav mr-2">
-                    <i className="fa fa-circle greenDot" aria-hidden="true" />
+                    {/* <i className="fa fa-circle greenDot" aria-hidden="true" /> */}
                   </div>
-                  <h6 className="mr-3 text-muted">{name}</h6>
+                  {/* <h6 className="mr-1 text-muted">{name}</h6> */}
                 </Link>
+
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-transparent"
                   type="button"
                   onClick={handleLogout}
                 >
                   <i
-                    className="fa fa-sign-out mr-1"
+                    className="fa fa-sign-out text-warning fa-2x"
                     aria-hidden="true"
                     style={{ color: "white" }}
                   />
-                  Sign out
                 </button>
               </div>
             ) : (

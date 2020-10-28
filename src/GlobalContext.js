@@ -56,12 +56,10 @@ class GlobalProvider extends Component {
 
   getPostById = (id) => {
     axios
-      .get(
-        "http://newsapi.org/v2/top-headlines?country=us&apiKey=35a21465f13d4792be5906b1af6a851c"
-      )
+      .get(`http://localhost:5000/api/posts/${id}`)
       .then((res) =>
         this.setState({
-          post: res.data.filter((post) => post._id === id)[0],
+          post: res.data,
         })
       )
       .catch((err) => console.log(err));
