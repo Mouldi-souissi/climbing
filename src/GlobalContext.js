@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { Component } from "react";
-// import jwt_decode from "jwt-decode";
 
 export const GlobalContext = React.createContext();
 
@@ -8,7 +7,7 @@ class GlobalProvider extends Component {
   // Context state
   state = { isConnected: "", posts: [], post: "" };
 
-  // Method to update state
+  // user
   register = (email, password, name) => {
     axios
       .post("http://localhost:5000/api/user/register", {
@@ -34,6 +33,7 @@ class GlobalProvider extends Component {
     this.setState({ isConnected: "" });
   };
 
+  // post
   getBlog = () => {
     axios
       .get(
@@ -76,7 +76,22 @@ class GlobalProvider extends Component {
           },
         }
       )
-      .then(() => this.getAllPostes)
+      .then((res) => {
+        this.setState({});
+        this.getAllPostes();
+        window.location.replace(`/blog/post${res.data._id}`);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  deletePost = (id) => {
+    axios
+      .delete(`http://localhost:5000/api/posts/delete${id}`, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
+      .then(() => window.open("/blog"))
       .catch((err) => console.log(err));
   };
 
@@ -95,6 +110,7 @@ class GlobalProvider extends Component {
       createPost,
       register,
       getAllPostes,
+      deletePost,
     } = this;
 
     return (
@@ -110,6 +126,7 @@ class GlobalProvider extends Component {
           createPost,
           register,
           getAllPostes,
+          deletePost,
         }}
       >
         {children}

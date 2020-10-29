@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const SignUp = () => {
   const { register } = useContext(GlobalContext);
   const [data, setData] = useState("");
+  const [show, setshow] = useState(false);
   const handleInput = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -35,6 +36,18 @@ const SignUp = () => {
               </div>
               <div className="form__div">
                 <input
+                  type="text"
+                  className="form__input"
+                  id="password"
+                  placeholder=" "
+                  name="name"
+                  onChange={handleInput}
+                />
+                <label className="form__label">Username</label>
+              </div>
+
+              <div className="form__div">
+                <input
                   autoComplete="off"
                   type="text"
                   className="form__input"
@@ -56,17 +69,18 @@ const SignUp = () => {
                 />
                 <label className="form__label">Password</label>
               </div>
-              <div className="form__div">
-                <input
-                  type="text"
-                  className="form__input"
-                  id="password"
-                  placeholder=" "
-                  name="name"
-                  onChange={handleInput}
+              <p
+                className="text-right text-muted"
+                style={{ fontSize: "12px", cursor: "pointer" }}
+                onClick={() => setshow(!show)}
+              >
+                {show ? "Hide" : "Show"} password
+                <i
+                  class={show ? "fa fa-eye-slash ml-2" : "fa fa-eye ml-2"}
+                  aria-hidden="true"
                 />
-                <label className="form__label">Username</label>
-              </div>
+              </p>
+
               <div className="form-group">
                 <button
                   className="btn btn-block btn-primary create-account"

@@ -38,7 +38,12 @@ function BlogCard({ post }) {
         <div className="img">
           <Link to={`/blog/post${post._id}`} style={{ textDecoration: "none" }}>
             {post.image ? (
-              <img src={post.image} alt="" className="card-img-top h-50" />
+              <img
+                src={post.image}
+                alt=""
+                className="card-img-top rounded"
+                max-height="300"
+              />
             ) : (
               <div className="card-img-top bg-dark d-flex align-items-center">
                 <p className="mx-auto text-white">No image</p>

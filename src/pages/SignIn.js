@@ -6,6 +6,7 @@ import Bonus from "../components/Bonus";
 const SignIn = (props) => {
   const { login, isConnected } = useContext(GlobalContext);
   const [data, setData] = useState("");
+  const [show, setshow] = useState(false);
 
   const handleInput = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -64,7 +65,7 @@ const SignIn = (props) => {
               </div>
               <div className="form__div">
                 <input
-                  type="password"
+                  type={show ? "text" : "password"}
                   className="form__input"
                   id="password"
                   placeholder=" "
@@ -75,8 +76,21 @@ const SignIn = (props) => {
                     e.keyCode === 13 && handleFocus(buttonRef);
                   }}
                 />
-                <label className="form__label">Password</label>
+                <label className="form__label pb-0">Password</label>
               </div>
+
+              <p
+                className="text-right text-muted"
+                style={{ fontSize: "12px", cursor: "pointer" }}
+                onClick={() => setshow(!show)}
+              >
+                {show ? "Hide" : "Show"} password
+                <i
+                  class={show ? "fa fa-eye-slash ml-2" : "fa fa-eye ml-2"}
+                  aria-hidden="true"
+                />
+              </p>
+
               <div className="form-group">
                 <button
                   className="btn btn-block btn-primary create-account"

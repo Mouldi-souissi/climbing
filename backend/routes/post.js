@@ -7,22 +7,23 @@ const postValidator = require("../validators/postValidator");
 // public route
 router.get("/", (req, res) => {
   Post.find()
+    .sort({ date: -1 })
     .then((posts) => res.json(posts))
     .catch((err) => console.log(err));
 });
 
 // create poste
 // private route
-router.post("/add", postValidator, async (req, res) => {
+router.post("/add", async (req, res) => {
   const post = new Post({
     title: req.body.title,
     image: req.body.image,
     content: req.body.content,
-    userId: req.body.id,
+    author: req.body.userId,
   });
   try {
     const addedPost = await post.save();
-    res.status(200).send("post added");
+    res.status(200).send(addedPost);
   } catch (err) {
     console.log(err);
   }
@@ -52,8 +53,15 @@ router.put("/edit:id", verify, postValidator, (req, res) => {
 // delete a post by id
 // private route
 router.delete("/delete:id", verify, (req, res) => {
-  Post.findOneAndDelete(req.params.id)
+  Post.findByIdAndDelete(req.params.id)
     .then(res.send("post deleted"))
+    .catch((err) => res.send(err));
+});
+// like a post by id
+// private
+router.put("/like:id", (req, res) => {
+  Post.findByIdAndUpdate(req.params.id, { name: req.body.name })
+    .then((likedpost) => res.send(likedpost))
     .catch((err) => res.send(err));
 });
 module.exports = router;

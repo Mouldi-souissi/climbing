@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import BlogDelete from "../components/BlogDelete";
 import BlogSidebar from "../components/BlogSidebar";
 import GlobalContext from "../GlobalContext";
 
@@ -20,7 +21,8 @@ function BlogDetails() {
   }, [getAllPostes, getPostById, id, post._id, post.content]);
   return (
     <div>
-      <div className="blog-single gray-bg" style={{ marginTop: "50px" }}>
+      <BlogDelete id={id} x={post.title} />
+      <div className="blog-single gray-bg" style={{ marginTop: "70px" }}>
         <div className="container-fluid">
           <div className="row align-items-start">
             <div className="col-lg-8 ">
@@ -29,12 +31,52 @@ function BlogDetails() {
                 style={{ borderRadius: "20px" }}
               >
                 <div className="article-img">
-                  <img src={post.image} title="" alt="" />
+                  {post.image ? (
+                    <img
+                      src={post.image}
+                      title=""
+                      alt=""
+                      className="card-img-top rounded"
+                    />
+                  ) : (
+                    <div
+                      className="card-img-top bg-dark d-flex align-items-center"
+                      style={{ minHeight: "400px" }}
+                    >
+                      <p className="mx-auto text-white">No image</p>
+                    </div>
+                  )}
                 </div>
                 <div className="article-title">
                   <h6>
                     <a href="/">Lifestyle</a>
                   </h6>
+
+                  <div className="btn-group dropleft float-right">
+                    <button
+                      type="button"
+                      className="btn btn-transparent dropdown-toggle"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i className="fa fa-cog fa-2x " aria-hidden="true" />
+                    </button>
+                    <div className="dropdown-menu">
+                      <Link to={{ pathname: "/createPost", state: true }}>
+                        <div className="dropdown-item">Edit Post</div>
+                      </Link>
+
+                      <div
+                        className="dropdown-item"
+                        data-toggle="modal"
+                        data-target={`#${post.title}`}
+                      >
+                        Delete Post
+                      </div>
+                    </div>
+                  </div>
+
                   <h2>{post.title}</h2>
                   <div className="media">
                     <div className="avatar">

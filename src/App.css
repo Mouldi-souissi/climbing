@@ -649,6 +649,9 @@ button:focus {
 }
 
 /* blog  */
+.dropdown-item:hover {
+  background-color: rgb(206, 200, 200);
+}
 .blog-listing {
   background-image: url(./assets/bg.jpg);
   height: 400px;
@@ -816,6 +819,7 @@ button:focus {
 .article {
   padding: 15px;
 }
+
 .article .article-title {
   padding: 15px 0 20px;
 }
@@ -1204,3 +1208,4 @@ img {
     transform: scaleX(1.1) translateX(4%);
   }
 }
+/* create-post */

@@ -1,11 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import GlobalContext from "../GlobalContext";
 import Bonus2 from "./Bonus2";
-import jwt_decode from "jwt-decode";
 
 const Navbar = () => {
-  const [name, setName] = useState("");
   const { isConnected, logOut } = useContext(GlobalContext);
   // let isConnected = localStorage.getItem("token");
   let history = useHistory();
@@ -14,11 +12,7 @@ const Navbar = () => {
     history.push("/");
     logOut();
   };
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setName(jwt_decode(localStorage.getItem("token")).name);
-    }
-  }, []);
+
   return (
     <nav className="navbar navbar-light navbar-expand-lg ">
       <Link className="navbar-brand" to="/">
@@ -63,10 +57,10 @@ const Navbar = () => {
           <div className="d-flex align-items-center">
             {isConnected ? (
               <div className="d-flex">
-                <div class="btn-group mr-3">
+                <div className="btn-group mr-3">
                   <button
                     type="button"
-                    class="btn btn-outline-primary dropdown-toggle font-weight-bold"
+                    className="btn btn-outline-primary dropdown-toggle font-weight-bold"
                     data-toggle="dropdown"
                     data-display="static"
                     aria-haspopup="true"
@@ -74,13 +68,13 @@ const Navbar = () => {
                   >
                     Add
                   </button>
-                  <div class="dropdown-menu dropdown-menu-lg-right">
-                    <Link to="/createPost">
-                      <button class="dropdown-item" type="button">
+                  <div className="dropdown-menu dropdown-menu-lg-right">
+                    <Link to={{ pathname: "/createPost", state: false }}>
+                      <button className="dropdown-item" type="button">
                         Post
                       </button>
                     </Link>
-                    <button class="dropdown-item" type="button">
+                    <button className="dropdown-item" type="button">
                       Event
                     </button>
                   </div>
