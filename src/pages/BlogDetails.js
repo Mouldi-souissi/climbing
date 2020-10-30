@@ -3,10 +3,17 @@ import { Link, useParams } from "react-router-dom";
 import BlogDelete from "../components/BlogDelete";
 import BlogSidebar from "../components/BlogSidebar";
 import GlobalContext from "../GlobalContext";
+import jwtDecode from "jwt-decode";
 
 function BlogDetails() {
   const { posts, getAllPostes, getPostById, post } = useContext(GlobalContext);
   const { id } = useParams();
+  // checking if user is the owner o this post
+  const userId =
+    localStorage.getItem("token") &&
+    jwtDecode(localStorage.getItem("token")).id;
+  const postUserId = post.author && post.author.userId;
+  const isOwner = postUserId === userId ? true : false;
 
   useEffect(() => {
     getAllPostes();
@@ -21,7 +28,7 @@ function BlogDetails() {
   }, [getAllPostes, getPostById, id, post._id, post.content]);
   return (
     <div>
-      <BlogDelete id={id} x={post.title} />
+      <BlogDelete id={id} x={post.title && post.title.trim()} />
       <div className="blog-single gray-bg" style={{ marginTop: "70px" }}>
         <div className="container-fluid">
           <div className="row align-items-start">
@@ -51,31 +58,32 @@ function BlogDetails() {
                   <h6>
                     <a href="/">Lifestyle</a>
                   </h6>
-
-                  <div className="btn-group dropleft float-right">
-                    <button
-                      type="button"
-                      className="btn btn-transparent dropdown-toggle"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      <i className="fa fa-cog fa-2x " aria-hidden="true" />
-                    </button>
-                    <div className="dropdown-menu">
-                      <Link to={{ pathname: "/createPost", state: true }}>
-                        <div className="dropdown-item">Edit Post</div>
-                      </Link>
-
-                      <div
-                        className="dropdown-item"
-                        data-toggle="modal"
-                        data-target={`#${post.title}`}
+                  {isOwner && (
+                    <div className="btn-group dropleft float-right">
+                      <button
+                        type="button"
+                        className="btn btn-transparent dropdown-toggle"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
                       >
-                        Delete Post
+                        <i className="fa fa-cog fa-2x " aria-hidden="true" />
+                      </button>
+                      <div className="dropdown-menu">
+                        <Link to={{ pathname: "/createPost", state: true }}>
+                          <div className="dropdown-item">Edit Post</div>
+                        </Link>
+
+                        <div
+                          className="dropdown-item"
+                          data-toggle="modal"
+                          data-target={`#${post.title}`}
+                        >
+                          Delete Post
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
 
                   <h2>{post.title}</h2>
                   <div className="media">

@@ -1,11 +1,14 @@
-import React from "react";
+import JwtDecode from "jwt-decode";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import GlobalContext from "../GlobalContext";
 var moment = require("moment");
 
 function BlogCard({ post }) {
+  const { likePost } = useContext(GlobalContext);
   // text limiting ...
   const textLimit = (text) => {
-    const limit = 50;
+    const limit = 200;
     if (text.length > limit) {
       return text.substring(0, limit).concat("...");
     } else {
@@ -20,10 +23,14 @@ function BlogCard({ post }) {
   React.useEffect(() => {
     let content = document.getElementById(post._id);
     if (content) {
-      content.innerHTML = post.content;
+      content.innerHTML = textLimit(post.content);
     }
   }, [post]);
-
+  // check if user has already liked the post
+  let actualUser =
+    localStorage.getItem("token") &&
+    JwtDecode(localStorage.getItem("token")).id;
+  let liked = post.likes.find((like) => like.userId === actualUser);
   return (
     <div className="col-lg-6">
       <div
@@ -74,8 +81,15 @@ function BlogCard({ post }) {
             </Link>
             <div className="d-flex float-right">
               <div className="like mr-3">
-                <i className="fa fa-heart mr-2" aria-hidden="true" />
-                <span>10</span>
+                <i
+                  className={
+                    liked ? "fa fa-heart mr-2 liked" : "fa fa-heart mr-2"
+                  }
+                  aria-hidden="true"
+                  onClick={() => likePost(post._id)}
+                >
+                  <span className="ml-2">{post.likes.length}</span>
+                </i>
               </div>
               <div className="comment">
                 <i className="fa fa-comment mr-2" aria-hidden="true" />

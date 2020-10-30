@@ -19,8 +19,10 @@ const postSchema = new mongoose.Schema({
     default: Date.now,
   },
   author: {
-    type: String,
+    userId: "",
+    name: "",
   },
+  likes: [{ name: String, userId: String }],
 });
 
 module.exports = mongoose.model("post", postSchema);

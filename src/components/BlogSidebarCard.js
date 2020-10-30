@@ -12,7 +12,7 @@ function BlogSidebarCard({ post }) {
         </div>
         <div className="lpa-meta">
           <a className="name" href="/">
-            {post.author}
+            {post.author.name}
           </a>
           <a className="date" href="/">
             {moment(post.date).calendar()}

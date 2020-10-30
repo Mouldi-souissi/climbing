@@ -16,7 +16,7 @@ function BlogAuthorCard({ post }) {
             />
           </div>
           <div className="media-body">
-            <h6>{post.author}</h6>
+            <h6>{post.author && post.author.name}</h6>
           </div>
         </div>
         <p>I love climbing, plz like and share my article</p>

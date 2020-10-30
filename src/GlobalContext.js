@@ -1,5 +1,10 @@
 import axios from "axios";
 import React, { Component } from "react";
+import jwtDecode from "jwt-decode";
+
+// tokenInfo
+let token = localStorage.getItem("token") && localStorage.getItem("token");
+let decodedToken = token && jwtDecode(token);
 
 export const GlobalContext = React.createContext();
 
@@ -66,10 +71,16 @@ class GlobalProvider extends Component {
   };
 
   createPost = ({ title, image, content }) => {
+    let userId =
+      localStorage.getItem("token") &&
+      jwtDecode(localStorage.getItem("token")).id;
+    let name =
+      localStorage.getItem("token") &&
+      jwtDecode(localStorage.getItem("token")).name;
     axios
       .post(
         "http://localhost:5000/api/posts/add",
-        { title, image, content, userId: "mouldi" },
+        { title, image, content, name, userId },
         {
           headers: {
             token: localStorage.getItem("token"),
@@ -95,6 +106,17 @@ class GlobalProvider extends Component {
       .catch((err) => console.log(err));
   };
 
+  likePost = (id) => {
+    axios
+      .put(`http://localhost:5000/api/posts/like${id}`, {
+        name: decodedToken && decodedToken.name,
+        userId: decodedToken && decodedToken.id,
+      })
+      .then(() => {
+        this.getAllPostes();
+      });
+  };
+
   componentDidMount() {
     this.setState({ isConnected: localStorage.getItem("token") });
   }
@@ -111,6 +133,7 @@ class GlobalProvider extends Component {
       register,
       getAllPostes,
       deletePost,
+      likePost,
     } = this;
 
     return (
@@ -127,6 +150,7 @@ class GlobalProvider extends Component {
           register,
           getAllPostes,
           deletePost,
+          likePost,
         }}
       >
         {children}

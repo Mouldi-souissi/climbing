@@ -19,7 +19,7 @@ router.post("/add", async (req, res) => {
     title: req.body.title,
     image: req.body.image,
     content: req.body.content,
-    author: req.body.userId,
+    author: { userId: req.body.userId, name: req.body.name },
   });
   try {
     const addedPost = await post.save();
@@ -59,9 +59,27 @@ router.delete("/delete:id", verify, (req, res) => {
 });
 // like a post by id
 // private
-router.put("/like:id", (req, res) => {
-  Post.findByIdAndUpdate(req.params.id, { name: req.body.name })
-    .then((likedpost) => res.send(likedpost))
-    .catch((err) => res.send(err));
+router.put("/like:id", async (req, res) => {
+  let likedPost = await Post.findOne({ _id: req.params.id });
+  let liked = likedPost.likes.find((like) => like.userId === req.body.userId);
+  if (liked) {
+    res.status(401).send("already liked");
+    // likedPost.likes.pull({ userId: req.params.userId });
+    // likedPost
+    //   .save()
+    //   .then(() => res.json(likedpost.likes))
+    //   .catch((err) => res.send(err));
+  } else {
+    likedPost.likes.push({ userId: req.body.userId, name: req.body.name });
+    likedPost
+      .save()
+      // Post.findOneAndUpdate(
+      //   { _id: req.params.id },
+      //   { $push: { likes: [{ userId: req.body.userId, name: req.body.name }] } },
+      //   { new: true }
+      // )
+      .then(() => res.json(likedpost.likes))
+      .catch((err) => res.send(err));
+  }
 });
 module.exports = router;
