@@ -8,11 +8,10 @@ const LandingPage = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div>
+    <div style={{ marginTop: "78px" }}>
       <Hero />
       <Bonus />
       <Features />
-      <Bonus />
 
       <div className="go-up float-right">
         <i

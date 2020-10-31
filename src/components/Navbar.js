@@ -14,7 +14,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-light navbar-expand-lg ">
+    <nav className="navbar navbar-light navbar-expand-lg px-3 py-2">
       <Link className="navbar-brand" to="/">
         <Bonus2 />
       </Link>
@@ -56,7 +56,7 @@ const Navbar = () => {
         <div role="navigation" className="mt-3 mt-lg-0 mt-md-0 ml-auto p-2">
           <div className="d-flex align-items-center">
             {isConnected ? (
-              <div className="d-flex">
+              <div className="d-flex align-items-center">
                 <div className="btn-group mr-3">
                   <button
                     type="button"
@@ -66,10 +66,11 @@ const Navbar = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    Add
+                    <i className="fa fa-pencil fa-fw" />
+                    ADD
                   </button>
                   <div className="dropdown-menu dropdown-menu-lg-right">
-                    <Link to={{ pathname: "/createPost", state: false }}>
+                    <Link to={{ pathname: "/createPost:0", state: false }}>
                       <button className="dropdown-item" type="button">
                         Post
                       </button>

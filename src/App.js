@@ -30,7 +30,7 @@ function App() {
           />
           <PrivateRoute exact path="/blog" component={Blog} />
           <PrivateRoute exact path="/blog/post:id" component={BlogDetails} />
-          <PrivateRoute exact path="/createPost" component={CreatePost} />
+          <PrivateRoute exact path="/createPost:id" component={CreatePost} />
           <Route component={Page404} />
         </Switch>
       </Router>

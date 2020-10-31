@@ -7,19 +7,22 @@ function BlogAuthorCard({ post }) {
         <h3>Author</h3>
       </div>
       <div className="widget-body">
-        <div className="media align-items-center">
+        <div className="media">
           <div className="avatar">
             <img
               src="https://bootdey.com/img/Content/avatar/avatar6.png"
               title=""
               alt=""
+              className="align-self-center"
             />
           </div>
           <div className="media-body">
             <h6>{post.author && post.author.name}</h6>
+            <p className="ml-3">
+              I love climbing, plz like and share my article
+            </p>
           </div>
         </div>
-        <p>I love climbing, plz like and share my article</p>
       </div>
     </div>
   );

@@ -59,11 +59,11 @@ function BlogCard({ post }) {
           </Link>
         </div>
         <div className="card-body">
-          <p className="text-secondary text-center">
+          {/* <p className="text-secondary text-center">
             {moment(post.date).calendar()}
-          </p>
+          </p> */}
           <h4
-            className="card-title mb-3"
+            className="card-title text-center mb-3"
             data-toggle="tooltip"
             data-placement="top"
             title={post.title}
@@ -83,13 +83,14 @@ function BlogCard({ post }) {
               <div className="like mr-3">
                 <i
                   className={
-                    liked ? "fa fa-heart mr-2 liked" : "fa fa-heart mr-2"
+                    liked
+                      ? "fa fa-thumbs-up mr-2 liked"
+                      : "fa fa-thumbs-up mr-2"
                   }
                   aria-hidden="true"
                   onClick={() => likePost(post._id)}
-                >
-                  <span className="ml-2">{post.likes.length}</span>
-                </i>
+                ></i>
+                <span>{post.likes.length}</span>
               </div>
               <div className="comment">
                 <i className="fa fa-comment mr-2" aria-hidden="true" />

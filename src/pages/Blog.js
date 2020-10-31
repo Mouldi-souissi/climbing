@@ -20,7 +20,7 @@ function Blog() {
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
-    <section className="blog-listing pt-5" style={{ marginTop: "50px" }}>
+    <section className="blog-listing pt-5" style={{ marginTop: "78px" }}>
       <SearchBar />
       <div className="container-fluid">
         <div className="row align-items-start">

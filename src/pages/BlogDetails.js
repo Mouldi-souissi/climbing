@@ -4,6 +4,8 @@ import BlogDelete from "../components/BlogDelete";
 import BlogSidebar from "../components/BlogSidebar";
 import GlobalContext from "../GlobalContext";
 import jwtDecode from "jwt-decode";
+import CommentsSection from "../components/CommentsSection";
+import moment from "moment";
 
 function BlogDetails() {
   const { posts, getAllPostes, getPostById, post } = useContext(GlobalContext);
@@ -27,16 +29,17 @@ function BlogDetails() {
     window.scroll(0, 0);
   }, [getAllPostes, getPostById, id, post._id, post.content]);
   return (
-    <div>
+    <div className="article" style={{ marginTop: "100px" }}>
       <BlogDelete id={id} x={post.title && post.title.trim()} />
-      <div className="blog-single gray-bg" style={{ marginTop: "70px" }}>
+      <div className="blog-single">
         <div className="container-fluid">
           <div className="row align-items-start">
             <div className="col-lg-8 ">
-              <article
-                className="article card shadow-sm"
-                style={{ borderRadius: "20px" }}
-              >
+              <article className="article" style={{ borderRadius: "20px" }}>
+                <h1 className="display-3">{post.title}</h1>
+                <p className="text-secondary text-sm">
+                  {moment(post.date).calendar()}
+                </p>
                 <div className="article-img">
                   {post.image ? (
                     <img
@@ -54,10 +57,11 @@ function BlogDetails() {
                     </div>
                   )}
                 </div>
-                <div className="article-title">
-                  <h6>
-                    <a href="/">Lifestyle</a>
-                  </h6>
+                <div className="d-flex align-items-center justify-content-between">
+                  <div class="btn-group">
+                    <i class="fa fa-thumbs-up btn mr-1 bg-tranparent btn-primary"></i>
+                    <i class="fa fa-thumbs-down btn bg-tranparent mr-2 btn-outline-primary"></i>
+                  </div>
                   {isOwner && (
                     <div className="btn-group dropleft float-right">
                       <button
@@ -70,7 +74,12 @@ function BlogDetails() {
                         <i className="fa fa-cog fa-2x " aria-hidden="true" />
                       </button>
                       <div className="dropdown-menu">
-                        <Link to={{ pathname: "/createPost", state: true }}>
+                        <Link
+                          to={{
+                            pathname: `/createPost${post._id}`,
+                            state: true,
+                          }}
+                        >
                           <div className="dropdown-item">Edit Post</div>
                         </Link>
 
@@ -84,26 +93,13 @@ function BlogDetails() {
                       </div>
                     </div>
                   )}
-
-                  <h2>{post.title}</h2>
-                  <div className="media">
-                    <div className="avatar">
-                      <img
-                        src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                        title=""
-                        alt=""
-                      />
-                    </div>
-                    <div className="media-body">
-                      <label>Rachel Roth</label>
-                      <span>26 FEB 2020</span>
-                    </div>
-                  </div>
                 </div>
-                <div className="article-content">
+                <div className="article-content mt-5">
                   <p id={post._id}></p>
                 </div>
-                <div className="nav tag-cloud mt-5">
+                <hr />
+                <h4 className="mt-5 mb-3">Tags</h4>
+                <div className="nav tag-cloud mb-5">
                   <a href="/" className="btn btn-primary mr-2 mb-1">
                     Design
                   </a>
@@ -126,57 +122,10 @@ function BlogDetails() {
                     Managment
                   </a>
                 </div>
+                <hr />
               </article>
-              <div
-                className="contact-form article-comment card shadows-sm mt-3 p-4"
-                style={{ borderRadius: "20px" }}
-              >
-                <h4 className="mb-3">Comment</h4>
-                <form id="contact-form" method="POST">
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <input
-                          name="Name"
-                          id="name"
-                          placeholder="Name *"
-                          className="form-control"
-                          type="text"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <input
-                          name="Email"
-                          id="email"
-                          placeholder="Email *"
-                          className="form-control"
-                          type="email"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-12">
-                      <div className="form-group">
-                        <textarea
-                          name="message"
-                          id="message"
-                          placeholder="Your message *"
-                          rows="4"
-                          className="form-control"
-                        ></textarea>
-                      </div>
-                    </div>
-                    <div className="col-md-12">
-                      <div className="send">
-                        <button className="btn btn-primary">
-                          <span>Submit</span> <i className="arrow"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
+
+              <CommentsSection />
             </div>
 
             <BlogSidebar

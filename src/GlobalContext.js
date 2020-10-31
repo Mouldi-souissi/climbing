@@ -71,16 +71,16 @@ class GlobalProvider extends Component {
   };
 
   createPost = ({ title, image, content }) => {
-    let userId =
-      localStorage.getItem("token") &&
-      jwtDecode(localStorage.getItem("token")).id;
-    let name =
-      localStorage.getItem("token") &&
-      jwtDecode(localStorage.getItem("token")).name;
     axios
       .post(
         "http://localhost:5000/api/posts/add",
-        { title, image, content, name, userId },
+        {
+          title,
+          image,
+          content,
+          name: decodedToken.name,
+          userId: decodedToken.id,
+        },
         {
           headers: {
             token: localStorage.getItem("token"),
@@ -91,6 +91,21 @@ class GlobalProvider extends Component {
         this.setState({});
         this.getAllPostes();
         window.location.replace(`/blog/post${res.data._id}`);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  editPost = (id, data) => {
+    axios
+      .put(`http://localhost:5000/api/posts/edit${id}`, data, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        this.setState({});
+        this.getAllPostes();
+        // window.location.replace(`/blog/post${res.data._id}`);
       })
       .catch((err) => console.log(err));
   };
@@ -134,6 +149,7 @@ class GlobalProvider extends Component {
       getAllPostes,
       deletePost,
       likePost,
+      editPost,
     } = this;
 
     return (
@@ -151,6 +167,7 @@ class GlobalProvider extends Component {
           getAllPostes,
           deletePost,
           likePost,
+          editPost,
         }}
       >
         {children}

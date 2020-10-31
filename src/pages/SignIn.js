@@ -54,6 +54,7 @@ const SignIn = (props) => {
                   className="form__input"
                   id="email"
                   placeholder=" "
+                  required
                   name="login"
                   onChange={handleInput}
                   ref={(input) => (logindRef = input)}
@@ -69,6 +70,7 @@ const SignIn = (props) => {
                   className="form__input"
                   id="password"
                   placeholder=" "
+                  required
                   name="password"
                   onChange={handleInput}
                   ref={(input) => (passwordRef = input)}

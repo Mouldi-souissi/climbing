@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 function BlogSidebarCard({ post }) {
   return (
@@ -14,13 +15,13 @@ function BlogSidebarCard({ post }) {
           <a className="name" href="/">
             {post.author.name}
           </a>
-          <a className="date" href="/">
+          <p className="date text-sm text-muted">
             {moment(post.date).calendar()}
-          </a>
+          </p>
         </div>
       </div>
       <div className="lpa-right">
-        <a href="/">
+        <Link to={`/blog/post${post._id}`}>
           {post.image ? (
             <img src={post.image} alt="" className="card-img-top" />
           ) : (
@@ -28,7 +29,7 @@ function BlogSidebarCard({ post }) {
               <p className="mx-auto text-white">No image</p>
             </div>
           )}
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -39,13 +39,8 @@ router.get("/:id", (req, res) => {
 
 // modify post by id
 // private route
-router.put("/edit:id", verify, postValidator, (req, res) => {
-  Post.findByIdAndUpdate(req.params.id, {
-    title: req.body.title,
-    image: req.body.image,
-    content: req.body.content,
-    userId: req.body.userId,
-  })
+router.put("/edit:id", verify, (req, res) => {
+  Post.findByIdAndUpdate(req.params.id, req.body)
     .then((editedPost) => res.json(editedPost))
     .catch((err) => res.send(err));
 });
@@ -64,11 +59,6 @@ router.put("/like:id", async (req, res) => {
   let liked = likedPost.likes.find((like) => like.userId === req.body.userId);
   if (liked) {
     res.status(401).send("already liked");
-    // likedPost.likes.pull({ userId: req.params.userId });
-    // likedPost
-    //   .save()
-    //   .then(() => res.json(likedpost.likes))
-    //   .catch((err) => res.send(err));
   } else {
     likedPost.likes.push({ userId: req.body.userId, name: req.body.name });
     likedPost

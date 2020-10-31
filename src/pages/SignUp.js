@@ -90,7 +90,7 @@ const SignUp = () => {
                 </button>
               </div>
               <div className="text-center mt-5">
-                <Link to="/signUp"> Sign In </Link>
+                <Link to="/signIn"> Sign In </Link>
                 If you already have an account!
               </div>
               <p

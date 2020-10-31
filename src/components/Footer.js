@@ -2,10 +2,11 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="footer bg-light pt-4 pb-4" style={{ marginTop: "auto" }}>
-      <div className="container">
+    <footer className="footer bg-white pb-4" style={{ marginTop: "auto" }}>
+      <hr />
+      <div className="container-fluid px-3">
         <div className="row">
-          <div className="col-lg-6 my-auto h-100 text-center text-lg-left">
+          <div className="col-lg-6 my-auto h-100 text-center text-lg-left pt-3">
             <ul className="list-inline mb-2">
               <li className="list-inline-item mr-3">
                 <a href="/License">License Agreement</a>
