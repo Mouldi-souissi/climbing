@@ -5,6 +5,8 @@ const jwt = require("jsonwebtoken");
 const registerValidator = require("../validators/registerValidator");
 const loginValidator = require("../validators/loginValidator");
 
+// register
+// public route
 router.post("/register", registerValidator, async (req, res) => {
   // hash psw
   const salt = await bcrypt.genSalt(10);
@@ -26,6 +28,8 @@ router.post("/register", registerValidator, async (req, res) => {
   }
 });
 
+// login
+// public route
 router.post("/login", loginValidator, async (req, res) => {
   // check existance
   const user = await User.findOne({ email: req.body.email });
@@ -35,7 +39,7 @@ router.post("/login", loginValidator, async (req, res) => {
   if (!validpsw) return res.status(400).send("invalid credentials");
   // create token
   const token = jwt.sign({ id: user._id, name: user.name }, "secret");
-  res.header("token", token).send(token);
+  res.header("token", token).send({ token, id: user._id });
 });
 
 module.exports = router;

@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="footer bg-white pb-4" style={{ marginTop: "auto" }}>
       <hr />
-      <div className="container-fluid px-3">
+      <div className="container">
         <div className="row">
           <div className="col-lg-6 my-auto h-100 text-center text-lg-left pt-3">
             <ul className="list-inline mb-2">

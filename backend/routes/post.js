@@ -1,7 +1,8 @@
 const router = require("express").Router();
-const verify = require("./verifyToken");
 const Post = require("../models/Post");
 const postValidator = require("../validators/postValidator");
+const verifyAuth = require("../permissions/verifyAuth");
+const verifyOwner = require("../permissions/verifyOwner");
 
 // get all post
 // public route
@@ -12,9 +13,17 @@ router.get("/", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+// get post by id
+// public route
+router.get("/:id", (req, res) => {
+  Post.findById(req.params.id)
+    .then((post) => res.json(post))
+    .catch((err) => console.log(err));
+});
+
 // create poste
 // private route
-router.post("/add", async (req, res) => {
+router.post("/add", verifyAuth, async (req, res) => {
   const post = new Post({
     title: req.body.title,
     image: req.body.image,
@@ -29,33 +38,26 @@ router.post("/add", async (req, res) => {
   }
 });
 
-// find post by id
-// public route
-router.get("/:id", (req, res) => {
-  Post.findById(req.params.id)
-    .then((post) => res.json(post))
-    .catch((err) => console.log(err));
-});
-
 // modify post by id
-// private route
-router.put("/edit:id", verify, (req, res) => {
-  Post.findByIdAndUpdate(req.params.id, req.body)
+// private route, permission owner
+router.put("/edit:id", verifyAuth, verifyOwner, (req, res) => {
+  Post.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then((editedPost) => res.json(editedPost))
     .catch((err) => res.send(err));
 });
 
 // delete a post by id
-// private route
-router.delete("/delete:id", verify, (req, res) => {
+// private route, permission owner
+router.delete("/delete:id", verifyAuth, verifyOwner, (req, res) => {
   Post.findByIdAndDelete(req.params.id)
     .then(res.send("post deleted"))
     .catch((err) => res.send(err));
 });
+
 // like a post by id
-// private
-router.put("/like:id", async (req, res) => {
-  let likedPost = await Post.findOne({ _id: req.params.id });
+// private route
+router.put("/like:id", verifyAuth, async (req, res) => {
+  let likedPost = await Post.findById(req.params.id);
   let liked = likedPost.likes.find((like) => like.userId === req.body.userId);
   if (liked) {
     res.status(401).send("already liked");

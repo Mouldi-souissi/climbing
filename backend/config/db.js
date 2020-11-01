@@ -7,7 +7,7 @@ const connexionDb = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
-      // useFindAndModify: false,
+      useFindAndModify: false,
     });
     console.log(" DB is running ...");
   } catch (err) {

@@ -60,7 +60,7 @@ const Navbar = () => {
                 <div className="btn-group mr-3">
                   <button
                     type="button"
-                    className="btn btn-outline-primary dropdown-toggle font-weight-bold"
+                    className="btn btn-outline-primary font-weight-bold rounded"
                     data-toggle="dropdown"
                     data-display="static"
                     aria-haspopup="true"
@@ -70,7 +70,10 @@ const Navbar = () => {
                     ADD
                   </button>
                   <div className="dropdown-menu dropdown-menu-lg-right">
-                    <Link to={{ pathname: "/createPost:0", state: false }}>
+                    <Link
+                      to={{ pathname: "/createPost:0", state: false }}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
                       <button className="dropdown-item" type="button">
                         Post
                       </button>
@@ -82,12 +85,9 @@ const Navbar = () => {
                 </div>
                 <Link
                   to="/profile"
-                  className="d-flex align-items-end"
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  <div className="avatar-nav mr-2">
-                    {/* <i className="fa fa-circle greenDot" aria-hidden="true" /> */}
-                  </div>
+                  <div className="avatar-nav"></div>
                   {/* <h6 className="mr-1 text-muted">{name}</h6> */}
                 </Link>
 
@@ -99,7 +99,9 @@ const Navbar = () => {
                   <i
                     className="fa fa-sign-out text-warning fa-2x"
                     aria-hidden="true"
-                    style={{ color: "white" }}
+                    style={{
+                      color: "white",
+                    }}
                   />
                 </button>
               </div>

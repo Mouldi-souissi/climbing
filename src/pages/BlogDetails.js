@@ -66,7 +66,7 @@ function BlogDetails() {
                     <div className="btn-group dropleft float-right">
                       <button
                         type="button"
-                        className="btn btn-transparent dropdown-toggle"
+                        className="btn btn-transparent"
                         data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false"
@@ -79,6 +79,7 @@ function BlogDetails() {
                             pathname: `/createPost${post._id}`,
                             state: true,
                           }}
+                          style={{ textDecoration: "none", color: "inherit" }}
                         >
                           <div className="dropdown-item">Edit Post</div>
                         </Link>
