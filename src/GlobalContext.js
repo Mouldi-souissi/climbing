@@ -12,7 +12,9 @@ class GlobalProvider extends Component {
   // Context state
   state = { isConnected: "", posts: [], post: "" };
 
-  // user
+  // user route
+
+  // register
   register = (email, password, name) => {
     axios
       .post("http://localhost:5000/api/user/register", {
@@ -23,6 +25,8 @@ class GlobalProvider extends Component {
       .then(() => this.login(email, password))
       .catch((err) => console.log(err));
   };
+
+  // login
   login = (email, password) => {
     axios
       .post("http://localhost:5000/api/user/login", { email, password })
@@ -38,16 +42,9 @@ class GlobalProvider extends Component {
     this.setState({ isConnected: "" });
   };
 
-  // post
-  getBlog = () => {
-    axios
-      .get(
-        "http://newsapi.org/v2/top-headlines?country=us&apiKey=35a21465f13d4792be5906b1af6a851c"
-      )
-      .then((res) => this.setState({ posts: res.data.articles }))
-      .catch((err) => console.log(err));
-  };
+  // post route
 
+  // get all posts
   getAllPostes = () => {
     axios
       .get("http://localhost:5000/api/posts", {
@@ -59,6 +56,7 @@ class GlobalProvider extends Component {
       .catch((err) => console.log(err));
   };
 
+  //get post by id
   getPostById = (id) => {
     axios
       .get(`http://localhost:5000/api/posts/${id}`)
@@ -70,6 +68,7 @@ class GlobalProvider extends Component {
       .catch((err) => console.log(err));
   };
 
+  // create post
   createPost = ({ title, image, content }) => {
     axios
       .post(
@@ -78,8 +77,6 @@ class GlobalProvider extends Component {
           title,
           image,
           content,
-          name: decodedToken.name,
-          userId: decodedToken.id,
         },
         {
           headers: {
@@ -95,6 +92,7 @@ class GlobalProvider extends Component {
       .catch((err) => console.log(err));
   };
 
+  // edit post
   editPost = (id, data) => {
     axios
       .put(`http://localhost:5000/api/posts/edit${id}`, data, {
@@ -110,6 +108,7 @@ class GlobalProvider extends Component {
       .catch((err) => console.log(err));
   };
 
+  // delete post
   deletePost = (id) => {
     axios
       .delete(`http://localhost:5000/api/posts/delete${id}`, {
@@ -120,16 +119,11 @@ class GlobalProvider extends Component {
       .then(() => window.open("/blog"))
       .catch((err) => console.log(err));
   };
-
+  // like post
   likePost = (id) => {
-    axios
-      .put(`http://localhost:5000/api/posts/like${id}`, {
-        name: decodedToken && decodedToken.name,
-        userId: decodedToken && decodedToken.id,
-      })
-      .then(() => {
-        this.getAllPostes();
-      });
+    axios.put(`http://localhost:5000/api/posts/like${id}`).then(() => {
+      this.getAllPostes();
+    });
   };
 
   componentDidMount() {
@@ -141,15 +135,14 @@ class GlobalProvider extends Component {
     const { isConnected, posts, post } = this.state;
     const {
       login,
+      register,
       logOut,
-      getBlog,
+      getAllPostes,
       getPostById,
       createPost,
-      register,
-      getAllPostes,
+      editPost,
       deletePost,
       likePost,
-      editPost,
     } = this;
 
     return (
@@ -158,7 +151,6 @@ class GlobalProvider extends Component {
           isConnected,
           login,
           logOut,
-          getBlog,
           posts,
           getPostById,
           post,

@@ -28,7 +28,7 @@ router.post("/add", verifyAuth, async (req, res) => {
     title: req.body.title,
     image: req.body.image,
     content: req.body.content,
-    author: { userId: req.body.userId, name: req.body.name },
+    author: { userId: req.user.id, name: req.user.name },
   });
   try {
     const addedPost = await post.save();
@@ -58,7 +58,7 @@ router.delete("/delete:id", verifyAuth, verifyOwner, (req, res) => {
 // private route
 router.put("/like:id", verifyAuth, async (req, res) => {
   let likedPost = await Post.findById(req.params.id);
-  let liked = likedPost.likes.find((like) => like.userId === req.body.userId);
+  let liked = likedPost.likes.find((like) => like.userId === req.user.id);
   if (liked) {
     res.status(401).send("already liked");
   } else {
