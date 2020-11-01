@@ -7,13 +7,15 @@ import jwtDecode from "jwt-decode";
 import CommentsSection from "../components/CommentsSection";
 import moment from "moment";
 
+// token
+let token = localStorage.getItem("token") && localStorage.getItem("token");
+let decodedToken = token && jwtDecode(token);
+
 function BlogDetails() {
   const { posts, getAllPostes, getPostById, post } = useContext(GlobalContext);
   const { id } = useParams();
-  // checking if user is the owner o this post
-  const userId =
-    localStorage.getItem("token") &&
-    jwtDecode(localStorage.getItem("token")).id;
+  // checking if user is the owner of this post
+  const userId = decodedToken && decodedToken.id;
   const postUserId = post.author && post.author.userId;
   const isOwner = postUserId === userId ? true : false;
 
@@ -57,10 +59,10 @@ function BlogDetails() {
                     </div>
                   )}
                 </div>
-                <div className="d-flex align-items-center justify-content-between">
-                  <div class="btn-group">
-                    <i class="fa fa-thumbs-up btn mr-1 bg-tranparent btn-primary"></i>
-                    <i class="fa fa-thumbs-down btn bg-tranparent mr-2 btn-outline-primary"></i>
+                <div className="d-flex align-items-center justify-content-between mt-2">
+                  <div className="btn-group">
+                    <i className="fa fa-thumbs-up btn mr-1 bg-tranparent btn-primary"></i>
+                    <i className="fa fa-thumbs-down btn bg-tranparent mr-2 btn-outline-primary"></i>
                   </div>
                   {isOwner && (
                     <div className="btn-group dropleft float-right">

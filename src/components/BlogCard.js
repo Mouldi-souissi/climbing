@@ -26,6 +26,7 @@ function BlogCard({ post }) {
       content.innerHTML = textLimit(post.content);
     }
   }, [post]);
+
   // check if user has already liked the post
   let actualUser =
     localStorage.getItem("token") &&
@@ -62,15 +63,13 @@ function BlogCard({ post }) {
           {/* <p className="text-secondary text-center">
             {moment(post.date).calendar()}
           </p> */}
-          <h4
-            className="card-title text-center mb-3"
+          <h4 className="card-title text-center mb-3">{post.title}</h4>
+          <p
+            id={post._id}
             data-toggle="tooltip"
             data-placement="top"
-            title={post.title}
-          >
-            {textLimit(post.title)}
-          </h4>
-          <p id={post._id}></p>
+            title={post.content}
+          ></p>
           <div className="btn-bar ">
             <Link
               to={`/blog/post${post._id}`}

@@ -74,4 +74,24 @@ router.put("/like:id", verifyAuth, async (req, res) => {
       .catch((err) => res.send(err));
   }
 });
+
+// add comment
+// private route
+router.post("/addComment:id", verifyAuth, async (req, res) => {
+  const commentedPost = await Post.findById(req.params.id);
+  try {
+    commentedPost.comments.push({
+      name: req.user.name,
+      userId: req.user.id,
+      comment: req.body.comment,
+    });
+    commentedPost
+      .save()
+      .then(() => res.send(commentedPost))
+      .catch((err) => console.log(err));
+  } catch (err) {
+    res.status(404).send("no such a post");
+  }
+});
+
 module.exports = router;

@@ -23,6 +23,7 @@ const postSchema = new mongoose.Schema({
     name: "",
   },
   likes: [{ name: String, userId: String }],
+  comments: [],
 });
 
 module.exports = mongoose.model("post", postSchema);

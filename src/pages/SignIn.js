@@ -24,10 +24,12 @@ const SignIn = (props) => {
   const handleFocus = (name) => {
     name.focus();
   };
+
   useEffect(() => {
     window.scrollTo(0, 0);
     logindRef.focus();
   }, [logindRef]);
+
   if (isConnected) {
     return <Redirect to="/blog" />;
   }
@@ -88,7 +90,7 @@ const SignIn = (props) => {
               >
                 {show ? "Hide" : "Show"} password
                 <i
-                  class={show ? "fa fa-eye-slash ml-2" : "fa fa-eye ml-2"}
+                  className={show ? "fa fa-eye-slash ml-2" : "fa fa-eye ml-2"}
                   aria-hidden="true"
                 />
               </p>

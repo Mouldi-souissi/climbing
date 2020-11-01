@@ -12,6 +12,7 @@ function CreatePost() {
   const [content, setValue] = useState("");
   let [data, setData] = useState("");
   const { id } = useParams();
+
   // context
   const { createPost, post, getPostById, editPost } = useContext(GlobalContext);
 
@@ -22,10 +23,11 @@ function CreatePost() {
   const handleInput = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
-  // handle crete or edit post
+  // handle create or edit post
   const handleCreateOrEdit = () => {
     if (isEditing) {
-      data = { ...data, content };
+      // clean object from unmodified fields
+      setData({ ...data, content });
       const modified = _.omit(data, _.isUndefined);
 
       editPost(id, modified);
@@ -33,8 +35,7 @@ function CreatePost() {
       createPost((data = { ...data, content }));
     }
   };
-  const modified = _.omit(data, _.isUndefined);
-  console.log(modified);
+
   // getting post data if editing
   useEffect(() => {
     getPostById(id);

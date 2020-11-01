@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
+import GlobalContext from "../GlobalContext";
 
 function CommentsSection() {
+  const [comment, setComment] = useState("");
+  const { addComment } = useContext(GlobalContext);
+  const { id } = useParams();
   return (
     <div className="container-fluid mt-5">
       <div className="row">
@@ -14,11 +19,13 @@ function CommentsSection() {
                 className="form-control"
                 rows="2"
                 placeholder="What are you thinking?"
+                onChange={(e) => setComment(e.target.value)}
               ></textarea>
               <div className="mar-top clearfix">
                 <button
                   className="btn btn-sm btn-primary pull-right"
                   type="submit"
+                  onClick={() => addComment(id, { comment })}
                 >
                   <i className="fa fa-pencil fa-fw"></i> Share
                 </button>

@@ -39,7 +39,7 @@ router.post("/login", loginValidator, async (req, res) => {
   if (!validpsw) return res.status(400).send("invalid credentials");
   // create token
   const token = jwt.sign({ id: user._id, name: user.name }, "secret");
-  res.header("token", token).send({ token, id: user._id });
+  res.header("token", token).send(token);
 });
 
 module.exports = router;
