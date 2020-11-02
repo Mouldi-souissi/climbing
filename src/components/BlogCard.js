@@ -93,7 +93,7 @@ function BlogCard({ post }) {
               </div>
               <div className="comment">
                 <i className="fa fa-comment mr-2" aria-hidden="true" />
-                <span>7</span>
+                <span>{post.comments.length}</span>
               </div>
             </div>
           </div>

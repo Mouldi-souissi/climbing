@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import BlogDelete from "../components/BlogDelete";
 import BlogSidebar from "../components/BlogSidebar";
@@ -7,28 +7,31 @@ import jwtDecode from "jwt-decode";
 import CommentsSection from "../components/CommentsSection";
 import moment from "moment";
 
-// token
-let token = localStorage.getItem("token") && localStorage.getItem("token");
-let decodedToken = token && jwtDecode(token);
-
 function BlogDetails() {
+  const [isOwner, setOwner] = useState(false);
   const { posts, getAllPostes, getPostById, post } = useContext(GlobalContext);
   const { id } = useParams();
-  // checking if user is the owner of this post
-  const userId = decodedToken && decodedToken.id;
-  const postUserId = post.author && post.author.userId;
-  const isOwner = postUserId === userId ? true : false;
 
   useEffect(() => {
     getAllPostes();
     getPostById(id);
+
     //  html to text
     let content = document.getElementById(post._id);
     if (content) {
       content.innerHTML = post.content;
     }
+
     // scroller position top
     window.scroll(0, 0);
+
+    // check owner
+    let token = localStorage.getItem("token") && localStorage.getItem("token");
+    let decodedToken = token && jwtDecode(token);
+    // checking if user is the owner of this post
+    const userId = decodedToken && decodedToken.id;
+    const postUserId = post.author && post.author.userId;
+    setOwner(postUserId === userId ? true : false);
   }, [getAllPostes, getPostById, id, post._id, post.content]);
   return (
     <div className="article" style={{ marginTop: "100px" }}>
@@ -61,8 +64,14 @@ function BlogDetails() {
                 </div>
                 <div className="d-flex align-items-center justify-content-between mt-2">
                   <div className="btn-group">
-                    <i className="fa fa-thumbs-up btn mr-1 bg-tranparent btn-primary"></i>
-                    <i className="fa fa-thumbs-down btn bg-tranparent mr-2 btn-outline-primary"></i>
+                    <button className="btn-primary btn btn-sm mr-1">
+                      <i className="fa fa-thumbs-up mr-1 fa-fw fa-1x" />
+                      {post.likes && post.likes.length}
+                    </button>
+                    <button className="btn-outline-primary btn btn-sm">
+                      <i className="fa fa-thumbs-down mr-1 fa-fw fa-1x" />
+                      {post.likes && post.likes.length}
+                    </button>
                   </div>
                   {isOwner && (
                     <div className="btn-group dropleft float-right">
@@ -128,7 +137,7 @@ function BlogDetails() {
                 <hr />
               </article>
 
-              <CommentsSection />
+              <CommentsSection post={post} isOwner={isOwner} />
             </div>
 
             <BlogSidebar

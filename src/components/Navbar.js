@@ -2,6 +2,11 @@ import React, { useContext } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import GlobalContext from "../GlobalContext";
 import Bonus2 from "./Bonus2";
+import jwtDecode from "jwt-decode";
+
+// token
+let token = localStorage.getItem("token") && localStorage.getItem("token");
+let decodedToken = token && jwtDecode(token);
 
 const Navbar = () => {
   const { isConnected, logOut } = useContext(GlobalContext);
@@ -57,6 +62,9 @@ const Navbar = () => {
           <div className="d-flex align-items-center">
             {isConnected ? (
               <div className="d-flex align-items-center">
+                {/* <p className="text-center">
+                  {decodedToken && decodedToken.name}
+                </p> */}
                 <div className="btn-group mr-3">
                   <button
                     type="button"
@@ -88,7 +96,6 @@ const Navbar = () => {
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
                   <div className="avatar-nav"></div>
-                  {/* <h6 className="mr-1 text-muted">{name}</h6> */}
                 </Link>
 
                 <button

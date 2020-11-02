@@ -10,10 +10,9 @@ function BlogAuthorCard({ post }) {
         <div className="media">
           <div className="avatar">
             <img
-              src="https://bootdey.com/img/Content/avatar/avatar6.png"
-              title=""
-              alt=""
-              className="align-self-center"
+              src="https://www.gravatar.com/avatar/1234566?size=200&d=mm"
+              alt="avatar"
+              className="rounded-circle mr-3 align-self-start"
             />
           </div>
           <div className="media-body">

@@ -1,10 +1,5 @@
 import axios from "axios";
 import React, { Component } from "react";
-// import jwtDecode from "jwt-decode";
-
-// token
-let token = localStorage.getItem("token") && localStorage.getItem("token");
-// let decodedToken = token && jwtDecode(token);
 
 export const GlobalContext = React.createContext();
 
@@ -49,7 +44,7 @@ class GlobalProvider extends Component {
     axios
       .get("http://localhost:5000/api/posts", {
         headers: {
-          token,
+          token: localStorage.getItem("token"),
         },
       })
       .then((res) => this.setState({ posts: res.data }))
@@ -80,7 +75,7 @@ class GlobalProvider extends Component {
         },
         {
           headers: {
-            token,
+            token: localStorage.getItem("token"),
           },
         }
       )
@@ -97,7 +92,7 @@ class GlobalProvider extends Component {
     axios
       .put(`http://localhost:5000/api/posts/edit${id}`, data, {
         headers: {
-          token,
+          token: localStorage.getItem("token"),
         },
       })
       .then((res) => {
@@ -113,7 +108,7 @@ class GlobalProvider extends Component {
     axios
       .delete(`http://localhost:5000/api/posts/delete${id}`, {
         headers: {
-          token,
+          token: localStorage.getItem("token"),
         },
       })
       .then(() => window.open("/blog"))
@@ -121,25 +116,24 @@ class GlobalProvider extends Component {
   };
   // like post
   likePost = (id) => {
-    axios
-      .put(`http://localhost:5000/api/posts/like${id}`, {
-        headers: {
-          token,
-        },
-      })
+    axios({
+      url: `http://localhost:5000/api/posts/like${id}`,
+      method: "put",
+      headers: { token: localStorage.getItem("token") },
+    })
       .then(() => {
         this.getAllPostes();
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   // comment a post
   addComment = (id, comment) => {
     axios
-      .post(`http://localhost:5000/api/posts/addComment${id}`, {
+      .post(`http://localhost:5000/api/posts/addComment${id}`, comment, {
         headers: {
-          token,
+          token: localStorage.getItem("token"),
         },
-        comment,
       })
       .then(() => {
         this.getPostById(id);
@@ -147,8 +141,21 @@ class GlobalProvider extends Component {
       .catch((err) => console.log(err));
   };
 
+  // delete comment by owner
+  deleteCommentByOwner = (postId, commentId) => {
+    axios({
+      url: `http://localhost:5000/api/posts/deleteComment/${postId}/${commentId}`,
+      method: "put",
+      headers: { token: localStorage.getItem("token") },
+    })
+      .then(() => {
+        this.getPostById(postId);
+      })
+      .catch((err) => console.log(err));
+  };
+
   componentDidMount() {
-    this.setState({ isConnected: token });
+    this.setState({ isConnected: localStorage.getItem("token") });
   }
 
   render() {
@@ -165,6 +172,7 @@ class GlobalProvider extends Component {
       deletePost,
       likePost,
       addComment,
+      deleteCommentByOwner,
     } = this;
 
     return (
@@ -183,6 +191,7 @@ class GlobalProvider extends Component {
           likePost,
           editPost,
           addComment,
+          deleteCommentByOwner,
         }}
       >
         {children}
