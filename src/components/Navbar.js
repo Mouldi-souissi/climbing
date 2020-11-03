@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import GlobalContext from "../GlobalContext";
 import Bonus2 from "./Bonus2";
-import jwtDecode from "jwt-decode";
+// import jwtDecode from "jwt-decode";
 
 // token
-let token = localStorage.getItem("token") && localStorage.getItem("token");
-let decodedToken = token && jwtDecode(token);
+// let token = localStorage.getItem("token") && localStorage.getItem("token");
+// let decodedToken = token && jwtDecode(token);
 
 const Navbar = () => {
   const { isConnected, logOut } = useContext(GlobalContext);
@@ -77,16 +77,22 @@ const Navbar = () => {
                     <i className="fa fa-pencil fa-fw" />
                     ADD
                   </button>
-                  <div className="dropdown-menu dropdown-menu-lg-right">
+                  <div
+                    className="dropdown-menu dropdown-menu-lg-right p-0 shadow-sm"
+                    // style={{ borderRadius: "20px" }}
+                  >
                     <Link
                       to={{ pathname: "/createPost:0", state: false }}
                       style={{ textDecoration: "none", color: "inherit" }}
                     >
                       <button className="dropdown-item" type="button">
+                        <i class="fa fa-file-o mr-2 pt-2" />
                         Post
                       </button>
                     </Link>
+                    <hr className="my-1 py-0" />
                     <button className="dropdown-item" type="button">
+                      <i class="fa fa-calendar mr-2 pb-2" />
                       Event
                     </button>
                   </div>

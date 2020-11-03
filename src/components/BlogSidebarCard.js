@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function BlogSidebarCard({ post }) {
   return (
-    <div className="latest-post-aside media ">
+    <div className="latest-post-aside media">
       <div className="lpa-left media-body">
         <div className="lpa-title">
           <h5>
@@ -23,7 +23,12 @@ function BlogSidebarCard({ post }) {
       <div className="lpa-right">
         <Link to={`/blog/post${post._id}`}>
           {post.image ? (
-            <img src={post.image} alt="" className="card-img-top" />
+            <img
+              src={post.image}
+              alt=""
+              className="img-fluid"
+              style={{ maxHeight: "90px", width: "100%" }}
+            />
           ) : (
             <div className="card-img-top bg-dark d-flex align-items-center">
               <p className="mx-auto text-white">No image</p>

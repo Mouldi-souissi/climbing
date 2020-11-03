@@ -17,7 +17,7 @@ function BlogCard({ post }) {
   };
   // formatting date for date card
   let month = moment(post.date).format("MMM");
-  let day = moment(post.date).format("D");
+  let day = moment(post.date).format("DD");
 
   // turn html into string
   React.useEffect(() => {
@@ -59,18 +59,22 @@ function BlogCard({ post }) {
             )}
           </Link>
         </div>
-        <div className="card-body">
+        <div className="card-body flex-column">
           {/* <p className="text-secondary text-center">
             {moment(post.date).calendar()}
           </p> */}
-          <h4 className="card-title text-center mb-3">{post.title}</h4>
+
+          <h4 className="card-title text-center mb-3">
+            {post.title}
+            <small className="text-muted ml-1">by {post.author.name}</small>
+          </h4>
           <p
             id={post._id}
             data-toggle="tooltip"
             data-placement="top"
             title={post.content}
           ></p>
-          <div className="btn-bar ">
+          <div className="btn-bar align-self-end d-flex justify-content-between">
             <Link
               to={`/blog/post${post._id}`}
               style={{ textDecoration: "none" }}
@@ -78,8 +82,8 @@ function BlogCard({ post }) {
               <span>Read More</span>
               <i className="fa fa-arrow-right ml-2" aria-hidden="true" />
             </Link>
-            <div className="d-flex float-right">
-              <div className="like mr-3">
+            <div className="right d-flex justify-content-between">
+              <div className="like mr-2">
                 <i
                   className={
                     liked

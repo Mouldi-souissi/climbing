@@ -11,13 +11,13 @@ function SearchBar() {
         background: "rgba(255,255,255,.9)",
       }}
     >
-      <div className="row ml-5 d-flex align-items-center">
+      <div className="d-flex align-items-center">
         <div className="mr-3">
           <SvgAnimation />
         </div>
         <input
           type="text"
-          className="form-control col-6 mr-3"
+          className="form-control col-lg-6 mr-3"
           placeholder="Search . . ."
         ></input>
         <button className="btn btn-primary">

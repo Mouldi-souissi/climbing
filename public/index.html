@@ -41,6 +41,7 @@
     />
   </head>
   <body>
+    <!-- start navbar transparent on scroll -->
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script type="text/javascript">
@@ -52,12 +53,14 @@
           } else {
             jQuery("navbar").css(
               "background-color",
-              "rgba(255, 255, 255, 0.2)"
+              "rgba(255, 255, 255, 0.9)"
             );
           }
         });
       });
     </script>
+    <!-- end navbar transparent on scroll -->
+
     <!-- aos animate -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
@@ -81,5 +84,15 @@
       integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
       crossorigin="anonymous"
     ></script>
+    <!-- start close sandwich on click away -->
+    <script>
+      $(window).click(function (e) {
+        if ($(".navbar-collapse").hasClass("show")) {
+          $(".navbar-collapse").removeClass("show");
+          e.preventDefault();
+        }
+      });
+    </script>
+    <!-- end close sandwich on click away -->
   </body>
 </html>

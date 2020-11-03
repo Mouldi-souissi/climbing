@@ -8,7 +8,7 @@ function CommentCard(props) {
   const { deleteCommentByOwner } = useContext(GlobalContext);
   const { id } = useParams();
   return (
-    <div className="comments mt-5 animate__animated animate__flipInX">
+    <div className="comments mt-5 animate__animated animate__fadeInDown">
       <div className="media">
         <a className="" href="/">
           <img

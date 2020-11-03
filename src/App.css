@@ -9,11 +9,13 @@ body {
   height: 100vh;
   overflow-x: hidden;
 }
+/*start  to keep footer down */
 
 #root {
   display: flex;
   flex-direction: column;
 }
+/* end */
 
 button:focus {
   outline: 0 !important;
@@ -25,6 +27,7 @@ button:focus {
 }
 
 /* navbar */
+
 .active {
   border-bottom: 1px solid #50bb92;
 }
@@ -65,7 +68,7 @@ button:focus {
   width: 100%;
   position: relative;
   margin-top: 50px;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
 }
 .hero-text {
   text-shadow: 1px 2px rgba(0, 0, 0, 0.5);
@@ -650,6 +653,10 @@ button:focus {
 
 /* blog  */
 
+.blog-listing i {
+  text-shadow: 1px 2px rgba(0, 0, 0, 0.5);
+}
+
 .blog-listing {
   background-image: url(./assets/bg.jpg);
   height: 400px;
@@ -666,9 +673,9 @@ button:focus {
 }
 
 .like i:hover {
-  color: #0275d8;
   cursor: pointer;
   transform: scale(0.95);
+  color: #0275d8;
 }
 .like .liked {
   color: #0275d8;
@@ -809,6 +816,14 @@ button:focus {
   background: #48bcdf;
 } */
 
+/* article */
+.shadowIcon {
+  text-shadow: 1px 2px rgba(0, 0, 0, 0.5);
+}
+.shadowIcon:hover {
+  transform: scale(0.95);
+  color: #0275d8;
+}
 .article .article-title {
   padding: 15px 0 20px;
 }
@@ -847,12 +862,6 @@ button:focus {
 .article .article-title .media .media-body span {
   display: block;
   font-size: 12px;
-}
-
-img {
-  max-width: 100%;
-  border-style: none;
-  vertical-align: middle;
 }
 
 /* svg */

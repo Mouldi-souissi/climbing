@@ -5,7 +5,11 @@ export const GlobalContext = React.createContext();
 
 class GlobalProvider extends Component {
   // Context state
-  state = { isConnected: "", posts: [], post: "" };
+  state = {
+    isConnected: "",
+    posts: [],
+    post: { title: "", author: {}, likes: [], comments: [] },
+  };
 
   // user route
 

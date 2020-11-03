@@ -8,6 +8,11 @@ function CommentsSection({ post, isOwner }) {
   const [comment, setComment] = useState("");
   const { addComment } = useContext(GlobalContext);
   const { id } = useParams();
+  const handleEnter = (e) => {
+    if (e.charCode === 13) {
+      addComment(id, { comment });
+    }
+  };
   return (
     <div className="container-fluid mt-5">
       <div className="row">
@@ -22,6 +27,7 @@ function CommentsSection({ post, isOwner }) {
                 rows="2"
                 placeholder="What are you thinking?"
                 onChange={(e) => setComment(e.target.value)}
+                onKeyPress={handleEnter}
               ></textarea>
               <div className="mar-top clearfix">
                 <button

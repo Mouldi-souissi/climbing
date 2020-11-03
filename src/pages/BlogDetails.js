@@ -13,8 +13,8 @@ function BlogDetails() {
   const { id } = useParams();
 
   useEffect(() => {
-    getAllPostes();
     getPostById(id);
+    getAllPostes();
 
     //  html to text
     let content = document.getElementById(post._id);
@@ -25,23 +25,24 @@ function BlogDetails() {
     // scroller position top
     window.scroll(0, 0);
 
-    // check owner
+    // checking if user is the owner of this post
+
     let token = localStorage.getItem("token") && localStorage.getItem("token");
     let decodedToken = token && jwtDecode(token);
-    // checking if user is the owner of this post
     const userId = decodedToken && decodedToken.id;
     const postUserId = post.author && post.author.userId;
     setOwner(postUserId === userId ? true : false);
   }, [getAllPostes, getPostById, id, post._id, post.content]);
   return (
     <div className="article" style={{ marginTop: "100px" }}>
-      <BlogDelete id={id} x={post.title && post.title.trim()} />
+      <BlogDelete id={id} x={post.title.trim()} />
       <div className="blog-single">
         <div className="container-fluid">
           <div className="row align-items-start">
             <div className="col-lg-8 ">
               <article className="article" style={{ borderRadius: "20px" }}>
                 <h1 className="display-3">{post.title}</h1>
+                <h4 className="text-muted">by {post.author.name}</h4>
                 <p className="text-secondary text-sm">
                   {moment(post.date).calendar()}
                 </p>
@@ -65,12 +66,12 @@ function BlogDetails() {
                 <div className="d-flex align-items-center justify-content-between mt-2">
                   <div className="btn-group">
                     <button className="btn-primary btn btn-sm mr-1">
-                      <i className="fa fa-thumbs-up mr-1 fa-fw fa-1x" />
-                      {post.likes && post.likes.length}
+                      <i className="fa fa-thumbs-up mr-1 fa-fw fa-1x shadowIcon" />
+                      {post.likes.length}
                     </button>
                     <button className="btn-outline-primary btn btn-sm">
-                      <i className="fa fa-thumbs-down mr-1 fa-fw fa-1x" />
-                      {post.likes && post.likes.length}
+                      <i className="fa fa-thumbs-down mr-1 fa-fw fa-1x shadowIcon" />
+                      {post.likes.length}
                     </button>
                   </div>
                   {isOwner && (
@@ -82,9 +83,12 @@ function BlogDetails() {
                         aria-haspopup="true"
                         aria-expanded="false"
                       >
-                        <i className="fa fa-cog fa-2x " aria-hidden="true" />
+                        <i
+                          className="fa fa-cog fa-2x shadowIcon"
+                          aria-hidden="true"
+                        />
                       </button>
-                      <div className="dropdown-menu">
+                      <div className="dropdown-menu p-0 shadow-sm">
                         <Link
                           to={{
                             pathname: `/createPost${post._id}`,
@@ -92,14 +96,18 @@ function BlogDetails() {
                           }}
                           style={{ textDecoration: "none", color: "inherit" }}
                         >
-                          <div className="dropdown-item">Edit Post</div>
+                          <div className="dropdown-item">
+                            <i class="fa fa-pencil-square-o mr-2 pt-2" />
+                            Edit Post
+                          </div>
                         </Link>
-
+                        <hr className="my-1 py-0" />
                         <div
-                          className="dropdown-item"
+                          className="dropdown-item btn"
                           data-toggle="modal"
                           data-target={`#${post.title}`}
                         >
+                          <i class="fa fa-trash-o mr-2 pb-2" />
                           Delete Post
                         </div>
                       </div>

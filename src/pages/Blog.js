@@ -21,8 +21,8 @@ function Blog() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
     <section className="blog-listing pt-5" style={{ marginTop: "78px" }}>
-      <SearchBar />
       <div className="container-fluid">
+        <SearchBar />
         <div className="row align-items-start">
           <div className="col-lg-8">
             <div className="row">
