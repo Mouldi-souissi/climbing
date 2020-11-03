@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
 // public route
 router.get("/:id", (req, res) => {
   Post.findById(req.params.id)
-    .then((post) => res.json(post))
+    .then((post) => res.send(post))
     .catch((err) => console.log(err));
 });
 
@@ -62,7 +62,7 @@ router.put("/like:id", verifyAuth, async (req, res) => {
   if (liked) {
     // res.status(401).send("already liked");
     likedPost
-      .update({ $pull: { likes: { userId: req.user.id } } }, { safe: true })
+      .updateOne({ $pull: { likes: { userId: req.user.id } } }, { safe: true })
       .then((post) => res.send(post));
   } else {
     likedPost.likes.push({ userId: req.user.id, name: req.user.name });
