@@ -10,7 +10,9 @@ function CommentsSection({ post, isOwner }) {
   const { id } = useParams();
   const handleEnter = (e) => {
     if (e.charCode === 13) {
-      addComment(id, { comment });
+      const copy = comment;
+      addComment(id, { comment: copy });
+      setComment("");
     }
   };
   return (
@@ -22,13 +24,14 @@ function CommentsSection({ post, isOwner }) {
             style={{ borderRadius: "20px" }}
           >
             <div className="panel-body">
-              <textarea
+              <input
                 className="form-control shadow-none"
                 rows="2"
                 placeholder="What are you thinking?"
                 onChange={(e) => setComment(e.target.value)}
                 onKeyPress={handleEnter}
-              ></textarea>
+                value={comment}
+              ></input>
               <div className="mar-top clearfix">
                 <button
                   className="btn btn-sm btn-primary pull-right"

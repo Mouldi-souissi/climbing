@@ -60,10 +60,6 @@ function BlogCard({ post }) {
           </Link>
         </div>
         <div className="card-body flex-column">
-          {/* <p className="text-secondary text-center">
-            {moment(post.date).calendar()}
-          </p> */}
-
           <h4 className="card-title text-center mb-3">
             {post.title}
             <small className="text-muted ml-1">by {post.author.name}</small>
@@ -85,18 +81,19 @@ function BlogCard({ post }) {
             <div className="right d-flex justify-content-between">
               <div className="like mr-2">
                 <i
-                  className={
-                    liked
-                      ? "fa fa-thumbs-up mr-2 liked"
-                      : "fa fa-thumbs-up mr-2"
-                  }
+                  className={`fa fa-thumbs-up mr-2 shadowIcon ${
+                    liked && "liked"
+                  }`}
                   aria-hidden="true"
                   onClick={() => likePost(post._id)}
                 ></i>
                 <span>{post.likes.length}</span>
               </div>
               <div className="comment">
-                <i className="fa fa-comment mr-2" aria-hidden="true" />
+                <i
+                  className="fa fa-comment mr-2 shadowIcon"
+                  aria-hidden="true"
+                />
                 <span>{post.comments.length}</span>
               </div>
             </div>

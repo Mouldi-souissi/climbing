@@ -653,10 +653,6 @@ button:focus {
 
 /* blog  */
 
-.blog-listing i {
-  text-shadow: 1px 2px rgba(0, 0, 0, 0.5);
-}
-
 .blog-listing {
   background-image: url(./assets/bg.jpg);
   height: 400px;
@@ -673,11 +669,11 @@ button:focus {
 }
 
 .like i:hover {
-  cursor: pointer;
   transform: scale(0.95);
   color: #0275d8;
 }
-.like .liked {
+
+.liked {
   color: #0275d8;
 }
 
@@ -820,10 +816,11 @@ button:focus {
 .shadowIcon {
   text-shadow: 1px 2px rgba(0, 0, 0, 0.5);
 }
+
 .shadowIcon:hover {
-  transform: scale(0.95);
-  color: #0275d8;
+  cursor: pointer;
 }
+
 .article .article-title {
   padding: 15px 0 20px;
 }
@@ -1250,4 +1247,53 @@ a.text-muted:focus {
 
 .mar-top {
   margin-top: 15px;
+}
+
+/* input tag */
+
+.input-tag {
+  background: white;
+  border: 1px solid #d6d6d6;
+  border-radius: 0.25rem;
+  /* display: flex;
+  flex-wrap: wrap; */
+  padding: 7px;
+}
+
+.input-tag input {
+  border: none;
+  width: 100%;
+}
+.input-tag input:focus {
+  outline: none;
+}
+
+.input-tag__tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.input-tag__tags li {
+  list-style: none;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  padding: 6px 12px;
+  border-top-left-radius: 0.25rem !important;
+  border-top-right-radius: 0.25rem !important;
+  border-bottom-right-radius: 0.25rem !important;
+  border-bottom-left-radius: 0.25rem !important;
+}
+
+.input-tag .fa:hover {
+  transform: scale(0.9);
+}
+
+.input-tag__tags li.input-tag__tags__input {
+  background: none;
+  flex-grow: 2;
+  padding: 0;
 }

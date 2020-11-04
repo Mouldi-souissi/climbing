@@ -12,6 +12,12 @@ function BlogDetails() {
   const { posts, getAllPostes, getPostById, post } = useContext(GlobalContext);
   const { id } = useParams();
 
+  // check if user has already liked the post
+  let actualUser =
+    localStorage.getItem("token") &&
+    jwtDecode(localStorage.getItem("token")).id;
+  let liked = post.likes.find((like) => like.userId === actualUser);
+
   useEffect(() => {
     getPostById(id);
     getAllPostes();
@@ -63,17 +69,27 @@ function BlogDetails() {
                     </div>
                   )}
                 </div>
-                <div className="d-flex align-items-center justify-content-between mt-2">
-                  <div className="btn-group">
-                    <button className="btn-primary btn btn-sm mr-1">
-                      <i className="fa fa-thumbs-up mr-1 fa-fw fa-1x shadowIcon" />
-                      {post.likes.length}
-                    </button>
-                    <button className="btn-outline-primary btn btn-sm">
-                      <i className="fa fa-thumbs-down mr-1 fa-fw fa-1x shadowIcon" />
-                      {post.likes.length}
-                    </button>
+                <div className="d-flex align-items-center justify-content-between mt-2 ml-2">
+                  <div className="d-flex justify-content-between">
+                    <div className="like mr-2">
+                      <i
+                        className={`fa fa-thumbs-up mr-2 shadowIcon fa-1x ${
+                          liked && "liked"
+                        }`}
+                        aria-hidden="true"
+                        // onClick={() => likePost(post._id)}
+                      ></i>
+                      <h5 className="d-inline">{post.likes.length}</h5>
+                    </div>
+                    <div className="comment">
+                      <i
+                        className="fa fa-comment mr-2 shadowIcon fa-1x "
+                        aria-hidden="true"
+                      />
+                      <h5 className="d-inline">{post.comments.length}</h5>
+                    </div>
                   </div>
+
                   {isOwner && (
                     <div className="btn-group dropleft float-right">
                       <button

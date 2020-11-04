@@ -86,13 +86,13 @@ const Navbar = () => {
                       style={{ textDecoration: "none", color: "inherit" }}
                     >
                       <button className="dropdown-item" type="button">
-                        <i class="fa fa-file-o mr-2 pt-2" />
+                        <i className="fa fa-file-o mr-2 pt-2" />
                         Post
                       </button>
                     </Link>
                     <hr className="my-1 py-0" />
                     <button className="dropdown-item" type="button">
-                      <i class="fa fa-calendar mr-2 pb-2" />
+                      <i className="fa fa-calendar mr-2 pb-2" />
                       Event
                     </button>
                   </div>

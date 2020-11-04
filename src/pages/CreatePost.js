@@ -3,6 +3,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useHistory, useParams } from "react-router-dom";
 import Bonus from "../components/Bonus";
+import InputTag from "../components/InputTag";
 import GlobalContext from "../GlobalContext";
 // import PostPreview from "./PostPreview";
 var _ = require("lodash");
@@ -36,12 +37,19 @@ function CreatePost() {
     }
   };
 
+  // grab tags from inputTags
+  const grabTags = (tags) => {
+    setData({ ...data, tags });
+  };
+
   // getting post data if editing
   useEffect(() => {
-    getPostById(id);
+    if (isEditing) {
+      getPostById(id);
+    }
   }, [getPostById, id]);
   return (
-    <div className="container " style={{ marginTop: "100px" }}>
+    <div className="container" style={{ marginTop: "100px" }}>
       <div className="row">
         <div className="col-lg-12  mb-5" style={{ borderRadius: "20px" }}>
           <div className="card-body">
@@ -68,6 +76,10 @@ function CreatePost() {
                 onChange={handleInput}
                 name="image"
               />
+            </div>
+            <div className="form-group mt-3">
+              <label>Tags</label>
+              <InputTag grabTags={grabTags} />
             </div>
             {data.image && (
               <img src={data.image} alt="img preview" height="300px" />

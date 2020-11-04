@@ -25,7 +25,7 @@ function BlogDelete({ id, x }) {
       aria-hidden="true"
     >
       <div className="modal-dialog modal-dialog-centered">
-        <div className="modal-content">
+        <div className="modal-content" style={{ borderRadius: "20px" }}>
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">
               Delete Post
@@ -46,7 +46,7 @@ function BlogDelete({ id, x }) {
           <div className="modal-footer">
             <button
               type="button"
-              className="btn btn-danger"
+              className="btn btn-outline-primary"
               data-dismiss="modal"
             >
               No
