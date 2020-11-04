@@ -33,6 +33,9 @@ export class InputTag extends Component {
       this.props.grabTags(this.state.tags);
     }
   }
+  componentDidMount() {
+    this.props.postTags && this.setState({ tags: this.props.postTags });
+  }
 
   render() {
     const { tags } = this.state;

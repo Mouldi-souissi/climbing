@@ -1,3 +1,4 @@
+const { array } = require("@hapi/joi");
 const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema({
@@ -34,6 +35,8 @@ const postSchema = new mongoose.Schema({
       },
     },
   ],
+  // tags: [{ tag: String }],
+  tags: Array,
 });
 
 module.exports = mongoose.model("post", postSchema);

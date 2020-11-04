@@ -8,7 +8,7 @@ class GlobalProvider extends Component {
   state = {
     isConnected: "",
     posts: [],
-    post: { title: "", author: {}, likes: [], comments: [] },
+    post: { title: "", author: {}, likes: [], comments: [], tags: [] },
   };
 
   // user route
@@ -68,7 +68,7 @@ class GlobalProvider extends Component {
   };
 
   // create post
-  createPost = ({ title, image, content }) => {
+  createPost = ({ title, image, content, tags }) => {
     axios
       .post(
         "http://localhost:5000/api/posts/add",
@@ -76,6 +76,7 @@ class GlobalProvider extends Component {
           title,
           image,
           content,
+          tags,
         },
         {
           headers: {
@@ -102,7 +103,7 @@ class GlobalProvider extends Component {
       .then((res) => {
         this.setState({});
         this.getAllPostes();
-        // window.location.replace(`/blog/post${res.data._id}`);
+        window.location.replace(`/blog/post${res.data._id}`);
       })
       .catch((err) => console.log(err));
   };

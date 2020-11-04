@@ -29,6 +29,7 @@ router.post("/add", verifyAuth, async (req, res) => {
     image: req.body.image,
     content: req.body.content,
     author: { userId: req.user.id, name: req.user.name },
+    tags: req.body.tags,
   });
   try {
     const addedPost = await post.save();

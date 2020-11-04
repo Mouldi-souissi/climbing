@@ -79,14 +79,14 @@ function BlogDetails() {
                         aria-hidden="true"
                         // onClick={() => likePost(post._id)}
                       ></i>
-                      <h5 className="d-inline">{post.likes.length}</h5>
+                      {post.likes.length}
                     </div>
                     <div className="comment">
                       <i
                         className="fa fa-comment mr-2 shadowIcon fa-1x "
                         aria-hidden="true"
                       />
-                      <h5 className="d-inline">{post.comments.length}</h5>
+                      {post.comments.length}
                     </div>
                   </div>
 
@@ -136,27 +136,11 @@ function BlogDetails() {
                 <hr />
                 <h4 className="mt-5 mb-3">Tags</h4>
                 <div className="nav tag-cloud mb-5">
-                  <a href="/" className="btn btn-primary mr-2 mb-1">
-                    Design
-                  </a>
-                  <a href="/" className="btn btn-primary mr-2 mb-1">
-                    Development
-                  </a>
-                  <a href="/" className="btn btn-primary mr-2 mb-1">
-                    Web Design
-                  </a>
-                  <a href="/" className="btn btn-primary mr-2 mb-1">
-                    Travel
-                  </a>
-                  <a href="/" className="btn btn-primary mr-2 mb-1">
-                    Marketing
-                  </a>
-                  <a href="/" className="btn btn-primary mr-2 mb-1">
-                    Research
-                  </a>
-                  <a href="/" className="btn btn-primary mr-2 mb-1">
-                    Managment
-                  </a>
+                  {post.tags.map((tag) => (
+                    <a key={tag} href="/" className="btn btn-primary mr-2 mb-1">
+                      {tag}
+                    </a>
+                  ))}
                 </div>
                 <hr />
               </article>

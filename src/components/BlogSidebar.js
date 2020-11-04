@@ -29,27 +29,13 @@ function BlogSidebar({ posts, showAuthor, post }) {
         </div>
         <div className="widget-body">
           <div className="nav tag-cloud">
-            <a href="/" className="btn btn-primary mr-2 mb-1">
-              Design
-            </a>
-            <a href="/" className="btn btn-primary mr-2 mb-1">
-              Development
-            </a>
-            <a href="/" className="btn btn-primary mr-2 mb-1">
-              Travel
-            </a>
-            <a href="/" className="btn btn-primary mr-2 mb-1">
-              Web Design
-            </a>
-            <a href="/" className="btn btn-primary mr-2 mb-1">
-              Marketing
-            </a>
-            <a href="/" className="btn btn-primary mr-2 mb-1">
-              Research
-            </a>
-            <a href="/" className="btn btn-primary mr-2 mb-1">
-              Managment
-            </a>
+            {posts.map((post) =>
+              post.tags.map((tag) => (
+                <a key={tag} href="/" className="btn btn-primary mr-2 mb-1">
+                  {tag}
+                </a>
+              ))
+            )}
           </div>
         </div>
       </div>

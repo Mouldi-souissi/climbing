@@ -10,7 +10,7 @@ var _ = require("lodash");
 
 function CreatePost() {
   // state
-  const [content, setValue] = useState("");
+  // const [content, setValue] = useState("");
   let [data, setData] = useState("");
   const { id } = useParams();
 
@@ -28,12 +28,16 @@ function CreatePost() {
   const handleCreateOrEdit = () => {
     if (isEditing) {
       // clean object from unmodified fields
-      setData({ ...data, content });
+      // setData({ ...data, content });
+
       const modified = _.omit(data, _.isUndefined);
 
       editPost(id, modified);
+      setData("");
     } else {
-      createPost((data = { ...data, content }));
+      const copy = data;
+      createPost(copy);
+      setData("");
     }
   };
 
@@ -79,7 +83,7 @@ function CreatePost() {
             </div>
             <div className="form-group mt-3">
               <label>Tags</label>
-              <InputTag grabTags={grabTags} />
+              <InputTag grabTags={grabTags} postTags={post.tags} />
             </div>
             {data.image && (
               <img src={data.image} alt="img preview" height="300px" />
@@ -88,8 +92,8 @@ function CreatePost() {
               <label>Content</label>
               <ReactQuill
                 theme="snow"
-                defaultValue={isEditing ? post.content : content}
-                onChange={setValue}
+                defaultValue={post.content}
+                onChange={(value) => setData({ ...data, content: value })}
                 name="content"
               />
             </div>
