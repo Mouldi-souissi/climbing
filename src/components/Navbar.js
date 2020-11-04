@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
-import GlobalContext from "../GlobalContext";
+import { PostsContext } from "../contexts/PostsContext";
 import Bonus2 from "./Bonus2";
 // import jwtDecode from "jwt-decode";
 
@@ -9,7 +9,7 @@ import Bonus2 from "./Bonus2";
 // let decodedToken = token && jwtDecode(token);
 
 const Navbar = () => {
-  const { isConnected, logOut } = useContext(GlobalContext);
+  const { isAuth, logOut } = useContext(PostsContext);
   // let isConnected = localStorage.getItem("token");
   let history = useHistory();
   const handleLogout = () => {
@@ -60,7 +60,7 @@ const Navbar = () => {
 
         <div role="navigation" className="mt-3 mt-lg-0 mt-md-0 ml-auto p-2">
           <div className="d-flex align-items-center">
-            {isConnected ? (
+            {isAuth ? (
               <div className="d-flex align-items-center">
                 {/* <p className="text-center">
                   {decodedToken && decodedToken.name}

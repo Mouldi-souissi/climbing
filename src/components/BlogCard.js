@@ -1,11 +1,11 @@
 import JwtDecode from "jwt-decode";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import GlobalContext from "../GlobalContext";
+import { PostsContext } from "../contexts/PostsContext";
 var moment = require("moment");
 
 function BlogCard({ post }) {
-  const { likePost } = useContext(GlobalContext);
+  const { likePost } = useContext(PostsContext);
   // text limiting ...
   const textLimit = (text) => {
     const limit = 200;
@@ -25,7 +25,7 @@ function BlogCard({ post }) {
     if (content) {
       content.innerHTML = textLimit(post.content);
     }
-  }, [post]);
+  }, [post._id, post.content]);
 
   // check if user has already liked the post
   let actualUser =

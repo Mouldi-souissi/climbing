@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import moment from "moment";
-import GlobalContext from "../GlobalContext";
+import { PostsContext } from "../contexts/PostsContext";
 import { useParams } from "react-router-dom";
 
 function CommentCard(props) {
   const { name, comment, date, _id } = props.comment;
-  const { deleteCommentByOwner } = useContext(GlobalContext);
+  const { deleteCommentByOwner } = useContext(PostsContext);
   const { id } = useParams();
   return (
     <div className="comments mt-5 animate__animated animate__fadeInDown">

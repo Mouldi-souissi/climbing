@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
-import GlobalContext from "../GlobalContext";
+import { PostsContext } from "../contexts/PostsContext";
 import CommentCard from "./CommentCard";
 import moment from "moment";
 
 function CommentsSection({ post, isOwner }) {
   const [comment, setComment] = useState("");
-  const { addComment } = useContext(GlobalContext);
+  const { addComment } = useContext(PostsContext);
   const { id } = useParams();
   const handleEnter = (e) => {
     if (e.charCode === 13) {

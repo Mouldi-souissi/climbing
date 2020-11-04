@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { GlobalContext } from "../GlobalContext";
 import Bonus from "../components/Bonus";
 import { Link } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
 const SignUp = () => {
-  const { register } = useContext(GlobalContext);
+  const { register } = useContext(UserContext);
   const [data, setData] = useState("");
   const [show, setshow] = useState(false);
   const handleInput = (e) => {

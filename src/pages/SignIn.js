@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { GlobalContext } from "../GlobalContext";
 import Bonus from "../components/Bonus";
+import { UserContext } from "../contexts/UserContext";
 
 const SignIn = (props) => {
-  const { login, isConnected } = useContext(GlobalContext);
+  const { login, isAuth } = useContext(UserContext);
   const [data, setData] = useState("");
   const [show, setshow] = useState(false);
 
@@ -30,7 +30,7 @@ const SignIn = (props) => {
     logindRef.focus();
   }, [logindRef]);
 
-  if (isConnected) {
+  if (isAuth) {
     return <Redirect to="/blog" />;
   }
   return (

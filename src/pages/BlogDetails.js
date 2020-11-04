@@ -2,14 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import BlogDelete from "../components/BlogDelete";
 import BlogSidebar from "../components/BlogSidebar";
-import GlobalContext from "../GlobalContext";
+import { PostsContext } from "../contexts/PostsContext";
 import jwtDecode from "jwt-decode";
 import CommentsSection from "../components/CommentsSection";
 import moment from "moment";
 
 function BlogDetails() {
   const [isOwner, setOwner] = useState(false);
-  const { posts, getAllPostes, getPostById, post } = useContext(GlobalContext);
+  const { posts, getAllPostes, getPostById, post } = useContext(PostsContext);
   const { id } = useParams();
 
   // check if user has already liked the post
@@ -38,7 +38,7 @@ function BlogDetails() {
     const userId = decodedToken && decodedToken.id;
     const postUserId = post.author && post.author.userId;
     setOwner(postUserId === userId ? true : false);
-  }, [getAllPostes, getPostById, id, post._id, post.content]);
+  }, []);
   return (
     <div className="article" style={{ marginTop: "100px" }}>
       <BlogDelete id={id} x={post.title.trim()} />

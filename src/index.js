@@ -3,14 +3,17 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { GlobalProvider } from "./GlobalContext";
 import Footer from "./components/Footer";
+import UserContextProvider from "./contexts/UserContext";
+import PostsContextProvider from "./contexts/PostsContext";
 
 ReactDOM.render(
-  <GlobalProvider>
-    <App />
-    <Footer />
-  </GlobalProvider>,
+  <UserContextProvider>
+    <PostsContextProvider>
+      <App />
+      <Footer />
+    </PostsContextProvider>
+  </UserContextProvider>,
   document.getElementById("root")
 );
 

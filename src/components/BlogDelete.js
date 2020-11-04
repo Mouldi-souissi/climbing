@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import GlobalContext from "../GlobalContext";
+import { PostsContext } from "../contexts/PostsContext";
 
 function BlogDelete({ id, x }) {
-  const { deletePost } = useContext(GlobalContext);
+  const { deletePost } = useContext(PostsContext);
 
   // sumilate exit click
   let buttonRef = "";

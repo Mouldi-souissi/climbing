@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import BlogCard from "../components/BlogCard";
 import Pagination from "../components/Pagination";
-import GlobalContext from "../GlobalContext";
+import { PostsContext } from "../contexts/PostsContext";
 import BlogSidebar from "../components/BlogSidebar";
 import SearchBar from "../components/SearchBar";
 
 function Blog() {
-  const { posts, getAllPostes } = useContext(GlobalContext);
+  const { posts, getAllPostes } = useContext(PostsContext);
 
   useEffect(() => {
     getAllPostes();
     window.scrollTo(0, 0);
-  }, [getAllPostes]);
+  }, []);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);

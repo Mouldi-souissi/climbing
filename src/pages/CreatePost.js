@@ -4,7 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import { useHistory, useParams } from "react-router-dom";
 import Bonus from "../components/Bonus";
 import InputTag from "../components/InputTag";
-import GlobalContext from "../GlobalContext";
+import { PostsContext } from "../contexts/PostsContext";
 // import PostPreview from "./PostPreview";
 var _ = require("lodash");
 
@@ -15,7 +15,7 @@ function CreatePost() {
   const { id } = useParams();
 
   // context
-  const { createPost, post, getPostById, editPost } = useContext(GlobalContext);
+  const { createPost, post, getPostById, editPost } = useContext(PostsContext);
 
   // checking if editing post
   let isEditing = useHistory().location.state;
@@ -51,7 +51,7 @@ function CreatePost() {
     if (isEditing) {
       getPostById(id);
     }
-  }, [getPostById, id]);
+  }, [post]);
   return (
     <div className="container" style={{ marginTop: "100px" }}>
       <div className="row">
