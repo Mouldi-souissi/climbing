@@ -92,7 +92,6 @@ const PostsContextProvider = (props) => {
     })
       .then(() => {
         getPostById(id);
-        // this.forceUpdate();
       })
       .catch((err) => console.log(err));
   };

@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Bonus from "../components/Bonus";
 import { UserContext } from "../contexts/UserContext";
 
-const SignIn = (props) => {
-  const { login, isAuth } = useContext(UserContext);
+const SignIn = () => {
+  const { login } = useContext(UserContext);
   const [data, setData] = useState("");
   const [show, setshow] = useState(false);
 
@@ -15,7 +15,6 @@ const SignIn = (props) => {
   const handleLogin = (e) => {
     e.preventDefault();
     login(data.login, data.password);
-    // this.props.history.push("/blog");
   };
 
   let logindRef = null;
@@ -27,12 +26,9 @@ const SignIn = (props) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    logindRef.focus();
-  }, [logindRef]);
+    logindRef && logindRef.focus();
+  }, []);
 
-  if (isAuth) {
-    return <Redirect to="/blog" />;
-  }
   return (
     <div className="container mx-auto" style={{ marginTop: "100px" }}>
       <div className="row">

@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
 import axios from "axios";
+import JwtDecode from "jwt-decode";
 
 export const UserContext = createContext();
 
@@ -24,13 +25,27 @@ const UserContextProvider = (props) => {
       .post("http://localhost:5000/api/user/login", { email, password })
       .then((res) => {
         localStorage.setItem("token", res.data);
-        setAuth(true);
+        window.location.replace("/blog");
       })
       .catch((err) => console.log(err));
   };
 
+  // is auth
+  const checkAuth = () => {
+    let token = localStorage.getItem("token") && localStorage.getItem("token");
+    let decodedToken = token && JwtDecode(token).name;
+    setAuth(decodedToken);
+  };
+
+  // logout
+  const logout = () => {
+    setAuth(false);
+  };
+
   return (
-    <UserContext.Provider value={{ isAuth, login, register }}>
+    <UserContext.Provider
+      value={{ isAuth, login, register, checkAuth, logout }}
+    >
       {props.children}
     </UserContext.Provider>
   );

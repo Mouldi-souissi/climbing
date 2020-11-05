@@ -38,7 +38,7 @@ function BlogDetails() {
     const userId = decodedToken && decodedToken.id;
     const postUserId = post.author && post.author.userId;
     setOwner(postUserId === userId ? true : false);
-  }, []);
+  }, [post._id, post.content]);
   return (
     <div className="article" style={{ marginTop: "100px" }}>
       <BlogDelete id={id} x={post.title.trim()} />

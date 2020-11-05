@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
-import { PostsContext } from "../contexts/PostsContext";
+import { UserContext } from "../contexts/UserContext";
 import Bonus2 from "./Bonus2";
 // import jwtDecode from "jwt-decode";
 
@@ -9,14 +9,18 @@ import Bonus2 from "./Bonus2";
 // let decodedToken = token && jwtDecode(token);
 
 const Navbar = () => {
-  const { isAuth, logOut } = useContext(PostsContext);
+  const { isAuth, logout, checkAuth } = useContext(UserContext);
   // let isConnected = localStorage.getItem("token");
   let history = useHistory();
   const handleLogout = () => {
     window.localStorage.removeItem("token");
+    logout();
     history.push("/");
-    logOut();
   };
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
 
   return (
     <nav className="navbar navbar-light navbar-expand-lg px-3 py-2">
