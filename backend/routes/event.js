@@ -17,7 +17,7 @@ router.post("/add", verifyAuth, async (req, res) => {
     const addedEvent = await event.save();
     res.status(200).send(addedEvent);
   } catch (err) {
-    res.send(err);
+    console.log(err);
   }
 });
 
@@ -53,7 +53,7 @@ router.put("/edit:id", verifyAuth, verifyEventOwner, (req, res) => {
 
 // delete event
 // private route, verify owner
-router.delete("/delete:id", verifyAuth, verifyEventOwner, (req, res) => {
+router.delete("/delete:id", verifyAuth, (req, res) => {
   Event.findByIdAndDelete(req.params.id)
     .then((deletedEvent) =>
       res.status(200).send({ msg: "event has been deleted", deletedEvent })

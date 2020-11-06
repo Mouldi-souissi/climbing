@@ -19,7 +19,7 @@ app.use(cors());
 // route middlewares
 app.use("/api/user", authRoute);
 app.use("/api/posts", postRoute);
-app.use("/events", eventRoute);
+app.use("/api/events", eventRoute);
 const port = process.env.Port || 5000;
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
