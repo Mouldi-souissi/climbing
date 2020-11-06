@@ -9,6 +9,7 @@ const verifyOwner = require("../permissions/verifyOwner");
 router.get("/", (req, res) => {
   Post.find()
     .sort({ date: -1 })
+    .populate({ path: "user", model: "user" })
     .then((posts) => res.json(posts))
     .catch((err) => console.log(err));
 });
@@ -17,6 +18,7 @@ router.get("/", (req, res) => {
 // public route
 router.get("/:id", (req, res) => {
   Post.findById(req.params.id)
+    .populate({ path: "user", model: "user" })
     .then((post) => res.send(post))
     .catch((err) => console.log(err));
 });
@@ -30,6 +32,7 @@ router.post("/add", verifyAuth, async (req, res) => {
     content: req.body.content,
     author: { userId: req.user.id, name: req.user.name },
     tags: req.body.tags,
+    user: req.user.id,
   });
   try {
     const addedPost = await post.save();
@@ -81,20 +84,33 @@ router.put("/like:id", verifyAuth, async (req, res) => {
 
 // add comment
 // private route
-router.post("/addComment:id", verifyAuth, async (req, res) => {
+router.post("/addComment:id/:type", verifyAuth, async (req, res) => {
   const commentedPost = await Post.findById(req.params.id);
+
   try {
-    commentedPost.comments.push({
-      name: req.user.name,
-      userId: req.user.id,
-      comment: req.body.comment,
-    });
+    if (req.params.type === "parent") {
+      commentedPost.comments.push({
+        name: req.user.name,
+        userId: req.user.id,
+        comment: req.body.comment,
+      });
+    } else {
+      const parentComment = await commentedPost.find(
+        comments._id === req.params.type
+      );
+      parentComment.subComments.push({
+        name: req.user.name,
+        userId: req.user.id,
+        comment: req.body.comment,
+      });
+    }
+
     commentedPost
       .save()
       .then(() => res.send(commentedPost))
       .catch((err) => console.log(err));
   } catch (err) {
-    err.status(404).send("no such post");
+    res.status(404).send("no such post");
   }
 });
 

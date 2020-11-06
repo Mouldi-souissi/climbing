@@ -1,5 +1,24 @@
-const { array } = require("@hapi/joi");
 const mongoose = require("mongoose");
+
+const subCommentSchema = new mongoose.Schema({
+  name: String,
+  userId: String,
+  comment: { type: String, required: true },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+});
+const commentSchema = new mongoose.Schema({
+  name: String,
+  userId: String,
+  comment: { type: String, required: true },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+  subComments: [subCommentSchema],
+});
 
 const postSchema = new mongoose.Schema({
   title: {
@@ -24,19 +43,9 @@ const postSchema = new mongoose.Schema({
     name: "",
   },
   likes: [{ name: String, userId: String }],
-  comments: [
-    {
-      name: String,
-      userId: String,
-      comment: { type: String, required: true },
-      date: {
-        type: Date,
-        default: Date.now,
-      },
-    },
-  ],
-  // tags: [{ tag: String }],
+  comments: [commentSchema],
   tags: Array,
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
 });
 
 module.exports = mongoose.model("post", postSchema);

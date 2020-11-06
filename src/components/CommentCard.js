@@ -1,12 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import moment from "moment";
 import { PostsContext } from "../contexts/PostsContext";
 import { useParams } from "react-router-dom";
 
 function CommentCard(props) {
   const { name, comment, date, _id } = props.comment;
-  const { deleteCommentByOwner } = useContext(PostsContext);
+  const { deleteCommentByOwner, addComment } = useContext(PostsContext);
+  const [showCommentbar, setCommentbar] = useState(false);
+  const [subComment, setSubComment] = useState("");
   const { id } = useParams();
+
   return (
     <div className="comments mt-5 animate__animated animate__fadeInDown">
       <div className="media">
@@ -41,10 +44,27 @@ function CommentCard(props) {
                 />
               )}
 
-              <a className="btn btn-sm btn-outline-primary" href="/">
+              <div
+                className="btn btn-sm btn-outline-primary"
+                onClick={() => setCommentbar(!showCommentbar)}
+              >
                 Comment
-              </a>
+              </div>
             </div>
+            {showCommentbar && (
+              <div className="mt-3 d-flex align-items-center">
+                <input
+                  className="form-control mr-3"
+                  onChange={(e) => setSubComment(e.target.value)}
+                />
+                <button
+                  className="btn btn-primary"
+                  onClick={() => addComment(id, { comment }, _id)}
+                >
+                  Share
+                </button>
+              </div>
+            )}
           </div>
           <hr />
         </div>

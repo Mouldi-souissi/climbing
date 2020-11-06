@@ -51,7 +51,7 @@ function CreatePost() {
     if (isEditing) {
       getPostById(id);
     }
-  }, [post]);
+  }, []);
   return (
     <div className="container" style={{ marginTop: "100px" }}>
       <div className="row">

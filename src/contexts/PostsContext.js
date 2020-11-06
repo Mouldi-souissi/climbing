@@ -97,13 +97,17 @@ const PostsContextProvider = (props) => {
   };
 
   // comment a post
-  const addComment = (id, comment) => {
+  const addComment = (id, comment, type) => {
     axios
-      .post(`http://localhost:5000/api/posts/addComment${id}`, comment, {
-        headers: {
-          token: localStorage.getItem("token"),
-        },
-      })
+      .post(
+        `http://localhost:5000/api/posts/addComment${id}/${type}`,
+        comment,
+        {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        }
+      )
       .then(() => {
         getPostById(id);
       })
