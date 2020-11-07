@@ -1,6 +1,8 @@
 import React from "react";
+import moment from "moment";
 
-function SubCommentCard() {
+function SubCommentCard(props) {
+  const { comment, date, name } = props.subComment;
   return (
     <div className="media mt-3">
       <a className="" href="/">
@@ -16,25 +18,14 @@ function SubCommentCard() {
             href="/"
             className="btn-link text-semibold media-heading box-inline"
           >
-            Bobby Marz
+            {name}
           </a>
-          <p className="text-muted text-sm">7 min ago</p>
+          <p className="text-muted text-sm">
+            {" "}
+            {moment(date).startOf("mins").fromNow()}
+          </p>
         </div>
-        <p>
-          Sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-          aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
-          exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-          commodo consequat.
-        </p>
-        <div>
-          <div className="btn-group">
-            <i className="fa fa-thumbs-up btn mr-1 bg-tranparent btn-primary"></i>
-            <i className="fa fa-thumbs-down btn bg-tranparent mr-2 btn-outline-primary"></i>
-          </div>
-          <a className="btn btn-sm btn-outline-primary" href="/">
-            Comment
-          </a>
-        </div>
+        <p>{comment}</p>
         <hr />
       </div>
     </div>

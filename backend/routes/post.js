@@ -84,26 +84,15 @@ router.put("/like:id", verifyAuth, async (req, res) => {
 
 // add comment
 // private route
-router.post("/addComment:id/:type", verifyAuth, async (req, res) => {
+router.post("/addComment:id", verifyAuth, async (req, res) => {
   const commentedPost = await Post.findById(req.params.id);
 
   try {
-    if (req.params.type === "parent") {
-      commentedPost.comments.push({
-        name: req.user.name,
-        userId: req.user.id,
-        comment: req.body.comment,
-      });
-    } else {
-      const parentComment = await commentedPost.find(
-        comments._id === req.params.type
-      );
-      parentComment.subComments.push({
-        name: req.user.name,
-        userId: req.user.id,
-        comment: req.body.comment,
-      });
-    }
+    commentedPost.comments.push({
+      name: req.user.name,
+      userId: req.user.id,
+      comment: req.body.comment,
+    });
 
     commentedPost
       .save()
@@ -112,6 +101,25 @@ router.post("/addComment:id/:type", verifyAuth, async (req, res) => {
   } catch (err) {
     res.status(404).send("no such post");
   }
+});
+
+// add sub comment
+// private route verify auth
+router.put("/addSubComment:id/:commentId", verifyAuth, async (req, res) => {
+  const post = await Post.findById(req.params.id);
+  let comment = post.comments.find(
+    (comment) => comment.id === req.params.commentId
+  );
+  // console.log(comment);
+  comment.subComments.push({
+    name: req.user.name,
+    userId: req.user.id,
+    comment: req.body.comment,
+  });
+  post
+    .save()
+    .then((post) => res.send(post))
+    .catch((err) => console.log(err));
 });
 
 // delete comment

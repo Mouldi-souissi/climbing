@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="footer bg-white pb-4" style={{ marginTop: "auto" }}>
-      <hr />
+      <hr className="mt-0" />
       <div className="container">
         <div className="row">
           <div className="col-lg-6 my-auto h-100 text-center text-lg-left pt-3">

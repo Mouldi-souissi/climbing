@@ -113,7 +113,7 @@ function BlogDetails() {
                           style={{ textDecoration: "none", color: "inherit" }}
                         >
                           <div className="dropdown-item">
-                            <i class="fa fa-pencil-square-o mr-2 pt-2" />
+                            <i className="fa fa-pencil-square-o mr-2 pt-2" />
                             Edit Post
                           </div>
                         </Link>
@@ -123,7 +123,7 @@ function BlogDetails() {
                           data-toggle="modal"
                           data-target={`#${post.title}`}
                         >
-                          <i class="fa fa-trash-o mr-2 pb-2" />
+                          <i className="fa fa-trash-o mr-2 pb-2" />
                           Delete Post
                         </div>
                       </div>

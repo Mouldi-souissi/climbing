@@ -11,7 +11,7 @@ function CommentsSection({ post, isOwner }) {
   const handleEnter = (e) => {
     if (e.charCode === 13) {
       const copy = comment;
-      addComment(id, { comment: copy }, "parent");
+      addComment(id, { comment: copy });
       setComment("");
     }
   };
@@ -36,7 +36,7 @@ function CommentsSection({ post, isOwner }) {
                 <button
                   className="btn btn-sm btn-primary pull-right"
                   type="submit"
-                  onClick={() => addComment(id, { comment }, "parent")}
+                  onClick={() => addComment(id, { comment })}
                 >
                   <i className="fa fa-pencil fa-fw"></i> Share
                 </button>

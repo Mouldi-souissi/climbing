@@ -97,10 +97,24 @@ const PostsContextProvider = (props) => {
   };
 
   // comment a post
-  const addComment = (id, comment, type) => {
+  const addComment = (id, comment) => {
     axios
-      .post(
-        `http://localhost:5000/api/posts/addComment${id}/${type}`,
+      .post(`http://localhost:5000/api/posts/addComment${id}`, comment, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
+      .then(() => {
+        getPostById(id);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  // subcomment a post
+  const addSubComment = (id, commentId, comment) => {
+    axios
+      .put(
+        `http://localhost:5000/api/posts/addSubComment${id}/${commentId}`,
         comment,
         {
           headers: {
@@ -140,6 +154,7 @@ const PostsContextProvider = (props) => {
         addComment,
         createPost,
         likePost,
+        addSubComment,
       }}
     >
       {props.children}

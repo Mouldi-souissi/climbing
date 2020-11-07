@@ -2,10 +2,11 @@ import React, { useContext, useState } from "react";
 import moment from "moment";
 import { PostsContext } from "../contexts/PostsContext";
 import { useParams } from "react-router-dom";
+import SubCommentCard from "./SubCommentCard";
 
 function CommentCard(props) {
-  const { name, comment, date, _id } = props.comment;
-  const { deleteCommentByOwner, addComment } = useContext(PostsContext);
+  const { name, comment, date, _id, subComments } = props.comment;
+  const { deleteCommentByOwner, addSubComment } = useContext(PostsContext);
   const [showCommentbar, setCommentbar] = useState(false);
   const [subComment, setSubComment] = useState("");
   const { id } = useParams();
@@ -59,7 +60,9 @@ function CommentCard(props) {
                 />
                 <button
                   className="btn btn-primary"
-                  onClick={() => addComment(id, { comment }, _id)}
+                  onClick={() =>
+                    addSubComment(id, _id, { comment: subComment })
+                  }
                 >
                   Share
                 </button>
@@ -67,6 +70,9 @@ function CommentCard(props) {
             )}
           </div>
           <hr />
+          {subComments.map((subComment) => (
+            <SubCommentCard subComment={subComment} key={subComment._id} />
+          ))}
         </div>
       </div>
     </div>
