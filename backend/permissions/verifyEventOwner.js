@@ -5,7 +5,7 @@ module.exports = (req, res, next) => {
     if (err) return res.status("404").send("no such event");
     // populating user
     // event.populate({ path: "creator", model: "user" });
-    if (event.creator !== req.user.id) {
+    if (event.creator.toString() !== req.user.id) {
       res.status(401).send("you dont have access");
     } else {
       next();

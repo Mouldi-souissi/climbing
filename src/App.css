@@ -72,14 +72,37 @@ button:focus {
 }
 .hero-text {
   text-shadow: 1px 2px rgba(0, 0, 0, 0.5);
+  /* width: 100%; */
 }
-/* .hero-inner ::before {
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.5);
-  width: 80%;
-  height: 50%;
-  padding-top: 6%;
-} */
+/* text animation */
+
+.typing {
+  position: relative;
+  color: transparent;
+  /* text-shadow: none; */
+}
+.typing::before {
+  content: attr(data-text);
+  border-right: 2px solid white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0px;
+  overflow: hidden;
+  color: white;
+  animation: typing 4s linear infinite;
+}
+@keyframes typing {
+  0%,
+  100% {
+    width: 0px;
+  }
+  70%,
+  90% {
+    width: 100%;
+  }
+}
 
 .article h2::first-letter {
   color: #12b79c;
@@ -664,6 +687,7 @@ button:focus {
 .blog-card {
   position: relative;
 }
+
 .blog-card .card-title {
   font-weight: 700;
 }

@@ -11,6 +11,7 @@ const PostsContextProvider = (props) => {
     likes: [],
     comments: [],
     tags: [],
+    _id: "",
   });
 
   // get all posts

@@ -7,9 +7,9 @@ function SubCommentCard(props) {
     <div className="media mt-3">
       <a className="" href="/">
         <img
-          className="rounded-circle mr-3 img-sm"
+          className="rounded-circle img-sm mr-3 align-self-start"
           alt="avatar"
-          src="https://bootdey.com/img/Content/avatar/avatar2.png"
+          src="https://www.gravatar.com/avatar/1234566?size=200&d=mm"
         />
       </a>
       <div className="media-body">

@@ -24,5 +24,6 @@ const userSchema = new mongoose.Schema({
     default: Date.now,
   },
   avatar: String,
+  // profile: { type: mongoose.Schema.Types.ObjectId, ref: "profile" },
 });
 module.exports = mongoose.model("user", userSchema);

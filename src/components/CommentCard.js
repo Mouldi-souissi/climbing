@@ -11,6 +11,14 @@ function CommentCard(props) {
   const [subComment, setSubComment] = useState("");
   const { id } = useParams();
 
+  const handleEnter = (e) => {
+    if (e.charCode === 13) {
+      const copy = subComment;
+      addSubComment(id, _id, { comment: copy });
+      setSubComment("");
+    }
+  };
+
   return (
     <div className="comments mt-5 animate__animated animate__fadeInDown">
       <div className="media">
@@ -57,22 +65,27 @@ function CommentCard(props) {
                 <input
                   className="form-control mr-3"
                   onChange={(e) => setSubComment(e.target.value)}
+                  onKeyPress={handleEnter}
+                  value={subComment}
                 />
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-primary btn-sm"
                   onClick={() =>
                     addSubComment(id, _id, { comment: subComment })
                   }
                 >
+                  <i className="fa fa-pencil d-inline mr-1"></i>
                   Share
                 </button>
               </div>
             )}
           </div>
           <hr />
-          {subComments.map((subComment) => (
-            <SubCommentCard subComment={subComment} key={subComment._id} />
-          ))}
+          {subComments
+            .sort((a, b) => new moment(b.date) - new moment(a.date))
+            .map((subComment) => (
+              <SubCommentCard subComment={subComment} key={subComment._id} />
+            ))}
         </div>
       </div>
     </div>

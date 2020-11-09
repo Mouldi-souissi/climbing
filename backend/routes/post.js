@@ -9,7 +9,11 @@ const verifyOwner = require("../permissions/verifyOwner");
 router.get("/", (req, res) => {
   Post.find()
     .sort({ date: -1 })
-    .populate({ path: "user", model: "user" })
+    .populate({ path: "author", model: "user" })
+    .populate({
+      path: "likes",
+      model: "user",
+    })
     .then((posts) => res.json(posts))
     .catch((err) => console.log(err));
 });
@@ -18,7 +22,11 @@ router.get("/", (req, res) => {
 // public route
 router.get("/:id", (req, res) => {
   Post.findById(req.params.id)
-    .populate({ path: "user", model: "user" })
+    .populate({ path: "author", model: "user" })
+    .populate({
+      path: "likes",
+      model: "user",
+    })
     .then((post) => res.send(post))
     .catch((err) => console.log(err));
 });
@@ -30,9 +38,8 @@ router.post("/add", verifyAuth, async (req, res) => {
     title: req.body.title,
     image: req.body.image,
     content: req.body.content,
-    author: { userId: req.user.id, name: req.user.name },
+    author: req.user.id,
     tags: req.body.tags,
-    user: req.user.id,
   });
   try {
     const addedPost = await post.save();
@@ -58,18 +65,26 @@ router.delete("/delete:id", verifyAuth, verifyOwner, (req, res) => {
     .catch((err) => res.send(err));
 });
 
-// like a post by id
+// like and unlike a post by id
 // private route
 router.put("/like:id", verifyAuth, async (req, res) => {
-  let likedPost = await Post.findById(req.params.id);
-  let liked = likedPost.likes.find((like) => like.userId === req.user.id);
+  let likedPost = await Post.findById(req.params.id).populate({
+    path: "likes",
+    model: "user",
+  });
+
+  let liked = likedPost.likes.find(
+    (like) => like._id.toString() === req.user.id
+  );
+
   if (liked) {
-    // res.status(401).send("already liked");
+    likedPost.likes.pull(req.user.id);
     likedPost
-      .updateOne({ $pull: { likes: { userId: req.user.id } } }, { safe: true })
+      .save()
+      // .updateOne({ $pull: { likes: { name: req.user.name } } }, { safe: true })
       .then((post) => res.send(post));
   } else {
-    likedPost.likes.push({ userId: req.user.id, name: req.user.name });
+    likedPost.likes.push(req.user.id);
     likedPost
       .save()
       // Post.findOneAndUpdate(

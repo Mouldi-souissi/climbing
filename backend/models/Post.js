@@ -39,10 +39,10 @@ const postSchema = new mongoose.Schema({
     default: Date.now,
   },
   author: {
-    userId: "",
-    name: "",
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
   },
-  likes: [{ name: String, userId: String }],
+  likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
   comments: [commentSchema],
   tags: Array,
   user: { type: mongoose.Schema.Types.ObjectId, ref: "user" },

@@ -32,13 +32,21 @@ function BlogDetails() {
     window.scroll(0, 0);
 
     // checking if user is the owner of this post
-
     let token = localStorage.getItem("token") && localStorage.getItem("token");
     let decodedToken = token && jwtDecode(token);
     const userId = decodedToken && decodedToken.id;
-    const postUserId = post.author && post.author.userId;
+    const postUserId = post.author && post.author._id;
     setOwner(postUserId === userId ? true : false);
   }, [post._id, post.content]);
+  // calc comment
+  const calcComments = (main) => {
+    const subs = post.comments.subComments && post.comments.subComments;
+    if (subs !== undefined) {
+      return main + subs;
+    } else {
+      return main;
+    }
+  };
   return (
     <div className="article" style={{ marginTop: "100px" }}>
       <BlogDelete id={id} x={post.title.trim()} />
@@ -86,7 +94,7 @@ function BlogDetails() {
                         className="fa fa-comment mr-2 shadowIcon fa-1x "
                         aria-hidden="true"
                       />
-                      {post.comments.length}
+                      {calcComments(post.comments.length)}
                     </div>
                   </div>
 
@@ -134,8 +142,8 @@ function BlogDetails() {
                   <p id={post._id}></p>
                 </div>
                 <hr />
-                <h4 className="mt-5 mb-3">Tags</h4>
-                <div className="nav tag-cloud mb-5">
+                <h4 className="">Tags</h4>
+                <div className="nav tag-cloud">
                   {post.tags.map((tag) => (
                     <a key={tag} href="/" className="btn btn-primary mr-2 mb-1">
                       {tag}

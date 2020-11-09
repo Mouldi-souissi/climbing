@@ -31,11 +31,11 @@ function BlogCard({ post }) {
   let actualUser =
     localStorage.getItem("token") &&
     JwtDecode(localStorage.getItem("token")).id;
-  let liked = post.likes.find((like) => like.userId === actualUser);
+  let liked = post.likes.find((like) => like._id === actualUser);
   return (
-    <div className="col-lg-6">
+    <div className="col-lg-6 blog-card ">
       <div
-        className="blog-card card shadow-sm p-3 mb-5"
+        className="card shadow-sm p-3 mb-5"
         data-aos="fade-right"
         style={{ borderRadius: "20px" }}
       >
@@ -66,9 +66,9 @@ function BlogCard({ post }) {
           </h4>
           <p
             id={post._id}
-            data-toggle="tooltip"
-            data-placement="top"
-            title={post.content}
+            // data-toggle="tooltip"
+            // data-placement="top"
+            // title={post.content}
           ></p>
           <div className="btn-bar align-self-end d-flex justify-content-between">
             <Link
