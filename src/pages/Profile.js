@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Bonus from "../components/Bonus";
 // import back from "../assets/back/back2.jpg";
 import Spinner from "../components/Spinner";
+import { PostsContext } from "../contexts/PostsContext";
 
 function Profile() {
+  const { getProfile } = useContext(PostsContext);
+  React.useEffect(() => {
+    getProfile();
+  }, []);
   return (
     <div className="profile" style={{ marginTop: "80px" }}>
       <Spinner />

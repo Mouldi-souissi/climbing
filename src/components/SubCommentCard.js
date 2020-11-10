@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 
 function SubCommentCard(props) {
-  const { comment, date, name } = props.subComment;
+  const { comment, date, user } = props.subComment;
   return (
     <div className="media mt-3">
       <a className="" href="/">
@@ -18,7 +18,7 @@ function SubCommentCard(props) {
             href="/"
             className="btn-link text-semibold media-heading box-inline"
           >
-            {name}
+            {user.name}
           </a>
           <p className="text-muted text-sm">
             {" "}

@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 
 const subCommentSchema = new mongoose.Schema({
-  name: String,
-  userId: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+  },
   comment: { type: String, required: true },
   date: {
     type: Date,
@@ -10,8 +12,10 @@ const subCommentSchema = new mongoose.Schema({
   },
 });
 const commentSchema = new mongoose.Schema({
-  name: String,
-  userId: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+  },
   comment: { type: String, required: true },
   date: {
     type: Date,
@@ -45,7 +49,6 @@ const postSchema = new mongoose.Schema({
   likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
   comments: [commentSchema],
   tags: Array,
-  user: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
 });
 
 module.exports = mongoose.model("post", postSchema);

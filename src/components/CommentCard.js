@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import SubCommentCard from "./SubCommentCard";
 
 function CommentCard(props) {
-  const { name, comment, date, _id, subComments } = props.comment;
+  const { user, comment, date, _id, subComments } = props.comment;
   const { deleteCommentByOwner, addSubComment } = useContext(PostsContext);
   const [showCommentbar, setCommentbar] = useState(false);
   const [subComment, setSubComment] = useState("");
@@ -35,7 +35,7 @@ function CommentCard(props) {
               href="/user"
               className="btn-link text-semibold media-heading box-inline"
             >
-              {name}
+              {user.name}
             </a>
             <p className="text-muted text-sm">
               {moment(date).startOf("mins").fromNow()}

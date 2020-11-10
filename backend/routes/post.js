@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const Post = require("../models/Post");
-const postValidator = require("../validators/postValidator");
+// const postValidator = require("../validators/postValidator");
 const verifyAuth = require("../permissions/verifyAuth");
 const verifyOwner = require("../permissions/verifyOwner");
 
@@ -25,6 +25,14 @@ router.get("/:id", (req, res) => {
     .populate({ path: "author", model: "user" })
     .populate({
       path: "likes",
+      model: "user",
+    })
+    .populate({
+      path: "comments.user",
+      model: "user",
+    })
+    .populate({
+      path: "comments.subComments.user",
       model: "user",
     })
     .then((post) => res.send(post))
@@ -100,12 +108,14 @@ router.put("/like:id", verifyAuth, async (req, res) => {
 // add comment
 // private route
 router.post("/addComment:id", verifyAuth, async (req, res) => {
-  const commentedPost = await Post.findById(req.params.id);
+  const commentedPost = await Post.findById(req.params.id).populate({
+    path: "likes",
+    model: "user",
+  });
 
   try {
     commentedPost.comments.push({
-      name: req.user.name,
-      userId: req.user.id,
+      user: req.user.id,
       comment: req.body.comment,
     });
 
@@ -121,14 +131,16 @@ router.post("/addComment:id", verifyAuth, async (req, res) => {
 // add sub comment
 // private route verify auth
 router.put("/addSubComment:id/:commentId", verifyAuth, async (req, res) => {
-  const post = await Post.findById(req.params.id);
+  const post = await Post.findById(req.params.id).populate({
+    path: "likes",
+    model: "user",
+  });
   let comment = post.comments.find(
     (comment) => comment.id === req.params.commentId
   );
   // console.log(comment);
   comment.subComments.push({
-    name: req.user.name,
-    userId: req.user.id,
+    user: req.user.id,
     comment: req.body.comment,
   });
   post
