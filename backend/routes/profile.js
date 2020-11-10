@@ -6,6 +6,7 @@ const verifyAuth = require("../permissions/verifyAuth");
 // private route
 router.get("/", verifyAuth, (req, res) => {
   Post.find({ author: req.user.id })
+    .populate({ path: "author", model: "user" })
     .then((posts) => {
       res.status(200).send(posts);
     })

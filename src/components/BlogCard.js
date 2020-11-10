@@ -79,19 +79,17 @@ function BlogCard({ post }) {
               <i className="fa fa-arrow-right ml-2" aria-hidden="true" />
             </Link>
             <div className="right d-flex justify-content-between">
-              <div className="like mr-2">
+              <div className="like mr-2 d-flex align-items-baseline">
                 <i
-                  className={`fa fa-thumbs-up mr-2 shadowIcon ${
-                    liked && "liked"
-                  }`}
+                  className={`icon-like mr-2 shadowIcon  ${liked && "liked"}`}
                   aria-hidden="true"
                   onClick={() => likePost(post._id)}
                 ></i>
                 <span>{post.likes.length}</span>
               </div>
-              <div className="comment">
+              <div className="comment d-flex">
                 <i
-                  className="fa fa-comment mr-2 shadowIcon"
+                  className="icon-bubble mr-2 shadowIcon align-self-center"
                   aria-hidden="true"
                 />
                 <span>{post.comments.length}</span>

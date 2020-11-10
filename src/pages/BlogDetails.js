@@ -81,7 +81,7 @@ function BlogDetails() {
                   <div className="d-flex justify-content-between">
                     <div className="like mr-2">
                       <i
-                        className={`fa fa-thumbs-up mr-2 shadowIcon fa-1x ${
+                        className={`icon-like mr-2 shadowIcon ${
                           liked && "liked"
                         }`}
                         aria-hidden="true"
@@ -91,7 +91,7 @@ function BlogDetails() {
                     </div>
                     <div className="comment">
                       <i
-                        className="fa fa-comment mr-2 shadowIcon fa-1x "
+                        className="icon-bubble mr-2 shadowIcon"
                         aria-hidden="true"
                       />
                       {calcComments(post.comments.length)}
