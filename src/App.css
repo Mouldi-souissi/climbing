@@ -29,7 +29,7 @@ button:focus {
 /* navbar */
 
 .active {
-  border-bottom: 1px solid #50bb92;
+  border-bottom: 1px solid #4bb79c;
 }
 .navbar {
   position: fixed;
@@ -688,6 +688,7 @@ button:focus {
 }
 
 .like i:hover {
+  cursor: pointer;
   transform: scale(0.95);
   color: #0275d8;
 }

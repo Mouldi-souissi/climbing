@@ -43,7 +43,7 @@ function Blog() {
 
         <div className="go-up float-right">
           <i
-            className="fa fa-arrow-up btn btn-primary mb-3  px-3 py-3"
+            className="fa fa-arrow-up btn btn-outline-secondary mb-3  px-3 py-3"
             aria-hidden="true"
             onClick={() =>
               window.scroll({

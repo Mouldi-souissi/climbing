@@ -33,7 +33,11 @@ function BlogSidebar({ posts }) {
         <div className="tags">
           {posts.map((post) =>
             post.tags.map((tag) => (
-              <a key={tag} href="/" className="btn btn-primary mr-2 mb-1">
+              <a
+                key={tag}
+                href="/"
+                className="btn btn-outline-secondary mr-2 mb-1"
+              >
                 {tag}
               </a>
             ))

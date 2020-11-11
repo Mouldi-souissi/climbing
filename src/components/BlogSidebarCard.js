@@ -6,11 +6,13 @@ function BlogSidebarCard({ post }) {
   return (
     <div className="media mb-2">
       <div className="media-body">
-        <h6>
+        <h6 className="text-break">
           {post.title}
-          <span className="text-secondary ml-2">by {post.author.name}</span>
+          <span className="text-secondary text-sm ml-2">
+            by {post.author.name}
+          </span>
         </h6>
-        <p className="date text-sm text-muted">
+        <p className="date text-muted" style={{ fontSize: "12px" }}>
           {moment(post.date).calendar()}
         </p>
       </div>

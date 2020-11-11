@@ -37,7 +37,7 @@ function BlogDetails() {
     const userId = decodedToken && decodedToken.id;
     const postUserId = post.author && post.author._id;
     setOwner(postUserId === userId ? true : false);
-  }, [post._id, post.content]);
+  }, [post._id, post.content, id]);
   // calc comment
   const calcComments = (main) => {
     const subs = post.comments.subComments && post.comments.subComments;
@@ -55,7 +55,9 @@ function BlogDetails() {
         <div className="row align-items-start">
           <div className="col-lg-8 ">
             <article className="article" style={{ borderRadius: "20px" }}>
-              <h1 className="display-3 text-center">{post.title}</h1>
+              <h1 className="display-3 text-center mb-1 text-break">
+                {post.title}
+              </h1>
               <Link to={`/profile${post.author._id}`}>
                 <h4 className="text-muted text-center">
                   by {post.author.name}
@@ -85,19 +87,14 @@ function BlogDetails() {
                 <div className="d-flex justify-content-between">
                   <div className="like mr-2">
                     <i
-                      className={`icon-like mr-2 shadowIcon ${
-                        liked && "liked"
-                      }`}
+                      className={`icon-like mr-2 ${liked && "liked"}`}
                       aria-hidden="true"
                       // onClick={() => likePost(post._id)}
                     ></i>
                     {post.likes.length}
                   </div>
                   <div className="comment">
-                    <i
-                      className="icon-bubble mr-2 shadowIcon"
-                      aria-hidden="true"
-                    />
+                    <i className="icon-bubble mr-2" aria-hidden="true" />
                     {calcComments(post.comments.length)}
                   </div>
                 </div>
@@ -149,7 +146,11 @@ function BlogDetails() {
               <h4 className="">Tags</h4>
               <div className="nav tag-cloud">
                 {post.tags.map((tag) => (
-                  <a key={tag} href="/" className="btn btn-primary mr-2 mb-1">
+                  <a
+                    key={tag}
+                    href="/"
+                    className="btn btn-outline-secondary mr-2 mb-1"
+                  >
                     {tag}
                   </a>
                 ))}

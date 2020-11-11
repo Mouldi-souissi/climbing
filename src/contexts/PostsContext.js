@@ -92,7 +92,7 @@ const PostsContextProvider = (props) => {
       headers: { token: localStorage.getItem("token") },
     })
       .then(() => {
-        getPostById(id);
+        getAllPostes();
       })
       .catch((err) => console.log(err));
   };

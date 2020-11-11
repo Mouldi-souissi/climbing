@@ -20,7 +20,7 @@ function CommentsSection({ post, isOwner }) {
       <div className="row">
         <div className="col-md-12">
           <div
-            className="comment-form card shadow-sm p-4"
+            className="comment-form card shadow-sm p-4 mb-3"
             style={{ borderRadius: "20px" }}
           >
             <div className="panel-body">
