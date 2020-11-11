@@ -18,7 +18,7 @@ function SubCommentCard(props) {
             href="/"
             className="btn-link text-semibold media-heading box-inline"
           >
-            {user.name}
+            {user && user.name}
           </a>
           <p className="text-muted text-sm">
             {" "}

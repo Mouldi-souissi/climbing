@@ -38,7 +38,7 @@ function Blog() {
             </div>
           </div>
 
-          <BlogSidebar posts={posts.slice(0, 7)} showAuthor={false} />
+          <BlogSidebar posts={posts.slice(0, 7)} />
         </div>
 
         <div className="go-up float-right">

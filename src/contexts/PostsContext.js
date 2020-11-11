@@ -13,7 +13,6 @@ const PostsContextProvider = (props) => {
     tags: [],
     _id: "",
   });
-  const [myPosts, setMyPosts] = useState([]);
 
   // get all posts
   const getAllPostes = () => {
@@ -142,26 +141,13 @@ const PostsContextProvider = (props) => {
       })
       .catch((err) => console.log(err));
   };
-  // get profile
-  const getProfile = () => {
-    axios
-      .get("http://localhost:5000/api/profile", {
-        headers: {
-          token: localStorage.getItem("token"),
-        },
-      })
-      .then((res) => {
-        setMyPosts(res.data);
-      })
-      .catch((err) => console.log(err));
-  };
 
   return (
     <PostsContext.Provider
       value={{
         posts,
         post,
-        myPosts,
+
         getAllPostes,
         getPostById,
         editPost,
@@ -171,7 +157,6 @@ const PostsContextProvider = (props) => {
         createPost,
         likePost,
         addSubComment,
-        getProfile,
       }}
     >
       {props.children}

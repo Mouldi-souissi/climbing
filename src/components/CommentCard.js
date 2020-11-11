@@ -44,8 +44,6 @@ function CommentCard(props) {
           <p>{comment}</p>
           <div>
             <div className="btn-group">
-              <i className="fa fa-thumbs-up btn mr-1 bg-tranparent btn-primary"></i>
-              <i className="fa fa-thumbs-down btn bg-tranparent mr-1 btn-outline-primary"></i>
               {props.isOwner && (
                 <i
                   className="fa fa-trash-o mr-2 btn btn-outline-danger"

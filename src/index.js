@@ -6,12 +6,15 @@ import * as serviceWorker from "./serviceWorker";
 import Footer from "./components/Footer";
 import UserContextProvider from "./contexts/UserContext";
 import PostsContextProvider from "./contexts/PostsContext";
+import ProfileContextProvider from "./contexts/ProfileContext";
 
 ReactDOM.render(
   <UserContextProvider>
     <PostsContextProvider>
-      <App />
-      <Footer />
+      <ProfileContextProvider>
+        <App />
+        <Footer />
+      </ProfileContextProvider>
     </PostsContextProvider>
   </UserContextProvider>,
   document.getElementById("root")

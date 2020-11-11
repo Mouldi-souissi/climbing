@@ -1,13 +1,19 @@
 import React, { useContext } from "react";
 import Bonus from "../components/Bonus";
-// import back from "../assets/back/back2.jpg";
-import { PostsContext } from "../contexts/PostsContext";
 import BlogCard from "../components/BlogCard";
+import { ProfileContext } from "../contexts/ProfileContext";
+import { useParams } from "react-router-dom";
+import jwtDecode from "jwt-decode";
+// token
+let token = localStorage.getItem("token") && localStorage.getItem("token");
+let decodedToken = token && jwtDecode(token);
 
 function Profile() {
-  const { getProfile, myPosts } = useContext(PostsContext);
+  const { getUserPosts, userPosts, getUser, user } = useContext(ProfileContext);
+  const { id } = useParams();
   React.useEffect(() => {
-    getProfile();
+    getUserPosts(id);
+    getUser(id);
   }, []);
   return (
     <div
@@ -26,7 +32,7 @@ function Profile() {
             style={{ width: "100px", height: "100px" }}
           />
           <div className="card-body">
-            <div className="card-title text-center"> Marcus Doe </div>
+            <div className="card-title text-center">{user.name}</div>
             <Bonus />
 
             <div className="profile-menu mt-3 nav flex-column" role="tablist">
@@ -77,7 +83,7 @@ function Profile() {
             </div>
             <div className="tab-pane fade" id="my-posts" role="tabpanel">
               <div className="d-flex flex-wrap">
-                {myPosts.map((post) => (
+                {userPosts.map((post) => (
                   <BlogCard post={post} key={post._id} />
                 ))}
               </div>

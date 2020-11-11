@@ -2,11 +2,11 @@ import React, { useContext, useEffect } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import Bonus2 from "./Bonus2";
-// import jwtDecode from "jwt-decode";
+import jwtDecode from "jwt-decode";
 
 // token
-// let token = localStorage.getItem("token") && localStorage.getItem("token");
-// let decodedToken = token && jwtDecode(token);
+let token = localStorage.getItem("token") && localStorage.getItem("token");
+let decodedToken = token && jwtDecode(token);
 
 const Navbar = () => {
   const { isAuth, logout, checkAuth } = useContext(UserContext);
@@ -102,7 +102,7 @@ const Navbar = () => {
                   </div>
                 </div>
                 <Link
-                  to="/profile"
+                  to={`/profile${decodedToken && decodedToken.id}`}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
                   <div className="avatar-nav"></div>
