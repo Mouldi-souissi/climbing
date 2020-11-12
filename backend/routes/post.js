@@ -95,11 +95,6 @@ router.put("/like:id", verifyAuth, async (req, res) => {
     likedPost.likes.push(req.user.id);
     likedPost
       .save()
-      // Post.findOneAndUpdate(
-      //   { _id: req.params.id },
-      //   { $push: { likes: [{ userId: req.body.userId, name: req.body.name }] } },
-      //   { new: true }
-      // )
       .then(() => res.json(likedpost.likes))
       .catch((err) => res.send(err));
   }
@@ -138,7 +133,6 @@ router.put("/addSubComment:id/:commentId", verifyAuth, async (req, res) => {
   let comment = post.comments.find(
     (comment) => comment.id === req.params.commentId
   );
-  // console.log(comment);
   comment.subComments.push({
     user: req.user.id,
     comment: req.body.comment,
