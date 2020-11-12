@@ -58,8 +58,11 @@ function BlogDetails() {
               <h1 className="display-3 text-center mb-1 text-break">
                 {post.title}
               </h1>
-              <Link to={`/profile${post.author._id}`}>
-                <h4 className="text-muted text-center">
+              <Link
+                to={`/profile${post.author._id}`}
+                style={{ textDecoration: "none" }}
+              >
+                <h4 className="text-muted text-center by">
                   by {post.author.name}
                 </h4>
               </Link>

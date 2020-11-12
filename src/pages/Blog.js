@@ -7,6 +7,7 @@ import SearchBar from "../components/SearchBar";
 
 function Blog() {
   const { posts, getAllPostes } = useContext(PostsContext);
+  const [searchResult, setSearchResut] = useState("");
 
   useEffect(() => {
     getAllPostes();
@@ -17,14 +18,22 @@ function Blog() {
   const [postsPerPage] = useState(10);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  let currentPosts = posts
+    .filter(
+      (post) =>
+        post.title.includes(searchResult) ||
+        post.content.includes(searchResult) ||
+        post.author.name.includes(searchResult)
+    )
+    .slice(indexOfFirstPost, indexOfLastPost);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <section className="blog-listing pt-5" style={{ marginTop: "78px" }}>
       <div className="container-fluid">
-        <SearchBar />
+        <SearchBar setSearchResut={setSearchResut} />
         <div className="row align-items-start">
-          <div className="col-lg-8">
+          <div className="col-lg-8 mt-md-5">
             <div className="row">
               {currentPosts &&
                 currentPosts.map((post) => (
@@ -43,7 +52,7 @@ function Blog() {
 
         <div className="go-up float-right">
           <i
-            className="fa fa-arrow-up btn btn-outline-secondary mb-3  px-3 py-3"
+            className="fa fa-arrow-up btn btn-outline-secondary mb-3 mt-3 px-3 py-3"
             aria-hidden="true"
             onClick={() =>
               window.scroll({

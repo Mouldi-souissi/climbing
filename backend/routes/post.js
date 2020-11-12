@@ -39,6 +39,29 @@ router.get("/:id", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+// get users posts by id
+// private route
+router.get("/user/:id", verifyAuth, (req, res) => {
+  Post.find({ author: req.params.id })
+    .populate({ path: "author", model: "user" })
+    .populate({
+      path: "likes",
+      model: "user",
+    })
+    .populate({
+      path: "comments.user",
+      model: "user",
+    })
+    .populate({
+      path: "comments.subComments.user",
+      model: "user",
+    })
+    .then((posts) => {
+      res.status(200).send(posts);
+    })
+    .catch((err) => console.log("no such profile"));
+});
+
 // create poste
 // private route
 router.post("/add", verifyAuth, async (req, res) => {

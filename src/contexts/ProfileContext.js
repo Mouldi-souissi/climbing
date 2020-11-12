@@ -10,7 +10,7 @@ const ProfileContextProvider = (props) => {
   // get user posts by id
   const getUserPosts = (id) => {
     axios
-      .get(`http://localhost:5000/api/profile/${id}`, {
+      .get(`http://localhost:5000/api/posts/user/${id}`, {
         headers: {
           token: localStorage.getItem("token"),
         },
@@ -22,7 +22,7 @@ const ProfileContextProvider = (props) => {
   };
   const getUser = (id) => {
     axios
-      .get(`http://localhost:5000/api/profile/user${id}`, {
+      .get(`http://localhost:5000/api/user/${id}`, {
         headers: {
           token: localStorage.getItem("token"),
         },

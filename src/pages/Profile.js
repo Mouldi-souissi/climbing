@@ -3,10 +3,7 @@ import Bonus from "../components/Bonus";
 import BlogCard from "../components/BlogCard";
 import { ProfileContext } from "../contexts/ProfileContext";
 import { useParams } from "react-router-dom";
-import jwtDecode from "jwt-decode";
-// token
-let token = localStorage.getItem("token") && localStorage.getItem("token");
-let decodedToken = token && jwtDecode(token);
+import ProfileSettings from "../components/ProfileSettings";
 
 function Profile() {
   const { getUserPosts, userPosts, getUser, user } = useContext(ProfileContext);
@@ -14,25 +11,31 @@ function Profile() {
   React.useEffect(() => {
     getUserPosts(id);
     getUser(id);
-  }, []);
+  }, [id]);
+  // handle logout
+  const handleLogout = () => {
+    window.localStorage.removeItem("token");
+    window.location.replace("/");
+  };
   return (
-    <div
-      className="container-fluid profile pt-3 bg-light"
-      style={{ marginTop: "80px" }}
-    >
+    <div className="container-fluid profile pt-3" style={{ marginTop: "80px" }}>
       <div className="row">
         <div
           className="col-lg-3 card shadow-sm"
           style={{ borderRadius: "20px", height: "400px" }}
         >
           <img
-            src="https://bootdey.com/img/Content/avatar/avatar6.png"
+            src={
+              user.avatar
+                ? user.avatar
+                : "https://www.gravatar.com/avatar/1234566?size=200&d=mm"
+            }
             alt=""
-            className="rounded-circle card-img-top mx-auto mt-4"
+            className="rounded-circle card-img-top mx-auto mt-4 img-fluid"
             style={{ width: "100px", height: "100px" }}
           />
           <div className="card-body">
-            <div className="card-title text-center">{user.name}</div>
+            <h4 className="card-title text-center">{user.name}</h4>
             <Bonus />
 
             <div className="profile-menu mt-3 nav flex-column" role="tablist">
@@ -60,13 +63,13 @@ function Profile() {
               >
                 <i className="icon-settings mr-1 ml-3"></i> Settings
               </div>
-              <div className="nav-link">
+              <div className="nav-link" onClick={handleLogout}>
                 <i className="icon-logout mr-1 ml-3"></i> Logout
               </div>
             </div>
           </div>
         </div>
-        <div className="col-lg-9 mt-sm-3 mt-lg-0" style={{ height: "100vh" }}>
+        <div className="col-lg-9 mt-sm-3 mt-lg-0">
           <div className="tab-content">
             <div
               className="tab-pane fade show active"
@@ -89,7 +92,7 @@ function Profile() {
               </div>
             </div>
             <div className="tab-pane fade" id="settings" role="tabpanel">
-              home
+              <ProfileSettings />
             </div>
           </div>
         </div>

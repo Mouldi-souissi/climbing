@@ -26,8 +26,13 @@ function BlogSidebarCard({ post }) {
             style={{ Height: "64px", width: "64px" }}
           />
         ) : (
-          <div className="card-img-top bg-dark d-flex align-items-center">
-            <p className="mx-auto text-white">No image</p>
+          <div
+            className="card-img-top bg-dark d-flex align-items-cente"
+            style={{ Height: "64px", width: "64px" }}
+          >
+            <p className="mx-auto text-white" style={{ fontSize: "13px" }}>
+              No image
+            </p>
           </div>
         )}
       </Link>

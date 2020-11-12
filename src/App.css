@@ -28,6 +28,23 @@ button:focus {
 
 /* navbar */
 
+/* on scroll transparent */
+.nav-colored {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+.nav-transparent {
+  background-color: white;
+}
+/* same height */
+.navbar {
+  min-height: 60px;
+}
+.navbar-brand {
+  padding-top: 15px;
+  height: 60px;
+  line-height: 60px;
+}
+
 .active {
   border-bottom: 1px solid #4bb79c;
 }
@@ -721,6 +738,10 @@ button:focus {
   margin: 0;
 }
 
+.by:hover {
+  color: #12b79c !important;
+}
+
 /* svg */
 /* Support for CSS `d` property is required. */
 
@@ -1226,6 +1247,7 @@ a.text-muted:focus {
     transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
   }
 }
+
 /* profile */
 .profile .active {
   border-left: 2px solid #12b79c;
@@ -1242,3 +1264,12 @@ a.text-muted:focus {
   border-left: none;
   background: none;
 }
+
+.profile .card-title {
+  color: #12b79c;
+}
+
+/* footer */
+/* .footer i {
+  color: #12b79c;
+} */

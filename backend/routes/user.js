@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const registerValidator = require("../validators/registerValidator");
 const loginValidator = require("../validators/loginValidator");
+const verifyAuth = require("../permissions/verifyAuth");
 
 // register
 // public route
@@ -40,6 +41,24 @@ router.post("/login", loginValidator, async (req, res) => {
   // create token
   const token = jwt.sign({ id: user._id, name: user.name }, "secret");
   res.header("token", token).send(token);
+});
+
+// get user by id
+// private route
+router.get("/:id", verifyAuth, (req, res) => {
+  User.findById(req.params.id)
+    .then((profileUser) => {
+      res.status(200).send(profileUser);
+    })
+    .catch((err) => console.log("no such user"));
+});
+
+// edit user
+// private route
+router.put("/edit", verifyAuth, (req, res) => {
+  User.findByIdAndUpdate(req.user.id, req.body)
+    .then(() => res.status(200).send("user modified"))
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;

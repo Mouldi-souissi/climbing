@@ -62,7 +62,14 @@ function BlogCard({ post }) {
         <div className="card-body flex-column">
           <h4 className="card-title text-center mb-3">
             {post.title}
-            <small className="text-muted ml-1">by {post.author.name}</small>
+            <Link
+              to={`/profile${post.author._id}`}
+              style={{ textDecoration: "none" }}
+            >
+              <small className="text-muted ml-1 by">
+                by {post.author.name}
+              </small>
+            </Link>
           </h4>
           <p
             id={post._id}

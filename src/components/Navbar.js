@@ -10,8 +10,8 @@ let decodedToken = token && jwtDecode(token);
 
 const Navbar = () => {
   const { isAuth, logout, checkAuth } = useContext(UserContext);
-  // let isConnected = localStorage.getItem("token");
   let history = useHistory();
+  // handle logout
   const handleLogout = () => {
     window.localStorage.removeItem("token");
     logout();
@@ -20,6 +20,20 @@ const Navbar = () => {
 
   useEffect(() => {
     checkAuth();
+    // navbar transparent
+    var myNav = document.querySelector(".navbar");
+    window.onscroll = function () {
+      if (
+        document.body.scrollTop >= 200 ||
+        document.documentElement.scrollTop >= 200
+      ) {
+        myNav.classList.add("nav-colored");
+        myNav.classList.remove("nav-transparent");
+      } else {
+        myNav.classList.add("nav-transparent");
+        myNav.classList.remove("nav-colored");
+      }
+    };
   }, []);
 
   return (
@@ -114,10 +128,11 @@ const Navbar = () => {
                   onClick={handleLogout}
                 >
                   <i
-                    className="fa fa-sign-out text-warning fa-2x"
+                    className="icon-logout text-warning"
                     aria-hidden="true"
                     style={{
                       color: "white",
+                      fontSize: "20px",
                     }}
                   />
                 </button>

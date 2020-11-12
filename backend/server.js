@@ -8,7 +8,6 @@ const db = require("./config/db");
 const authRoute = require("./routes/user");
 const postRoute = require("./routes/post");
 const eventRoute = require("./routes/event");
-const profileRoute = require("./routes/profile");
 
 // connect to db
 db();
@@ -21,7 +20,6 @@ app.use(cors());
 app.use("/api/user", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/events", eventRoute);
-app.use("/api/profile", profileRoute);
 
 const port = process.env.Port || 5000;
 
