@@ -84,15 +84,15 @@ const PostsContextProvider = (props) => {
       .then(() => window.open("/blog"))
       .catch((err) => console.log(err));
   };
-  // like post
+  // like unlike post
   const likePost = (id) => {
     axios({
       url: `http://localhost:5000/api/posts/like${id}`,
       method: "put",
       headers: { token: localStorage.getItem("token") },
     })
-      .then(() => {
-        getAllPostes();
+      .then((res) => {
+        setPost(res.data);
       })
       .catch((err) => console.log(err));
   };

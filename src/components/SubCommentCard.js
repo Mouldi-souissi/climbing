@@ -9,7 +9,11 @@ function SubCommentCard(props) {
         <img
           className="rounded-circle img-sm mr-3 align-self-start"
           alt="avatar"
-          src="https://www.gravatar.com/avatar/1234566?size=200&d=mm"
+          src={
+            user.avatar
+              ? user.avatar
+              : "https://www.gravatar.com/avatar/1234566?size=200&d=mm"
+          }
         />
       </a>
       <div className="media-body">
@@ -21,7 +25,6 @@ function SubCommentCard(props) {
             {user && user.name}
           </a>
           <p className="text-muted text-sm">
-            {" "}
             {moment(date).startOf("mins").fromNow()}
           </p>
         </div>

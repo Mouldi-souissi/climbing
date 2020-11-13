@@ -1,11 +1,10 @@
 import JwtDecode from "jwt-decode";
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { PostsContext } from "../contexts/PostsContext";
+
 var moment = require("moment");
 
 function BlogCard({ post }) {
-  const { likePost } = useContext(PostsContext);
   // text limiting ...
   const textLimit = (text) => {
     const limit = 200;
@@ -88,9 +87,8 @@ function BlogCard({ post }) {
             <div className="right d-flex justify-content-between">
               <div className="like mr-2 d-flex align-items-baseline">
                 <i
-                  className={`icon-like mr-2 shadowIcon  ${liked && "liked"}`}
+                  className={`icon-like mr-2 ${liked && "liked"}`}
                   aria-hidden="true"
-                  onClick={() => likePost(post._id)}
                 ></i>
                 <span>{post.likes.length}</span>
               </div>

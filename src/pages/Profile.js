@@ -4,10 +4,12 @@ import BlogCard from "../components/BlogCard";
 import { ProfileContext } from "../contexts/ProfileContext";
 import { useParams } from "react-router-dom";
 import ProfileSettings from "../components/ProfileSettings";
+import JwtDecode from "jwt-decode";
 
 function Profile() {
   const { getUserPosts, userPosts, getUser, user } = useContext(ProfileContext);
   const { id } = useParams();
+  // get user and posts
   React.useEffect(() => {
     getUserPosts(id);
     getUser(id);
@@ -17,6 +19,11 @@ function Profile() {
     window.localStorage.removeItem("token");
     window.location.replace("/");
   };
+  // check owner
+  const actuelUser =
+    localStorage.getItem("token") &&
+    JwtDecode(localStorage.getItem("token")).id;
+  let owner = user._id === actuelUser;
   return (
     <div className="container-fluid profile pt-3" style={{ marginTop: "80px" }}>
       <div className="row">
@@ -55,17 +62,21 @@ function Profile() {
               >
                 <i className="icon-home mr-1 ml-3"></i> My posts
               </div>
-              <div
-                className="nav-link"
-                data-toggle="tab"
-                href="#settings"
-                role="tab"
-              >
-                <i className="icon-settings mr-1 ml-3"></i> Settings
-              </div>
-              <div className="nav-link" onClick={handleLogout}>
-                <i className="icon-logout mr-1 ml-3"></i> Logout
-              </div>
+              {owner && (
+                <div
+                  className="nav-link"
+                  data-toggle="tab"
+                  href="#settings"
+                  role="tab"
+                >
+                  <i className="icon-settings mr-1 ml-3"></i> Settings
+                </div>
+              )}
+              {owner && (
+                <div className="nav-link" onClick={handleLogout}>
+                  <i className="icon-logout mr-1 ml-3"></i> Logout
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -77,7 +88,7 @@ function Profile() {
               role="tabpanel"
             >
               <div
-                className="card shadow-sm p-4"
+                className="card shadow-sm p-5"
                 style={{ borderRadius: "20px" }}
               >
                 <h1>About me</h1>
@@ -92,7 +103,7 @@ function Profile() {
               </div>
             </div>
             <div className="tab-pane fade" id="settings" role="tabpanel">
-              <ProfileSettings />
+              <ProfileSettings user={user} />
             </div>
           </div>
         </div>

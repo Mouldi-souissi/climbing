@@ -118,7 +118,7 @@ router.put("/like:id", verifyAuth, async (req, res) => {
     likedPost.likes.push(req.user.id);
     likedPost
       .save()
-      .then(() => res.json(likedpost.likes))
+      .then((post) => res.send(post))
       .catch((err) => res.send(err));
   }
 });
@@ -166,7 +166,7 @@ router.put("/addSubComment:id/:commentId", verifyAuth, async (req, res) => {
     .catch((err) => console.log(err));
 });
 
-// delete comment
+// delete comment by author
 // private route permission owner
 router.put(
   "/deleteComment/:id/:commentId",

@@ -32,8 +32,22 @@ const ProfileContextProvider = (props) => {
       })
       .catch((err) => console.log(err));
   };
+  const editUser = (data) => {
+    axios
+      .put("http://localhost:5000/api/user/edit", data, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
   return (
-    <ProfileContext.Provider value={{ userPosts, user, getUserPosts, getUser }}>
+    <ProfileContext.Provider
+      value={{ userPosts, user, getUserPosts, getUser, editUser }}
+    >
       {props.children}
     </ProfileContext.Provider>
   );

@@ -9,6 +9,11 @@ body {
   height: 100vh;
   overflow-x: hidden;
 }
+
+/* @import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+h1 {
+  font-family: "Oswald", sans-serif;
+} */
 /*start  to keep footer down */
 
 #root {
@@ -704,7 +709,7 @@ button:focus {
   font-weight: 700;
 }
 
-.like i:hover {
+.article .like i:hover {
   cursor: pointer;
   transform: scale(0.95);
   color: #0275d8;

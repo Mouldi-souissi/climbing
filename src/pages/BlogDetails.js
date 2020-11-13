@@ -9,14 +9,16 @@ import moment from "moment";
 
 function BlogDetails() {
   const [isOwner, setOwner] = useState(false);
-  const { posts, getAllPostes, getPostById, post } = useContext(PostsContext);
+  const { posts, getAllPostes, getPostById, post, likePost } = useContext(
+    PostsContext
+  );
   const { id } = useParams();
 
   // check if user has already liked the post
   let actualUser =
     localStorage.getItem("token") &&
     jwtDecode(localStorage.getItem("token")).id;
-  let liked = post.likes.find((like) => like.userId === actualUser);
+  let liked = post.likes.find((like) => like._id === actualUser);
 
   useEffect(() => {
     getPostById(id);
@@ -92,7 +94,7 @@ function BlogDetails() {
                     <i
                       className={`icon-like mr-2 ${liked && "liked"}`}
                       aria-hidden="true"
-                      // onClick={() => likePost(post._id)}
+                      onClick={() => likePost(id)}
                     ></i>
                     {post.likes.length}
                   </div>

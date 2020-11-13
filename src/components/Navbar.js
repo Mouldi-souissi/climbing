@@ -119,7 +119,16 @@ const Navbar = () => {
                   to={`/profile${decodedToken && decodedToken.id}`}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  <div className="avatar-nav"></div>
+                  <img
+                    src={
+                      decodedToken && decodedToken.avatar
+                        ? decodedToken.avatar
+                        : "https://www.gravatar.com/avatar/1234566?size=200&d=mm"
+                    }
+                    alt=""
+                    className="rounded-circle img-fluid"
+                    style={{ width: "50px", height: "50px" }}
+                  />
                 </Link>
 
                 <button

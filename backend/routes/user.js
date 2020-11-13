@@ -39,7 +39,10 @@ router.post("/login", loginValidator, async (req, res) => {
   const validpsw = await bcrypt.compare(req.body.password, user.password);
   if (!validpsw) return res.status(400).send("invalid credentials");
   // create token
-  const token = jwt.sign({ id: user._id, name: user.name }, "secret");
+  const token = jwt.sign(
+    { id: user._id, name: user.name, avatar: user.avatar },
+    "secret"
+  );
   res.header("token", token).send(token);
 });
 
@@ -56,8 +59,8 @@ router.get("/:id", verifyAuth, (req, res) => {
 // edit user
 // private route
 router.put("/edit", verifyAuth, (req, res) => {
-  User.findByIdAndUpdate(req.user.id, req.body)
-    .then(() => res.status(200).send("user modified"))
+  User.findByIdAndUpdate(req.user.id, req.body, { new: true })
+    .then((modifiedUser) => res.status(200).send(modifiedUser))
     .catch((err) => console.log(err));
 });
 
