@@ -1,4 +1,3 @@
-import userEvent from "@testing-library/user-event";
 import React, { useState } from "react";
 import { ProfileContext } from "../contexts/ProfileContext";
 
@@ -35,20 +34,20 @@ const ProfileSettings = ({ user }) => {
       <div className="card shadow-sm p-5" style={{ borderRadius: "20px" }}>
         <h2 className="mb-5">Settings</h2>
         {/* <img
-          className="rounded-circle mx-auto mb-5"
+          className="rounded-circle mb-5"
           alt="avatar"
           src="https://www.gravatar.com/avatar/1234566?size=200&d=mm"
           height="100px"
           width="100px"
         /> */}
         <form onSubmit={(e) => handleEdit(e)}>
-          <div class="form-group row">
-            <label class="col-sm-2 text-muted">Name</label>
+          <div className="form-group row">
+            <label className="col-sm-2 text-muted">Name</label>
             {isEditing ? (
-              <div class="col-sm-10">
+              <div className="col-sm-10">
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   defaultValue={user.name}
                   name="name"
                   onChange={handleInput}
@@ -58,13 +57,13 @@ const ProfileSettings = ({ user }) => {
               <p className="col-sm-10">{user.name}</p>
             )}
           </div>
-          <div class="form-group row">
-            <label class="col-sm-2 text-muted">Email</label>
+          <div className="form-group row">
+            <label className="col-sm-2 text-muted">Email</label>
             {isEditing ? (
-              <div class="col-sm-10">
+              <div className="col-sm-10">
                 <input
                   type="email"
-                  class="form-control"
+                  className="form-control"
                   defaultValue={user.email}
                   name="email"
                   onChange={handleInput}
@@ -74,23 +73,23 @@ const ProfileSettings = ({ user }) => {
               <p className="col-sm-10">{user.email}</p>
             )}
           </div>
-          {/* <div class="form-group row">
-            <label class="col-sm-2 text-muted">Password</label>
+          {/* <div className="form-group row">
+            <label className="col-sm-2 text-muted">Password</label>
             {isEditing ? (
-              <div class="col-sm-10">
-                <input type="password" class="form-control" />
+              <div className="col-sm-10">
+                <input type="password" className="form-control" />
               </div>
             ) : (
               <p className="col-sm-10">{}</p>
             )}
           </div> */}
-          <div class="form-group row">
-            <label class="col-sm-2 text-muted">Avatar url</label>
+          <div className="form-group row">
+            <label className="col-sm-2 text-muted">Avatar url</label>
             {isEditing ? (
-              <div class="col-sm-10">
+              <div className="col-sm-10">
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   defaultValue={user.avatar}
                   name="avatar"
                   onChange={handleInput}
@@ -102,6 +101,22 @@ const ProfileSettings = ({ user }) => {
               </p>
             )}
           </div>
+          <div className="form-group row">
+            <label className="col-sm-2 text-muted">About me</label>
+            {isEditing ? (
+              <div className="col-sm-10">
+                <textarea
+                  type="text"
+                  className="form-control"
+                  defaultValue={user.aboutMe}
+                  name="aboutMe"
+                  onChange={handleInput}
+                />
+              </div>
+            ) : (
+              <p className="col-sm-10">{user.aboutMe}</p>
+            )}
+          </div>
           <div className="float-right mt-3">
             <button
               className="btn btn-outline-primary mr-2"
@@ -110,7 +125,7 @@ const ProfileSettings = ({ user }) => {
               {isEditing ? "Reset" : "Edit"}
             </button>
             {isEditing && (
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" className="btn btn-primary">
                 Save
               </button>
             )}

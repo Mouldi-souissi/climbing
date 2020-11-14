@@ -110,10 +110,7 @@ router.put("/like:id", verifyAuth, async (req, res) => {
 
   if (liked) {
     likedPost.likes.pull(req.user.id);
-    likedPost
-      .save()
-      // .updateOne({ $pull: { likes: { name: req.user.name } } }, { safe: true })
-      .then((post) => res.send(post));
+    likedPost.save().then((post) => res.send(post));
   } else {
     likedPost.likes.push(req.user.id);
     likedPost
@@ -139,7 +136,7 @@ router.post("/addComment:id", verifyAuth, async (req, res) => {
 
     commentedPost
       .save()
-      .then(() => res.send(commentedPost))
+      .then((post) => res.send(post))
       .catch((err) => console.log(err));
   } catch (err) {
     res.status(404).send("no such post");
@@ -179,7 +176,7 @@ router.put(
       { new: true }
     );
     try {
-      res.send(deletedComment.comments);
+      res.send(deletedComment);
     } catch (err) {
       res.send("no such comment");
     }

@@ -67,7 +67,7 @@ const PostsContextProvider = (props) => {
         },
       })
       .then((res) => {
-        getPostById(id);
+        setPost(res.data);
         window.location.replace(`/blog/post${res.data._id}`);
       })
       .catch((err) => console.log(err));
@@ -81,7 +81,7 @@ const PostsContextProvider = (props) => {
           token: localStorage.getItem("token"),
         },
       })
-      .then(() => window.open("/blog"))
+
       .catch((err) => console.log(err));
   };
   // like unlike post

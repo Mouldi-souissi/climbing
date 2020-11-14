@@ -92,7 +92,7 @@ function Profile() {
                 style={{ borderRadius: "20px" }}
               >
                 <h1>About me</h1>
-                <p>I like nature and climbing</p>
+                <p>{user.aboutMe}</p>
               </div>
             </div>
             <div className="tab-pane fade" id="my-posts" role="tabpanel">

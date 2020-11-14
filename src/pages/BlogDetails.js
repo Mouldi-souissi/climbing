@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import BlogDelete from "../components/BlogDelete";
 import BlogSidebar from "../components/BlogSidebar";
@@ -8,7 +8,6 @@ import CommentsSection from "../components/CommentsSection";
 import moment from "moment";
 
 function BlogDetails() {
-  const [isOwner, setOwner] = useState(false);
   const { posts, getAllPostes, getPostById, post, likePost } = useContext(
     PostsContext
   );
@@ -20,26 +19,22 @@ function BlogDetails() {
     jwtDecode(localStorage.getItem("token")).id;
   let liked = post.likes.find((like) => like._id === actualUser);
 
+  // checking if user is the owner of this post
+  const postUserId = post.author && post.author._id;
+  const isOwner = postUserId === actualUser ? true : false;
+
   useEffect(() => {
     getPostById(id);
     getAllPostes();
-
     //  html to text
     let content = document.getElementById(post._id);
     if (content) {
       content.innerHTML = post.content;
     }
-
     // scroller position top
     window.scroll(0, 0);
-
-    // checking if user is the owner of this post
-    let token = localStorage.getItem("token") && localStorage.getItem("token");
-    let decodedToken = token && jwtDecode(token);
-    const userId = decodedToken && decodedToken.id;
-    const postUserId = post.author && post.author._id;
-    setOwner(postUserId === userId ? true : false);
   }, [post._id, post.content, id]);
+
   // calc comment
   const calcComments = (main) => {
     const subs = post.comments.subComments && post.comments.subComments;
@@ -49,6 +44,7 @@ function BlogDetails() {
       return main;
     }
   };
+
   return (
     <div className="" style={{ marginTop: "100px" }}>
       <BlogDelete id={id} x={post.title.trim()} />

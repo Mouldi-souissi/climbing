@@ -14,6 +14,7 @@ function BlogDelete({ id, x }) {
   const handleDelete = () => {
     deletePost(id);
     simulateClick();
+    window.location.replace("/blog");
   };
 
   return (
