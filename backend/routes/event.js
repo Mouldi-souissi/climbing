@@ -12,6 +12,7 @@ router.post("/add", verifyAuth, async (req, res) => {
     destination: req.body.destination,
     creator: req.user.id,
     image: req.body.image,
+    description: req.body.description,
   });
   try {
     const addedEvent = await event.save();

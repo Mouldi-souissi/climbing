@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import EventCard from "../components/EventCard";
 import { EventContext } from "../contexts/EventContext";
 import Bonus from "../components/Bonus";
-
+import { Link } from "react-router-dom";
 const Events = () => {
   const { getEvents, events } = useContext(EventContext);
 
@@ -42,14 +42,26 @@ const Events = () => {
           {events
             .filter((event) => !event.completed)
             .map((event) => (
-              <EventCard event={event} key={event._id} />
+              <Link
+                to={{ pathname: `/events/${event._id}`, state: event }}
+                key={event._id}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <EventCard event={event} />
+              </Link>
             ))}
         </div>
         <div className="tab-pane fade" id="completed" role="tabpanel">
           {events
             .filter((event) => event.completed)
             .map((event) => (
-              <EventCard event={event} key={event._id} />
+              <Link
+                to={{ pathname: `/events/${event._id}`, state: event }}
+                key={event._id}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <EventCard event={event} key={event._id} />
+              </Link>
             ))}
         </div>
       </div>

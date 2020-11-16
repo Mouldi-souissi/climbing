@@ -15,6 +15,7 @@ import CreatePost from "./pages/CreatePost";
 import Profile from "./pages/Profile";
 import Events from "./pages/Events";
 import EventAdd from "./pages/EventAdd";
+import EventDetails from "./pages/EventDetails";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <PrivateRoute exact path="/createPost:id" component={CreatePost} />
           <PrivateRoute exact path="/profile:id" component={Profile} />
           <PrivateRoute exact path="/events" component={Events} />
+          <PrivateRoute exact path="/events/:id" component={EventDetails} />
           <PrivateRoute exact path="/addEvent:id" component={EventAdd} />
           <Route component={Page404} />
         </Switch>

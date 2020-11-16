@@ -1,8 +1,7 @@
 import React from "react";
-// import moment from "moment";
+import moment from "moment";
 
 const EventCard = ({ event }) => {
-  //   const formattedDate = moment(event.date).calendar;
   return (
     <div className="col-md-12 mb-3">
       <div className="card shadow-sm p-4" style={{ borderRadius: "20px" }}>
@@ -18,13 +17,23 @@ const EventCard = ({ event }) => {
                   by {event.creator.name}
                 </span>
               </h5>
-              <h6 className="text-muted">Destination: {event.destination}</h6>
+
+              <h6>
+                Destination:{" "}
+                <span className="text-muted">{event.destination}</span>
+              </h6>
+
               <p className="card-text">
                 This is a wider card with supporting text below as a natural
                 lead-in to additional content. This content is a little bit
                 longer.
               </p>
-              <p className="card-text text-muted">{event.date}</p>
+              <h6 className="card-text">
+                Date:{" "}
+                <span class="text-muted">
+                  {moment(event.date).format("MMMM Do YYYY, h:mm a")}
+                </span>
+              </h6>
             </div>
           </div>
         </div>
