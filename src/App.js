@@ -13,6 +13,7 @@ import Blog from "./pages/Blog";
 import BlogDetails from "./pages/BlogDetails";
 import CreatePost from "./pages/CreatePost";
 import Profile from "./pages/Profile";
+import Events from "./pages/Events";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <PrivateRoute exact path="/blog/post:id" component={BlogDetails} />
           <PrivateRoute exact path="/createPost:id" component={CreatePost} />
           <PrivateRoute exact path="/profile:id" component={Profile} />
+          <PrivateRoute exact path="/events" component={Events} />
           <Route component={Page404} />
         </Switch>
       </Router>

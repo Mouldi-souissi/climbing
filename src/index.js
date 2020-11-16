@@ -7,13 +7,16 @@ import Footer from "./components/Footer";
 import UserContextProvider from "./contexts/UserContext";
 import PostsContextProvider from "./contexts/PostsContext";
 import ProfileContextProvider from "./contexts/ProfileContext";
+import EventContextProvider from "./contexts/EventContext";
 
 ReactDOM.render(
   <UserContextProvider>
     <PostsContextProvider>
       <ProfileContextProvider>
-        <App />
-        <Footer />
+        <EventContextProvider>
+          <App />
+          <Footer />
+        </EventContextProvider>
       </ProfileContextProvider>
     </PostsContextProvider>
   </UserContextProvider>,
