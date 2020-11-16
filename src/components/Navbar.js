@@ -109,10 +109,15 @@ const Navbar = () => {
                       </button>
                     </Link>
                     <hr className="my-1 py-0" />
-                    <button className="dropdown-item" type="button">
-                      <i className="fa fa-calendar mr-2 pb-2" />
-                      Event
-                    </button>
+                    <Link
+                      to={{ pathname: "/addEvent:0", state: false }}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      <button className="dropdown-item" type="button">
+                        <i className="fa fa-calendar mr-2 pb-2" />
+                        Event
+                      </button>
+                    </Link>
                   </div>
                 </div>
                 <Link

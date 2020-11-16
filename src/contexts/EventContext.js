@@ -19,8 +19,25 @@ const EventContextProvider = (props) => {
         setEvents(res.data);
       });
   };
+
+  // create event
+  const createEvent = (data) => {
+    var date = new Date("2015-03-25T12:00:00Z");
+    axios
+      .post(
+        "http://localhost:5000/api/events/add",
+        { ...data, date: date },
+        {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+  };
   return (
-    <EventContext.Provider value={{ events, getEvents }}>
+    <EventContext.Provider value={{ events, getEvents, createEvent }}>
       {props.children}
     </EventContext.Provider>
   );

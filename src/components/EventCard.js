@@ -8,7 +8,7 @@ const EventCard = ({ event }) => {
       <div className="card shadow-sm p-4" style={{ borderRadius: "20px" }}>
         <div className="row no-gutters">
           <div className="col-md-4">
-            <img src="..." className="card-img" alt="event-pic" />
+            <img src={event.image} className="card-img" alt="event-pic" />
           </div>
           <div className="col-md-8">
             <div className="card-body">
