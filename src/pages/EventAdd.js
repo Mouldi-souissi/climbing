@@ -8,29 +8,29 @@ var _ = require("lodash");
 
 function EventAdd() {
   // state
-  // const [content, setValue] = useState("");
   let [data, setData] = useState("");
   const { id } = useParams();
 
   // context
-  const { createEvent } = useContext(EventContext);
+  const { createEvent, editEvent } = useContext(EventContext);
 
-  // checking if editing post
-  let isEditing = useHistory().location.state;
+  // checking if editing
+  const isEditing = useHistory().location.state.isEditing;
+  const event = useHistory().location.state.event;
 
   // handling form
   const handleInput = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
-  // handle create or edit post
+  // handle create or edit
   const handleCreateOrEdit = () => {
     if (isEditing) {
       // clean object from unmodified fields
-      // setData({ ...data, content });
-
       const modified = _.omit(data, _.isUndefined);
 
       //   editPost(id, modified);
+
+      editEvent(id, modified);
       setData("");
     } else {
       const copy = data;
@@ -57,7 +57,7 @@ function EventAdd() {
             <div className="form-group mt-5">
               <label>Name</label>
               <input
-                // defaultValue={isEditing ? post.title : ""}
+                defaultValue={isEditing ? event.name : ""}
                 type="text"
                 className="form-control col-lg-6"
                 name="name"
@@ -67,7 +67,7 @@ function EventAdd() {
             <div className="form-group mt-3">
               <label>Image Url</label>
               <input
-                // defaultValue={isEditing ? post.image : ""}
+                defaultValue={isEditing ? event.image : ""}
                 type="text"
                 className="form-control col-lg-6"
                 onChange={handleInput}
@@ -81,7 +81,7 @@ function EventAdd() {
             <div className="form-group mt-3">
               <label>Destination</label>
               <input
-                // defaultValue={isEditing ? post.image : ""}
+                defaultValue={isEditing ? event.destination : ""}
                 type="text"
                 className="form-control col-lg-6"
                 onChange={handleInput}
@@ -91,7 +91,7 @@ function EventAdd() {
             <div className="form-group mt-3">
               <label>Description</label>
               <textarea
-                // defaultValue={isEditing ? post.image : ""}
+                defaultValue={isEditing ? event.description : ""}
                 type="text"
                 className="form-control col-lg-6"
                 onChange={handleInput}

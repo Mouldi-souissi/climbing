@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import moment from "moment";
 import jwtDecode from "jwt-decode";
@@ -45,8 +45,8 @@ const EventDetails = () => {
           <div className="dropdown-menu p-0 shadow-sm">
             <Link
               to={{
-                pathname: `/createPost${event._id}`,
-                state: true,
+                pathname: `/addEvent${event._id}`,
+                state: { isEditing: true, event },
               }}
               style={{ textDecoration: "none", color: "inherit" }}
             >

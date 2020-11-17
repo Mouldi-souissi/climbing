@@ -14,6 +14,14 @@ router.get("/", (req, res) => {
       path: "likes",
       model: "user",
     })
+    .populate({
+      path: "comments.user",
+      model: "user",
+    })
+    .populate({
+      path: "comments.subComments.user",
+      model: "user",
+    })
     .then((posts) => res.json(posts))
     .catch((err) => console.log(err));
 });
