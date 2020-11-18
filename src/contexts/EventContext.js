@@ -48,9 +48,21 @@ const EventContextProvider = (props) => {
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
   };
+
+  // participate
+  const participate = (id, will) => {
+    axios
+      .put(`http://localhost:5000/api/events/participate${id}`, will, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
   return (
     <EventContext.Provider
-      value={{ events, getEvents, createEvent, editEvent }}
+      value={{ events, getEvents, createEvent, editEvent, participate }}
     >
       {props.children}
     </EventContext.Provider>

@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import moment from "moment";
 import jwtDecode from "jwt-decode";
+import { EventContext } from "../contexts/EventContext";
 
 const EventDetails = () => {
   // get event from the link
   const event = useHistory().location.state;
+
   //   check owner
   const actualUser =
     localStorage.getItem("token") &&
     jwtDecode(localStorage.getItem("token")).id;
   const eventUserId = event.creator._id;
   const isOwner = eventUserId === actualUser ? true : false;
+
+  // context
+  const { participate } = useContext(EventContext);
 
   return (
     <div className="container" style={{ marginTop: "80px" }}>
@@ -67,7 +72,23 @@ const EventDetails = () => {
           </div>
         </div>
       )}
-      <p>{event.description}</p>
+      <div className="card-body">
+        <p className="mt-5">{event.description}</p>
+        <div className="float-right mt-3 mb-5">
+          <button
+            className="btn btn-outline-primary mr-2"
+            onClick={() => participate(event._id, { will: "sure" })}
+          >
+            Participate
+          </button>
+          <button
+            className="btn btn-outline-primary"
+            onClick={() => participate(event._id, { will: "maybe" })}
+          >
+            Maybe
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

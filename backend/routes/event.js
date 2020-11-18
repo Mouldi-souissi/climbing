@@ -46,7 +46,7 @@ router.get("/:id", verifyAuth, (req, res) => {
 
 // edit event
 // private, verify owner
-router.put("/edit:id", verifyAuth, verifyEventOwner, (req, res) => {
+router.put("/edit:id", verifyAuth, (req, res) => {
   Event.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then((event) => res.send(event))
     .catch((err) => res.send(err));

@@ -2,6 +2,15 @@ import React from "react";
 import moment from "moment";
 
 const EventCard = ({ event }) => {
+  // text limiting ...
+  const textLimit = (text) => {
+    const limit = 200;
+    if (text.length > limit) {
+      return text.substring(0, limit).concat("...");
+    } else {
+      return text;
+    }
+  };
   return (
     <div className="col-md-12 mb-3">
       <div className="card shadow-sm p-4" style={{ borderRadius: "20px" }}>
@@ -24,9 +33,7 @@ const EventCard = ({ event }) => {
               </h6>
 
               <p className="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
+                {event.description && textLimit(event.description)}
               </p>
               <h6 className="card-text">
                 Date:{" "}
