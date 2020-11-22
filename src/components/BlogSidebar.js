@@ -1,10 +1,15 @@
 import React from "react";
-
 import BlogSidebarCard from "./BlogSidebarCard";
 import Bonus from "./Bonus";
 import { Link } from "react-router-dom";
+import _ from "lodash";
 
 function BlogSidebar({ posts }) {
+  // const tags = _.uniqBy(posts, "tags");
+  let tags = posts.map((post) => post.tags);
+
+  console.log(tags);
+
   return (
     <div className="col-lg-4">
       <div
@@ -17,7 +22,7 @@ function BlogSidebar({ posts }) {
           <Bonus />
         </div>
 
-        {posts.map((post) => (
+        {posts.slice(0, 7).map((post) => (
           <BlogSidebarCard post={post} key={post._id} />
         ))}
       </div>
@@ -32,7 +37,7 @@ function BlogSidebar({ posts }) {
           <Bonus />
         </div>
         <div className="tags">
-          {posts.slice(0, 7).map((post) =>
+          {posts.map((post) =>
             post.tags.map((tag) => (
               <Link
                 key={tag}

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import "react-quill/dist/quill.snow.css";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Redirect } from "react-router-dom";
 import Bonus from "../components/Bonus";
 import { EventContext } from "../contexts/EventContext";
 
@@ -9,6 +9,7 @@ var _ = require("lodash");
 function EventAdd() {
   // state
   let [data, setData] = useState("");
+  const [redirect, setRedirect] = useState(false);
   const { id } = useParams();
 
   // context
@@ -27,11 +28,10 @@ function EventAdd() {
     if (isEditing) {
       // clean object from unmodified fields
       const modified = _.omit(data, _.isUndefined);
-
-      //   editPost(id, modified);
-
+      // edit
       editEvent(id, modified);
       setData("");
+      setRedirect(true);
     } else {
       const copy = data;
       createEvent(copy);
@@ -45,6 +45,9 @@ function EventAdd() {
   //       getPostById(id);
   //     }
   //   }, []);
+  if (redirect) {
+    return <Redirect to={{ pathname: `/events/${id}`, state: event }} />;
+  }
   return (
     <div className="container" style={{ marginTop: "100px" }}>
       <div className="row">
