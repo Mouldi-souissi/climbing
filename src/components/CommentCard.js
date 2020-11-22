@@ -48,15 +48,8 @@ function CommentCard(props) {
           <p>{comment}</p>
           <div>
             <div className="btn-group">
-              {props.isOwner && (
-                <i
-                  className="fa fa-trash-o mr-2 btn btn-outline-danger"
-                  onClick={() => deleteCommentByOwner(id, _id)}
-                />
-              )}
-
               <div
-                className="btn btn-sm btn-outline-primary"
+                className="btn btn-sm btn-outline-secondary"
                 onClick={() => setCommentbar(!showCommentbar)}
               >
                 Comment
@@ -89,6 +82,40 @@ function CommentCard(props) {
               <SubCommentCard subComment={subComment} key={subComment._id} />
             ))}
         </div>
+        {props.isOwner && (
+          <div className="btn-group dropleft float-right">
+            <button
+              type="button"
+              className="btn btn-transparent"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i className="fa fa-cog" aria-hidden="true" />
+            </button>
+            <div className="dropdown-menu p-0 shadow-sm">
+              <div className="dropdown-item btn">
+                <i className="fa fa-pencil-square-o mr-2 pb-2" />
+                Edit comment
+              </div>
+              <hr className="my-1 py-0" />
+              <div
+                className="dropdown-item btn"
+                onClick={() => deleteCommentByOwner(id, _id)}
+              >
+                <i className="fa fa-trash-o mr-2 pb-2" />
+                Delete comment
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* {props.isOwner && (
+                <i
+                  className="fa fa-trash-o mr-2 btn btn-outline-danger"
+                  onClick={() => deleteCommentByOwner(id, _id)}
+                />
+              )} */}
       </div>
     </div>
   );

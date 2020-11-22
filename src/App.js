@@ -16,6 +16,7 @@ import Profile from "./pages/Profile";
 import Events from "./pages/Events";
 import EventAdd from "./pages/EventAdd";
 import EventDetails from "./pages/EventDetails";
+import BlogTag from "./pages/BlogTag";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <PrivateRoute exact path="/events" component={Events} />
           <PrivateRoute exact path="/events/:id" component={EventDetails} />
           <PrivateRoute exact path="/addEvent:id" component={EventAdd} />
+          <PrivateRoute exact path="/blogTag:tag" component={BlogTag} />
           <Route component={Page404} />
         </Switch>
       </Router>

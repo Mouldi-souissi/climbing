@@ -58,9 +58,7 @@ function CommentsSection({ post, isOwner }) {
 
           {post &&
             post.comments
-              .sort((a, b) => new moment(a.date) - new moment(b.date))
-              .reverse()
-
+              .sort((a, b) => new moment(b.date) - new moment(a.date))
               .map((comment) => (
                 <CommentCard
                   key={comment._id}

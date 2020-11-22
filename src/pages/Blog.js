@@ -21,9 +21,9 @@ function Blog() {
   let currentPosts = posts
     .filter(
       (post) =>
-        post.title.includes(searchResult) ||
-        post.content.includes(searchResult) ||
-        post.author.name.includes(searchResult)
+        post.title.trim().toLocaleLowerCase().includes(searchResult) ||
+        post.content.trim().toLocaleLowerCase().includes(searchResult) ||
+        post.author.name.trim().toLocaleLowerCase().includes(searchResult)
     )
     .slice(indexOfFirstPost, indexOfLastPost);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -47,7 +47,7 @@ function Blog() {
             </div>
           </div>
 
-          <BlogSidebar posts={posts.slice(0, 7)} />
+          <BlogSidebar posts={posts} />
         </div>
 
         <div className="go-up float-right">

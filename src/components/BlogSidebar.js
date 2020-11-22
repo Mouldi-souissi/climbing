@@ -2,6 +2,7 @@ import React from "react";
 
 import BlogSidebarCard from "./BlogSidebarCard";
 import Bonus from "./Bonus";
+import { Link } from "react-router-dom";
 
 function BlogSidebar({ posts }) {
   return (
@@ -31,15 +32,18 @@ function BlogSidebar({ posts }) {
           <Bonus />
         </div>
         <div className="tags">
-          {posts.map((post) =>
+          {posts.slice(0, 7).map((post) =>
             post.tags.map((tag) => (
-              <a
+              <Link
                 key={tag}
-                href="/"
+                to={{
+                  pathname: `/blogTag${tag}`,
+                  state: posts.filter((post) => post.tags.includes(tag)),
+                }}
                 className="btn btn-outline-secondary mr-2 mb-1"
               >
                 {tag}
-              </a>
+              </Link>
             ))
           )}
         </div>

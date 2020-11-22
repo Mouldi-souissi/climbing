@@ -99,6 +99,7 @@ function BlogDetails() {
               )}
             </div>
             <div className="d-flex align-items-center justify-content-between mt-2 ml-2">
+              {/* likes and comments */}
               <div className="d-flex justify-content-between">
                 <div className="like mr-2">
                   <i
@@ -113,7 +114,7 @@ function BlogDetails() {
                   {calcComments(post.comments.length)}
                 </div>
               </div>
-
+              {/* settings */}
               {isOwner && (
                 <div className="btn-group dropleft float-right">
                   <button
@@ -175,28 +176,33 @@ function BlogDetails() {
                 </Link>
               )
             )}
+            {/* article */}
             <div className="article-content mt-5">
               <p id={post._id}></p>
             </div>
+            {/* tags */}
             <hr />
             <h4 className="">Tags</h4>
             <div className="nav tag-cloud">
               {post.tags.map((tag) => (
-                <a
+                <Link
                   key={tag}
-                  href="/"
+                  to={{
+                    pathname: `/blogTag${tag}`,
+                    state: posts.filter((post) => post.tags[0] === tag),
+                  }}
                   className="btn btn-outline-secondary mr-2 mb-1"
                 >
                   {tag}
-                </a>
+                </Link>
               ))}
             </div>
             <hr />
           </article>
-
+          {/* comments */}
           <CommentsSection post={post} isOwner={isOwner} />
         </div>
-
+        {/* trending */}
         <BlogSidebar posts={posts.slice(0, 7)} showAuthor={true} post={post} />
       </div>
     </div>

@@ -2,9 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Bonus from "../components/Bonus";
 import { UserContext } from "../contexts/UserContext";
+import FacebookLogin from "react-facebook-login";
 
 const SignIn = () => {
-  const { login } = useContext(UserContext);
+  const { login, register } = useContext(UserContext);
   const [data, setData] = useState("");
   const [show, setshow] = useState(false);
 
@@ -28,6 +29,15 @@ const SignIn = () => {
     window.scrollTo(0, 0);
     logindRef && logindRef.focus();
   }, []);
+
+  const componentClicked = () => {
+    console.log("clicked");
+  };
+
+  const responseFacebook = (res) => {
+    console.log(res);
+    register(res.email, res.userID, res.name);
+  };
 
   return (
     <div className="container mx-auto" style={{ marginTop: "100px" }}>
@@ -93,12 +103,21 @@ const SignIn = () => {
 
               <div className="form-group">
                 <button
-                  className="btn btn-block btn-primary create-account"
+                  className="btn btn-block btn-primary create-account mb-3"
                   type="submit"
                   ref={(input) => (buttonRef = input)}
                 >
                   Login
                 </button>
+                <FacebookLogin
+                  appId="561395128053548"
+                  autoLoad={true}
+                  fields="name,email,picture"
+                  onClick={componentClicked}
+                  callback={responseFacebook}
+                  cssClass="btn btn-block btn-outline-primary"
+                  icon="fa-facebook mr-2"
+                />
               </div>
               <div className="text-center mt-5">
                 <Link to="/signUp"> Sign up </Link>
@@ -110,8 +129,9 @@ const SignIn = () => {
               >
                 If you have forgot your password please click on this link
               </p>
-              <div className="social-media text-center">
+              {/* <div className="social-media text-center">
                 <h5>Sign up with social media</h5>
+
                 <div className="social-icons">
                   <a href="/fb" className="mr-3">
                     <i className="icon-social-facebook" title="Facebook"></i>
@@ -123,7 +143,7 @@ const SignIn = () => {
                     <i className="icon-social-twitter" title="Twitter"></i>
                   </a>
                 </div>
-              </div>
+              </div> */}
             </form>
           </div>
         </div>

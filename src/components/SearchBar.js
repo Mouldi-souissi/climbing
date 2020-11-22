@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import SvgAnimation from "./SvgAnimation";
 
 function SearchBar({ setSearchResut }) {
+  const [search, setSearch] = useState();
+  const handleEnter = (e) => {
+    if (e.charCode === 13) {
+      setSearchResut(search.trim().toLocaleLowerCase());
+    }
+  };
   return (
     <div
       className="container card p-5 shadow-sm mb-5"
@@ -20,9 +26,13 @@ function SearchBar({ setSearchResut }) {
           type="text"
           className="form-control mr-3"
           placeholder="Search . . ."
-          onChange={(e) => setSearchResut(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
+          onKeyPress={handleEnter}
         ></input>
-        <button className="btn btn-primary">
+        <button
+          className="btn btn-primary"
+          onClick={() => setSearchResut(search.trim().toLocaleLowerCase())}
+        >
           <i className="fa fa-search fa-lg" aria-hidden="true" />
         </button>
       </div>
