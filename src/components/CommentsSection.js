@@ -26,14 +26,14 @@ function CommentsSection({ post, isOwner }) {
           >
             <div className="panel-body">
               <input
-                className="form-control shadow-none"
+                className="form-control mt-3"
                 rows="2"
                 placeholder="What are you thinking?"
                 onChange={(e) => setComment(e.target.value)}
                 onKeyPress={handleEnter}
                 value={comment}
               ></input>
-              <div className="mar-top clearfix">
+              <div className="mt-3">
                 <button
                   className="btn btn-sm btn-primary pull-right"
                   type="submit"
@@ -41,7 +41,7 @@ function CommentsSection({ post, isOwner }) {
                 >
                   <i className="fa fa-pencil fa-fw"></i> Share
                 </button>
-                <i
+                {/* <i
                   className="btn btn-trans btn-icon fa fa-video-camera add-tooltip"
                   href="/"
                 ></i>
@@ -52,7 +52,7 @@ function CommentsSection({ post, isOwner }) {
                 <i
                   className="btn btn-trans btn-icon fa fa-file add-tooltip"
                   href="/"
-                ></i>
+                ></i> */}
               </div>
             </div>
           </div>

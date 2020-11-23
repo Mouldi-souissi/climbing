@@ -13,7 +13,7 @@ function BlogSidebar({ posts }) {
     <div className="col-lg-4">
       <div
         className="shadow-sm card p-4"
-        data-aos="flip-up"
+        // data-aos="flip-up"
         style={{ borderRadius: "20px" }}
       >
         <div className="mb-4">
@@ -28,7 +28,7 @@ function BlogSidebar({ posts }) {
 
       <div
         className="shadow-sm card p-4 mt-3"
-        data-aos="flip-up"
+        // data-aos="flip-up"
         style={{ borderRadius: "20px" }}
       >
         <div className="text-center mb-3">

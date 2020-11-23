@@ -1,12 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Bonus from "../components/Bonus";
 import Features from "../components/Features";
 import Hero from "../components/Hero";
 
 const LandingPage = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   return (
     <div style={{ marginTop: "78px" }}>
       <Hero />

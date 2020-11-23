@@ -37,7 +37,7 @@ const EventCard = ({ event }) => {
               </p>
               <h6 className="card-text">
                 Date:{" "}
-                <span class="text-muted">
+                <span className="text-muted">
                   {moment(event.date).format("MMMM Do YYYY, h:mm a")}
                 </span>
               </h6>

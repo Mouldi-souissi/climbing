@@ -26,7 +26,6 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     logindRef && logindRef.focus();
   }, []);
 
@@ -111,7 +110,7 @@ const SignIn = () => {
                 </button>
                 <FacebookLogin
                   appId="561395128053548"
-                  autoLoad={true}
+                  autoLoad={false}
                   fields="name,email,picture"
                   onClick={componentClicked}
                   callback={responseFacebook}

@@ -13,7 +13,7 @@ function BlogSidebarCard({ post }) {
           </span>
         </h6>
         <p className="date text-muted" style={{ fontSize: "12px" }}>
-          {moment(post.date).calendar()}
+          {moment(post.date).format("MMMM Do YYYY")}
         </p>
       </div>
 

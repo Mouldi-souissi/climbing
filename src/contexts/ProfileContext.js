@@ -20,6 +20,7 @@ const ProfileContextProvider = (props) => {
       })
       .catch((err) => console.log(err));
   };
+  // get user
   const getUser = (id) => {
     axios
       .get(`http://localhost:5000/api/user/${id}`, {

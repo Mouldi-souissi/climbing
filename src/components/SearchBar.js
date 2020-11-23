@@ -5,7 +5,7 @@ function SearchBar({ setSearchResut }) {
   const [search, setSearch] = useState();
   const handleEnter = (e) => {
     if (e.charCode === 13) {
-      setSearchResut(search.trim().toLocaleLowerCase());
+      setSearchResut(search && search.trim().toLocaleLowerCase());
     }
   };
   return (
@@ -31,7 +31,9 @@ function SearchBar({ setSearchResut }) {
         ></input>
         <button
           className="btn btn-primary"
-          onClick={() => setSearchResut(search.trim().toLocaleLowerCase())}
+          onClick={() =>
+            setSearchResut(search && search.trim().toLocaleLowerCase())
+          }
         >
           <i className="fa fa-search fa-lg" aria-hidden="true" />
         </button>

@@ -16,6 +16,7 @@ function CommentCard(props) {
       const copy = subComment;
       addSubComment(id, _id, { comment: copy });
       setSubComment("");
+      setCommentbar(false);
     }
   };
 
@@ -50,7 +51,7 @@ function CommentCard(props) {
             className="btn btn-sm text-primary"
             onClick={() => setCommentbar(!showCommentbar)}
           >
-            Reply
+            {showCommentbar ? "Cancel" : "Reply"}
           </div>
 
           {showCommentbar && (

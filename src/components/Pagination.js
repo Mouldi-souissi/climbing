@@ -8,32 +8,7 @@ function Pagination({ postsPerPage, totalPosts, paginate }) {
   }
   return (
     <div className="col-12">
-      <ul className="pagination justify-content-center">
-        {/* <li className="page-item disabled">
-          <a className="page-link" href="/" tabindex="-1">
-            <i className="fas fa-chevron-left"></i>
-          </a>
-        </li>
-        <li className="page-item">
-          <a className="page-link" href="/">
-            1
-          </a>
-        </li>
-        <li className="page-item active">
-          <a className="page-link" href="/">
-            2 <span className="sr-only">(current)</span>
-          </a>
-        </li>
-        <li className="page-item">
-          <a className="page-link" href="/">
-            3
-          </a>
-        </li>
-        <li className="page-item">
-          <a className="page-link" href="/">
-            <i className="fas fa-chevron-right"></i>
-          </a>
-        </li> */}
+      <ul className="pagination">
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
             <button

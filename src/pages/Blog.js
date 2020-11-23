@@ -11,7 +11,6 @@ function Blog() {
 
   useEffect(() => {
     getAllPostes();
-    window.scrollTo(0, 0);
   }, []);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -39,11 +38,6 @@ function Blog() {
                 currentPosts.map((post) => (
                   <BlogCard post={post} key={post._id} />
                 ))}
-              <Pagination
-                postsPerPage={postsPerPage}
-                totalPosts={posts.length}
-                paginate={paginate}
-              />
             </div>
           </div>
 
@@ -62,6 +56,11 @@ function Blog() {
             }
           ></i>
         </div>
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={posts.length}
+          paginate={paginate}
+        />
       </div>
     </section>
   );

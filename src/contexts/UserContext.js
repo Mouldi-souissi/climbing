@@ -33,7 +33,7 @@ const UserContextProvider = (props) => {
   // is auth
   const checkAuth = () => {
     let token = localStorage.getItem("token") && localStorage.getItem("token");
-    let decodedToken = token && JwtDecode(token).name;
+    let decodedToken = token && JwtDecode(token).id;
     setAuth(decodedToken);
   };
 

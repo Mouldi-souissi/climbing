@@ -20,21 +20,22 @@ const EventDetails = () => {
 
   return (
     <div className="container" style={{ marginTop: "80px" }}>
-      <p className="pt-5 display-2 text-center">
-        {event.name}
-        <span className="text-muted ml-2" style={{ fontSize: "40px" }}>
-          by {event.creator.name}
-        </span>
-      </p>
-      <h4>
+      <p className="pt-5 display-3 text-center">{event.name}</p>
+      <Link
+        to={`/profile${event.creator._id}`}
+        style={{ textDecoration: "none" }}
+      >
+        <h4 className="text-muted text-center by">by {event.creator.name}</h4>
+      </Link>
+      <h6>
         Destination: <span className="text-muted">{event.destination}</span>
-      </h4>
-      <h4>
+      </h6>
+      <h6>
         Date:{" "}
         <span className="text-muted">
           {moment(event.date).format("MMMM Do YYYY, h:mm a")}
         </span>
-      </h4>
+      </h6>
       <img className="card-img mt-3 mb-3" alt="event-pic" src={event.image} />
       {isOwner && (
         <div className="btn-group dropleft float-right">

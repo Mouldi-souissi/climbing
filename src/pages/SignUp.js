@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Bonus from "../components/Bonus";
 import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
@@ -15,9 +15,7 @@ const SignUp = () => {
     e.preventDefault();
     register(data.email, data.password, data.name);
   };
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+
   return (
     <div className="container mx-auto" style={{ marginTop: "100px" }}>
       <div className="row">
