@@ -107,10 +107,20 @@ router.delete("/delete:id", verifyAuth, verifyOwner, (req, res) => {
 // like and unlike a post by id
 // private route
 router.put("/like:id", verifyAuth, async (req, res) => {
-  let likedPost = await Post.findById(req.params.id).populate({
-    path: "likes",
-    model: "user",
-  });
+  let likedPost = await Post.findById(req.params.id)
+    .populate({ path: "author", model: "user" })
+    .populate({
+      path: "likes",
+      model: "user",
+    })
+    .populate({
+      path: "comments.user",
+      model: "user",
+    })
+    .populate({
+      path: "comments.subComments.user",
+      model: "user",
+    });
 
   let liked = likedPost.likes.find(
     (like) => like._id.toString() === req.user.id
@@ -118,7 +128,10 @@ router.put("/like:id", verifyAuth, async (req, res) => {
 
   if (liked) {
     likedPost.likes.pull(req.user.id);
-    likedPost.save().then((post) => res.send(post));
+    likedPost
+      .save()
+      .then((post) => res.send(post))
+      .catch((err) => res.send(err));
   } else {
     likedPost.likes.push(req.user.id);
     likedPost
@@ -131,24 +144,30 @@ router.put("/like:id", verifyAuth, async (req, res) => {
 // add comment
 // private route
 router.post("/addComment:id", verifyAuth, async (req, res) => {
-  const commentedPost = await Post.findById(req.params.id).populate({
-    path: "likes",
-    model: "user",
-  });
-
-  try {
-    commentedPost.comments.push({
-      user: req.user.id,
-      comment: req.body.comment,
+  const commentedPost = await Post.findById(req.params.id)
+    .populate({ path: "author", model: "user" })
+    .populate({
+      path: "likes",
+      model: "user",
+    })
+    .populate({
+      path: "comments.user",
+      model: "user",
+    })
+    .populate({
+      path: "comments.subComments.user",
+      model: "user",
     });
 
-    commentedPost
-      .save()
-      .then((post) => res.send(post))
-      .catch((err) => console.log(err));
-  } catch (err) {
-    res.status(404).send("no such post");
-  }
+  commentedPost.comments.push({
+    user: req.user.id,
+    comment: req.body.comment,
+  });
+
+  commentedPost
+    .save()
+    .then((post) => res.send(post))
+    .catch((err) => console.log(err));
 });
 
 // add sub comment
