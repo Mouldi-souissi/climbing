@@ -1,10 +1,16 @@
 import React from "react";
+import facebook from "../assets/facebook.png";
+import insta from "../assets/insta.png";
+import twitter from "../assets/twitter.png";
 
 const Footer = () => {
   return (
-    <footer className="footer bg-white pb-4" style={{ marginTop: "auto" }}>
-      <hr className="mt-0" />
-      <div className="container">
+    <footer
+      className="footer bg-white py-4 px-4 shadow-lg"
+      style={{ marginTop: "auto" }}
+    >
+      {/* <hr className="mt-0" /> */}
+      <div className="container-fluid">
         <div className="row">
           <div className="col-lg-6 my-auto h-100 text-center text-lg-left pt-3">
             <ul className="list-inline mb-2">
@@ -28,17 +34,25 @@ const Footer = () => {
             <ul className="list-inline mb-0">
               <li className="list-inline-item">
                 <a href="https://www.facebook.com">
-                  <i className="fa fa-facebook fa-2x fa-fw"></i>
+                  {/* <i className="fa fa-facebook fa-2x fa-fw"></i> */}
+                  <img
+                    src={facebook}
+                    height="60px"
+                    width="60px"
+                    alt="facebbok"
+                  />
                 </a>
               </li>
               <li className="list-inline-item">
                 <a href=" https://twitter.com/">
-                  <i className="fa fa-twitter fa-2x fa-fw"></i>
+                  {/* <i className="fa fa-twitter fa-2x fa-fw"></i> */}
+                  <img src={twitter} height="60px" width="60px" alt="twitter" />
                 </a>
               </li>
               <li className="list-inline-item">
                 <a href="https://www.instagram.com/">
-                  <i className="fa fa-instagram fa-2x fa-fw"></i>
+                  {/* <i className="fa fa-instagram fa-2x fa-fw"></i> */}
+                  <img src={insta} height="60px" width="60px" alt="insta" />
                 </a>
               </li>
             </ul>

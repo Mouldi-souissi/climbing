@@ -7,8 +7,8 @@ function Pagination({ postsPerPage, totalPosts, paginate }) {
     pageNumbers.push(i);
   }
   return (
-    <div className="col-12">
-      <ul className="pagination">
+    <div className="col-lg-8">
+      <ul className="pagination justify-content-center">
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
             <button

@@ -1297,6 +1297,9 @@ a.text-muted:focus {
 }
 
 /* footer */
-/* .footer i {
-  color: #12b79c;
-} */
+
+.footer img:hover {
+  transform: translateY(-10px);
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}

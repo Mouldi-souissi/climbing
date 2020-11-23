@@ -1,7 +1,7 @@
 import React from "react";
-import Feature1 from "../assets/feature1.jpg";
-import Feature2 from "../assets/feature2.jpg";
-import Feature3 from "../assets/feature3.jpg";
+import Feature1 from "../assets/f1.svg";
+import Feature2 from "../assets/f2.svg";
+import Feature3 from "../assets/f3.svg";
 
 const Features = () => {
   return (
@@ -46,7 +46,7 @@ const Features = () => {
             Organize events.{" "}
             <span className="text-muted">It takes just few clicks.</span>
           </h2>
-          <p className="lead mx-5">
+          <p className="lead">
             Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id
             ligula porta felis euismod semper. Praesent commodo cursus magna,
             vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus

@@ -15,10 +15,10 @@ function CreatePost() {
   const { id } = useParams();
 
   // context
-  const { createPost, post, getPostById, editPost } = useContext(PostsContext);
+  const { createPost, editPost } = useContext(PostsContext);
 
   // checking if editing post
-  let isEditing = useHistory().location.state;
+  const { isEditing, post } = useHistory().location.state;
 
   // handling form
   const handleInput = (e) => {
@@ -28,10 +28,7 @@ function CreatePost() {
   const handleCreateOrEdit = () => {
     if (isEditing) {
       // clean object from unmodified fields
-      // setData({ ...data, content });
-
       const modified = _.omit(data, _.isUndefined);
-
       editPost(id, modified);
       setData("");
     } else {
@@ -46,12 +43,6 @@ function CreatePost() {
     setData({ ...data, tags });
   };
 
-  // getting post data if editing
-  useEffect(() => {
-    if (isEditing) {
-      getPostById(id);
-    }
-  }, []);
   return (
     <div className="container" style={{ marginTop: "100px" }}>
       <div className="row">
@@ -83,7 +74,10 @@ function CreatePost() {
             </div>
             <div className="form-group mt-3">
               <label>Tags</label>
-              <InputTag grabTags={grabTags} postTags={post.tags} />
+              <InputTag
+                grabTags={grabTags}
+                postTags={isEditing ? post.tags : []}
+              />
             </div>
             {data.image && (
               <img src={data.image} alt="img preview" height="300px" />
@@ -92,7 +86,7 @@ function CreatePost() {
               <label>Content</label>
               <ReactQuill
                 theme="snow"
-                defaultValue={post.content}
+                defaultValue={isEditing ? post.content : ""}
                 onChange={(value) => setData({ ...data, content: value })}
                 name="content"
               />

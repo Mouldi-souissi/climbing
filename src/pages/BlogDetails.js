@@ -129,7 +129,7 @@ function BlogDetails() {
                   <Link
                     to={{
                       pathname: `/createPost${post._id}`,
-                      state: true,
+                      state: { isEditing: true, post },
                     }}
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
