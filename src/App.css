@@ -1259,6 +1259,13 @@ a.text-muted:focus {
 }
 
 /* profile */
+.profile {
+  background: url("./assets/bg4.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  min-height: 1000px;
+}
 .profile .active {
   border-left: 2px solid #12b79c;
   border-bottom: none;

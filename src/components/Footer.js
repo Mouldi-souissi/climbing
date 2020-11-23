@@ -6,13 +6,13 @@ import twitter from "../assets/twitter.png";
 const Footer = () => {
   return (
     <footer
-      className="footer bg-white py-4 px-4 shadow-lg"
+      className="footer bg-white py-2 shadow-lg"
       style={{ marginTop: "auto" }}
     >
       {/* <hr className="mt-0" /> */}
       <div className="container-fluid">
         <div className="row">
-          <div className="col-lg-6 my-auto h-100 text-center text-lg-left pt-3">
+          <div className="col-lg-6 my-auto h-100 text-center  pt-3">
             <ul className="list-inline mb-2">
               <li className="list-inline-item mr-3">
                 <a href="/License">License Agreement</a>
@@ -30,7 +30,7 @@ const Footer = () => {
               © Climbing 2020. All Rights Reserved.
             </p>
           </div>
-          <div className="col-lg-6 my-auto h-100 text-center text-lg-right">
+          <div className="col-lg-6 my-auto h-100 text-center ">
             <ul className="list-inline mb-0">
               <li className="list-inline-item">
                 <a href="https://www.facebook.com">

@@ -28,8 +28,8 @@ function Profile() {
     <div className="container-fluid profile pt-3" style={{ marginTop: "80px" }}>
       <div className="row">
         <div
-          className="col-lg-3 card shadow-sm"
-          style={{ borderRadius: "20px", height: "400px" }}
+          className="col-lg-3 card shadow-sm ml-lg-3"
+          style={{ borderRadius: "20px", height: "450px" }}
         >
           <img
             src={
@@ -80,7 +80,7 @@ function Profile() {
             </div>
           </div>
         </div>
-        <div className="col-lg-9 mt-sm-3 mt-lg-0">
+        <div className="col-lg-8 mt-md-3 ">
           <div className="tab-content">
             <div
               className="tab-pane fade show active"
