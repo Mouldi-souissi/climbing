@@ -5,10 +5,9 @@ import { Link } from "react-router-dom";
 import _ from "lodash";
 
 function BlogSidebar({ posts }) {
-  // const tags = _.uniqBy(posts, "tags");
-  let tags = posts.map((post) => post.tags);
-
-  console.log(tags);
+  //  tags
+  let tags = posts.slice(0, 7).map((post) => post.tags);
+  let uniqTags = _.uniq(_.flattenDeep(tags));
 
   return (
     <div className="col-lg-4">
@@ -37,20 +36,18 @@ function BlogSidebar({ posts }) {
           <Bonus />
         </div>
         <div className="tags">
-          {posts.map((post) =>
-            post.tags.map((tag) => (
-              <Link
-                key={tag}
-                to={{
-                  pathname: `/blogTag${tag}`,
-                  state: posts.filter((post) => post.tags.includes(tag)),
-                }}
-                className="btn btn-outline-secondary mr-2 mb-1"
-              >
-                {tag}
-              </Link>
-            ))
-          )}
+          {uniqTags.map((tag) => (
+            <Link
+              key={tag}
+              to={{
+                pathname: `/blogTag${tag}`,
+                state: posts.filter((post) => post.tags.includes(tag)),
+              }}
+              className="btn btn-outline-secondary mr-2 mb-1"
+            >
+              {tag}
+            </Link>
+          ))}
         </div>
       </div>
     </div>

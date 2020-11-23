@@ -34,47 +34,43 @@ function CommentCard(props) {
           />
         </a>
         <div className="media-body">
-          <div className="mar-btm">
-            <a
-              href="/user"
-              className="btn-link text-semibold media-heading box-inline"
-            >
-              {user.name}
-            </a>
-            <p className="text-muted text-sm">
-              {moment(date).startOf("mins").fromNow()}
-            </p>
-          </div>
+          <a
+            href="/user"
+            className="btn-link text-semibold media-heading box-inline"
+          >
+            {user.name}
+          </a>
+          <p className="text-muted text-sm">
+            {moment(date).startOf("mins").fromNow()}
+          </p>
+
           <p>{comment}</p>
-          <div>
-            <div className="btn-group">
-              <div
-                className="btn btn-sm btn-outline-secondary"
-                onClick={() => setCommentbar(!showCommentbar)}
-              >
-                Comment
-              </div>
-            </div>
-            {showCommentbar && (
-              <div className="mt-3 d-flex align-items-center">
-                <input
-                  className="form-control mr-3"
-                  onChange={(e) => setSubComment(e.target.value)}
-                  onKeyPress={handleEnter}
-                  value={subComment}
-                />
-                <button
-                  className="btn btn-primary btn-sm"
-                  onClick={() =>
-                    addSubComment(id, _id, { comment: subComment })
-                  }
-                >
-                  <i className="fa fa-pencil d-inline mr-1"></i>
-                  Share
-                </button>
-              </div>
-            )}
+
+          <div
+            className="btn btn-sm text-primary"
+            onClick={() => setCommentbar(!showCommentbar)}
+          >
+            Reply
           </div>
+
+          {showCommentbar && (
+            <div className="mt-2 d-flex align-items-center">
+              <input
+                className="form-control mr-3"
+                onChange={(e) => setSubComment(e.target.value)}
+                onKeyPress={handleEnter}
+                value={subComment}
+              />
+              <button
+                className="btn btn-primary btn-sm"
+                onClick={() => addSubComment(id, _id, { comment: subComment })}
+              >
+                <i className="fa fa-pencil d-inline mr-1"></i>
+                Share
+              </button>
+            </div>
+          )}
+
           <hr />
           {subComments
             .sort((a, b) => new moment(b.date) - new moment(a.date))
@@ -109,13 +105,6 @@ function CommentCard(props) {
             </div>
           </div>
         )}
-
-        {/* {props.isOwner && (
-                <i
-                  className="fa fa-trash-o mr-2 btn btn-outline-danger"
-                  onClick={() => deleteCommentByOwner(id, _id)}
-                />
-              )} */}
       </div>
     </div>
   );

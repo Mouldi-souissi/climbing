@@ -17,6 +17,7 @@ function CommentsSection({ post, isOwner }) {
   };
   return (
     <div className="container-fluid mt-5">
+      <h4 className="mb-5 text-center">Comments</h4>
       <div className="row">
         <div className="col-md-12">
           <div
