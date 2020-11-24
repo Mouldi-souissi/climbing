@@ -8,11 +8,12 @@ const db = require("./config/db");
 const authRoute = require("./routes/user");
 const postRoute = require("./routes/post");
 const eventRoute = require("./routes/event");
+const itemRoute = require("./routes/item");
 
 // connect to db
 db();
 
-// middleware
+// middlewares
 app.use(express.json());
 app.use(cors());
 
@@ -20,6 +21,7 @@ app.use(cors());
 app.use("/api/user", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/events", eventRoute);
+app.use("api/shop", itemRoute);
 
 const port = process.env.Port || 5000;
 
