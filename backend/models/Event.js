@@ -21,7 +21,7 @@ const eventSchema = new mongoose.Schema({
   participants: [
     {
       user: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
-      will: { type: String },
+      will: "",
     },
   ],
 });

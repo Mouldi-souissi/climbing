@@ -68,11 +68,24 @@ router.delete("/delete:id", verifyAuth, (req, res) => {
 // private route
 router.put("/participate:id", verifyAuth, async (req, res) => {
   const actualEvent = await Event.findById(req.params.id);
-  actualEvent.participants.push({ user: req.user.id, will: req.body.will });
-  actualEvent
-    .save()
-    .then(() => res.status(200).send("paticipant added"))
-    .catch((err) => res.send(err));
+
+  const participated = actualEvent.participants.find((participant) =>
+    participant.user.toString()
+  );
+
+  if (participated) {
+    actualEvent.participants.pull(participated._id);
+    actualEvent
+      .save()
+      .then(() => res.status(200).send("paticipant removed"))
+      .catch((err) => res.send(err));
+  } else {
+    actualEvent.participants.push({ user: req.user.id, will: req.body.will });
+    actualEvent
+      .save()
+      .then(() => res.status(200).send("paticipant added"))
+      .catch((err) => res.send(err));
+  }
 });
 
 module.exports = router;

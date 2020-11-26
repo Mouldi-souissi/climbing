@@ -18,6 +18,10 @@ const EventDetails = () => {
   // context
   const { participate } = useContext(EventContext);
 
+  // paticipants;
+  const sure = event.participants.filter((event) => event.will === "sure");
+  const maybe = event.participants.filter((event) => event.will === "maybe");
+
   return (
     <div className="container" style={{ marginTop: "80px" }}>
       <p className="pt-5 display-3 text-center">{event.name}</p>
@@ -75,7 +79,9 @@ const EventDetails = () => {
       )}
       <div className="card-body">
         <p className="mt-5">{event.description}</p>
-        <div className="float-right mt-3 mb-5">
+        <div className="d-flex align-items-center mt-3 mb-5">
+          <div className="mr-3">{sure.length} for sure</div>
+          <div className="mr-5">{maybe.length} maybe</div>
           <button
             className="btn btn-outline-primary mr-2"
             onClick={() => participate(event._id, { will: "sure" })}
