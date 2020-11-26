@@ -8,14 +8,17 @@ import UserContextProvider from "./contexts/UserContext";
 import PostsContextProvider from "./contexts/PostsContext";
 import ProfileContextProvider from "./contexts/ProfileContext";
 import EventContextProvider from "./contexts/EventContext";
+import ShopContextProvider from "./contexts/ShopContext";
 
 ReactDOM.render(
   <UserContextProvider>
     <PostsContextProvider>
       <ProfileContextProvider>
         <EventContextProvider>
-          <App />
-          <Footer />
+          <ShopContextProvider>
+            <App />
+            <Footer />
+          </ShopContextProvider>
         </EventContextProvider>
       </ProfileContextProvider>
     </PostsContextProvider>

@@ -27,6 +27,7 @@ router.post("/add", verifyAuth, async (req, res) => {
 router.get("/", verifyAuth, (req, res) => {
   Event.find()
     .populate({ path: "creator", model: "user" })
+    .populate({ path: "participants.user", model: "user" })
     .then((events) => {
       res.status(200).send(events);
     })
@@ -38,6 +39,7 @@ router.get("/", verifyAuth, (req, res) => {
 router.get("/:id", verifyAuth, (req, res) => {
   Event.findById(req.params.id)
     .populate({ path: "creator", model: "user" })
+    .populate({ path: "participants.user", model: "user" })
     .then((event) => {
       res.status(200).send(event);
     })

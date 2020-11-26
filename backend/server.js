@@ -1,8 +1,9 @@
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
 const cors = require("cors");
 const db = require("./config/db");
+
+const passport = require("passport");
 
 // import routes
 const authRoute = require("./routes/user");
@@ -17,11 +18,15 @@ db();
 app.use(express.json());
 app.use(cors());
 
+// facebook
+app.use(passport.initialize());
+require("./passport/passport")(passport);
+
 // route middlewares
 app.use("/api/user", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/events", eventRoute);
-app.use("api/shop", itemRoute);
+app.use("/api/shop", itemRoute);
 
 const port = process.env.Port || 5000;
 

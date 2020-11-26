@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Bonus from "../components/Bonus";
 import { UserContext } from "../contexts/UserContext";
 import FacebookLogin from "react-facebook-login";
+import Axios from "axios";
 
 const SignIn = () => {
   const { login, register } = useContext(UserContext);
@@ -35,7 +36,8 @@ const SignIn = () => {
 
   const responseFacebook = (res) => {
     console.log(res);
-    register(res.email, res.userID, res.name);
+    Axios.get("/auth/facebook");
+    Axios.get("/auth/facebook/callback");
   };
 
   return (

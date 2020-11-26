@@ -1,5 +1,6 @@
 import ShopCard from "../components/ShopCard";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { ShopContext } from "../contexts/ShopContext";
 
 const Shop = () => {
   const [articles] = useState({
@@ -29,9 +30,10 @@ const Shop = () => {
       },
     ],
   });
+  const { items, getItems } = useContext(ShopContext);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    getItems();
   }, []);
   return (
     <div className="shop" style={{ paddingTop: "100px" }}>
@@ -188,8 +190,8 @@ const Shop = () => {
                     <div className="table-responsive">
                       <table className="table table-hover">
                         <tbody>
-                          {articles.articles.map((article) => (
-                            <ShopCard article={article} key={article.id} />
+                          {items.map((item) => (
+                            <ShopCard item={item} key={item._id} />
                           ))}
                         </tbody>
                       </table>

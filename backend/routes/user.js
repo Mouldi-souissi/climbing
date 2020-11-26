@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const registerValidator = require("../validators/registerValidator");
 const loginValidator = require("../validators/loginValidator");
 const verifyAuth = require("../permissions/verifyAuth");
+const passport = require("passport");
 
 // register
 // public route
@@ -63,5 +64,15 @@ router.put("/edit", verifyAuth, (req, res) => {
     .then((modifiedUser) => res.status(200).send(modifiedUser))
     .catch((err) => console.log(err));
 });
+
+// facebook
+router.get("/auth/facebook", passport.authenticate("facebook"));
+router.get(
+  "/auth/facebook/callback",
+  passport.authenticate("facebook"),
+  (req, res) => {
+    res.redirect("/profile");
+  }
+);
 
 module.exports = router;

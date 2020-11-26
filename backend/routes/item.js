@@ -8,7 +8,7 @@ const verifyItemOwner = require("../permissions/verifyItemOwner");
 router.get("/", verifyAuth, (req, res) => {
   Item.find()
     .sort({ date: -1 })
-    .populate({ path: seller, model: "user" })
+    .populate({ path: "seller", model: "user" })
     .then((items) => res.status(200).send(items))
     .catch((err) => console.log(err));
 });
@@ -17,7 +17,7 @@ router.get("/", verifyAuth, (req, res) => {
 // private route
 router.get("/:id", verifyAuth, (req, res) => {
   Item.findById(req.params.id)
-    .populate({ path: seller, model: "user" })
+    .populate({ path: "seller", model: "user" })
     .then((item) => res.status(200).send(item))
     .catch((err) => console.log(err));
 });

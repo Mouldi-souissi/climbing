@@ -32,7 +32,7 @@ function App() {
             <PrivateRoute exact path="/shop" component={Shop} />
             <PrivateRoute
               exact
-              path="/shop/article:id"
+              path="/shop/:id"
               component={ShopArticleDetails}
             />
             <PrivateRoute exact path="/blog" component={Blog} />

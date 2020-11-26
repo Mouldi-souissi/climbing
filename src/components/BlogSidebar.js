@@ -27,7 +27,7 @@ function BlogSidebar({ posts }) {
       </div>
 
       <div
-        className="shadow-sm card p-4 mt-3"
+        className="shadow-sm card p-4 mt-3 mb-5"
         // data-aos="flip-up"
         style={{ borderRadius: "20px" }}
       >
