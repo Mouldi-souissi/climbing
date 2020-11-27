@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import moment from "moment";
 import jwtDecode from "jwt-decode";
 import { EventContext } from "../contexts/EventContext";
+import EventDelete from "../components/EventDelete";
 
 const EventDetails = () => {
   // get event from the link
@@ -22,8 +23,17 @@ const EventDetails = () => {
   const sure = event.participants.filter((event) => event.will === "sure");
   const maybe = event.participants.filter((event) => event.will === "maybe");
 
+  // check if the user is the paritipants list
+  let participant = false;
+  participant = event.participants.find(
+    (participant) => participant.user._id === actualUser
+  );
+
+  console.log(participant);
+
   return (
     <div className="container" style={{ marginTop: "80px" }}>
+      <EventDelete id={event._id} />
       <p className="pt-5 display-3 text-center">{event.name}</p>
       <Link
         to={`/profile${event.creator._id}`}
@@ -69,7 +79,7 @@ const EventDetails = () => {
             <div
               className="dropdown-item btn"
               data-toggle="modal"
-              data-target={`#${event.name}`}
+              data-target="#deleteEvent"
             >
               <i className="fa fa-trash-o mr-2 pb-2" />
               Delete Event
@@ -82,18 +92,21 @@ const EventDetails = () => {
         <div className="d-flex align-items-center mt-3 mb-5">
           <div className="mr-3">{sure.length} for sure</div>
           <div className="mr-5">{maybe.length} maybe</div>
+
           <button
             className="btn btn-outline-primary mr-2"
             onClick={() => participate(event._id, { will: "sure" })}
           >
-            Participate
+            {participant ? "unparticipate" : "Participate"}
           </button>
-          <button
-            className="btn btn-outline-primary"
-            onClick={() => participate(event._id, { will: "maybe" })}
-          >
-            Maybe
-          </button>
+          {!participant && (
+            <button
+              className="btn btn-outline-primary"
+              onClick={() => participate(event._id, { will: "maybe" })}
+            >
+              Maybe
+            </button>
+          )}
         </div>
       </div>
     </div>

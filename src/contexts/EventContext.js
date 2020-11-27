@@ -49,7 +49,7 @@ const EventContextProvider = (props) => {
       .catch((err) => console.log(err));
   };
 
-  // participate
+  // participate unparticipate
   const participate = (id, will) => {
     axios
       .put(`http://localhost:5000/api/events/participate${id}`, will, {
@@ -60,9 +60,28 @@ const EventContextProvider = (props) => {
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
+
+  // delete event
+  const deleteEvent = (id) => {
+    axios
+      .delete(`http://localhost:5000/api/events/delete${id}`, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
   return (
     <EventContext.Provider
-      value={{ events, getEvents, createEvent, editEvent, participate }}
+      value={{
+        events,
+        getEvents,
+        createEvent,
+        editEvent,
+        participate,
+        deleteEvent,
+      }}
     >
       {props.children}
     </EventContext.Provider>
