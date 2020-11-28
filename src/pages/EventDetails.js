@@ -1,13 +1,25 @@
-import React, { useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Link, useHistory, useParams } from "react-router-dom";
 import moment from "moment";
 import jwtDecode from "jwt-decode";
 import { EventContext } from "../contexts/EventContext";
 import EventDelete from "../components/EventDelete";
 
 const EventDetails = () => {
-  // get event from the link
-  const event = useHistory().location.state;
+  // context
+  const { participate, getEvent, event } = useContext(EventContext);
+
+  // get id from params
+  const { id } = useParams();
+
+  // get event by id
+  useEffect(() => {
+    getEvent(id);
+  }, [id]);
+
+  // paticipants;
+  const sure = event.participants.filter((event) => event.will === "sure");
+  const maybe = event.participants.filter((event) => event.will === "maybe");
 
   //   check owner
   const actualUser =
@@ -16,18 +28,12 @@ const EventDetails = () => {
   const eventUserId = event.creator._id;
   const isOwner = eventUserId === actualUser ? true : false;
 
-  // context
-  const { participate } = useContext(EventContext);
-
-  // paticipants;
-  const sure = event.participants.filter((event) => event.will === "sure");
-  const maybe = event.participants.filter((event) => event.will === "maybe");
-
   // check if the user is the paritipants list
-  let participant = false;
-  participant = event.participants.find(
+  const participant = event.participants.find(
     (participant) => participant.user._id === actualUser
-  );
+  )
+    ? true
+    : false;
 
   console.log(participant);
 
@@ -90,8 +96,17 @@ const EventDetails = () => {
       <div className="card-body">
         <p className="mt-5">{event.description}</p>
         <div className="d-flex align-items-center mt-3 mb-5">
-          <div className="mr-3">{sure.length} for sure</div>
-          <div className="mr-5">{maybe.length} maybe</div>
+          <div className="mr-3">
+            <i className="fa fa-check mr-2 text-primary" aria-hidden="true" />
+            {sure.length} sure{" "}
+          </div>
+          <div className="mr-5">
+            <i
+              className="fa fa-question mr-2 text-primary"
+              aria-hidden="true"
+            />
+            {maybe.length} maybe{" "}
+          </div>
 
           <button
             className="btn btn-outline-primary mr-2"

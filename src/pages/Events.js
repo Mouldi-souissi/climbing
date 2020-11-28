@@ -43,7 +43,7 @@ const Events = () => {
             .filter((event) => !event.completed)
             .map((event) => (
               <Link
-                to={{ pathname: `/events/${event._id}`, state: event }}
+                to={{ pathname: `/events/${event._id}` }}
                 key={event._id}
                 style={{ textDecoration: "none", color: "inherit" }}
               >

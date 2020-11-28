@@ -37,10 +37,13 @@ const Shop = () => {
   }, []);
   return (
     <div className="shop" style={{ paddingTop: "100px" }}>
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
           <div className="col-md-12">
-            <div className="grid search">
+            <div
+              className="grid search card shadow-sm p-4"
+              style={{ borderRadius: "20px" }}
+            >
               <div className="grid-body">
                 <div className="row">
                   <div className="col-md-3">
@@ -73,13 +76,15 @@ const Shop = () => {
                       data-link-field="dtp_input2"
                     >
                       <input type="text" className="form-control" />
-                      <span className="input-group-text">
-                        <i className="fa fa-th" />
-                      </span>
+                      <div className="input-group-append">
+                        <span className="input-group-text">
+                          <i className="fa fa-th" />
+                        </span>
+                      </div>
                     </div>
                     <input type="hidden" id="dtp_input2" defaultValue="" />
                     <div className="padding"></div>
-                    <h4>By price:</h4>
+                    <h4 className="mt-3">By price:</h4>
                     Between <div id="price1">$300</div> to{" "}
                     <div id="price2">$800</div>
                     <div className="slider-primary">
@@ -108,16 +113,18 @@ const Shop = () => {
                           <div className="tooltip-arrow"></div>
                           <div className="tooltip-inner">300 : 800</div>
                         </div>
-                        <input
-                          type="text"
-                          className="slider"
-                          defaultValue=""
-                          data-slider-min="0"
-                          data-slider-max="1000"
-                          data-slider-step="1"
-                          data-slider-value="[300,800]"
-                          data-slider-tooltip="hide"
-                        />
+                        <form>
+                          <input
+                            type="range"
+                            class="custom-range"
+                            id="customRange1"
+                          />
+                          <input
+                            type="range"
+                            class="custom-range"
+                            id="customRange1"
+                          />
+                        </form>
                       </div>
                     </div>
                   </div>
@@ -134,11 +141,12 @@ const Shop = () => {
                         className="form-control"
                         defaultValue="web development"
                       />
-                      <span className="input-group-btn">
-                        <button className="btn btn-primary" type="button">
-                          <i className="fa fa-search"></i>
+
+                      <div className="input-group-append">
+                        <button className="btn btn-primary">
+                          <i className="fa fa-search" />
                         </button>
-                      </span>
+                      </div>
                     </div>
 
                     <p>Showing all results matching "web development"</p>
@@ -198,7 +206,7 @@ const Shop = () => {
                     </div>
 
                     <nav aria-label="Page navigation example">
-                      <ul className="pagination">
+                      <ul className="pagination justify-content-center">
                         <li className="page-item">
                           <a
                             className="page-link"

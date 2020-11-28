@@ -50,6 +50,8 @@ router.get("/:id", verifyAuth, (req, res) => {
 // private, verify owner
 router.put("/edit:id", verifyAuth, (req, res) => {
   Event.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .populate({ path: "creator", model: "user" })
+    .populate({ path: "participants.user", model: "user" })
     .then((event) => res.send(event))
     .catch((err) => res.send(err));
 });
@@ -67,7 +69,9 @@ router.delete("/delete:id", verifyAuth, (req, res) => {
 // participate
 // private route
 router.put("/participate:id", verifyAuth, async (req, res) => {
-  const actualEvent = await Event.findById(req.params.id);
+  const actualEvent = await Event.findById(req.params.id)
+    .populate({ path: "creator", model: "user" })
+    .populate({ path: "participants.user", model: "user" });
 
   const participated = actualEvent.participants.find((participant) =>
     participant.user.toString()
@@ -77,13 +81,13 @@ router.put("/participate:id", verifyAuth, async (req, res) => {
     actualEvent.participants.pull(participated._id);
     actualEvent
       .save()
-      .then(() => res.status(200).send("paticipant removed"))
+      .then((event) => res.status(200).send(event))
       .catch((err) => res.send(err));
   } else {
     actualEvent.participants.push({ user: req.user.id, will: req.body.will });
     actualEvent
       .save()
-      .then(() => res.status(200).send("paticipant added"))
+      .then((event) => res.status(200).send(event))
       .catch((err) => res.send(err));
   }
 });

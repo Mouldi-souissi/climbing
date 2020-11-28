@@ -6,6 +6,14 @@ const EventContextProvider = (props) => {
   const [events, setEvents] = useState([
     { date: "", name: "", destination: "", creator: { name: "" }, _id: "" },
   ]);
+  const [event, setEvent] = useState({
+    date: "",
+    name: "",
+    destination: "",
+    creator: { name: "" },
+    _id: "",
+    participants: [],
+  });
 
   // get all events
   const getEvents = () => {
@@ -20,19 +28,26 @@ const EventContextProvider = (props) => {
       });
   };
 
+  // get event by id
+  const getEvent = (id) => {
+    axios
+      .get(`http://localhost:5000/api/events/${id}`, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
+      .then((res) => setEvent(res.data))
+      .catch((err) => console.log(err));
+  };
+
   // create event
   const createEvent = (data) => {
-    var date = new Date("2015-03-25T12:00:00Z");
     axios
-      .post(
-        "http://localhost:5000/api/events/add",
-        { ...data, date: date },
-        {
-          headers: {
-            token: localStorage.getItem("token"),
-          },
-        }
-      )
+      .post("http://localhost:5000/api/events/add", data, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
   };
@@ -45,7 +60,9 @@ const EventContextProvider = (props) => {
           token: localStorage.getItem("token"),
         },
       })
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        setEvent(res.data);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -57,7 +74,10 @@ const EventContextProvider = (props) => {
           token: localStorage.getItem("token"),
         },
       })
-      .then((res) => console.log(res))
+      .then((res) =>
+        //  setEvent(res.data)
+        getEvent(id)
+      )
       .catch((err) => console.log(err));
   };
 
@@ -76,7 +96,9 @@ const EventContextProvider = (props) => {
     <EventContext.Provider
       value={{
         events,
+        event,
         getEvents,
+        getEvent,
         createEvent,
         editEvent,
         participate,

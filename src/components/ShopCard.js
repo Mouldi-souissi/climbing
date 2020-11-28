@@ -15,17 +15,7 @@ const ShopCard = ({ item }) => {
           {item.description}
         </Link>
       </td>
-
-      <td className="rate text-right">
-        <span>
-          <i className="fa fa-star"></i>
-          <i className="fa fa-star"></i>
-          <i className="fa fa-star"></i>
-          <i className="fa fa-star"></i>
-          <i className="fa fa-star-half-o"></i>
-        </span>
-      </td>
-      <td className="price text-right">{item.price}</td>
+      <td className="price text-right">Price: {item.price} T.N.D</td>
     </tr>
   );
 };

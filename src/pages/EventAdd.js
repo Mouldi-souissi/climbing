@@ -3,6 +3,8 @@ import "react-quill/dist/quill.snow.css";
 import { useHistory, useParams, Redirect } from "react-router-dom";
 import Bonus from "../components/Bonus";
 import { EventContext } from "../contexts/EventContext";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 var _ = require("lodash");
 
@@ -10,6 +12,9 @@ function EventAdd() {
   // state
   let [data, setData] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const [startDate, setStartDate] = useState(new Date());
+
+  // id from params
   const { id } = useParams();
 
   // context
@@ -33,7 +38,7 @@ function EventAdd() {
       setData("");
       setRedirect(true);
     } else {
-      const copy = data;
+      const copy = { ...data, date: startDate };
       createEvent(copy);
       setData("");
     }
@@ -66,6 +71,18 @@ function EventAdd() {
                 name="name"
                 onChange={handleInput}
               />
+            </div>
+            <div className="form-group mt-3">
+              <label>Date</label>
+              <div className="form-control col-lg-6 datetime">
+                <DatePicker
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                  showTimeSelect
+                  dateFormat="Pp"
+                  customInput={<input style={{ border: "none" }} />}
+                />
+              </div>
             </div>
             <div className="form-group mt-3">
               <label>Image Url</label>

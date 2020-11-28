@@ -56,7 +56,7 @@ input:focus {
 }
 
 .active {
-  border-bottom: 1px solid #4bb79c;
+  border-bottom: 1px solid #f0ad4e;
 }
 .navbar {
   position: fixed;
@@ -230,12 +230,6 @@ input:focus {
 /* sign up */
 
 /* shop */
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-.shop {
-  background: #eee;
-}
 
 .shop .btn {
   margin-bottom: 5px;
@@ -243,16 +237,10 @@ input:focus {
 
 .grid {
   position: relative;
-  width: 100%;
-  background: #fff;
   color: #666666;
-  border-radius: 2px;
-  margin-bottom: 25px;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 .grid .grid-body {
-  padding: 15px 20px 15px 20px;
   font-size: 0.9em;
   line-height: 1.9em;
 }
@@ -1267,7 +1255,7 @@ a.text-muted:focus {
   min-height: 1000px;
 }
 .profile .active {
-  border-left: 2px solid #12b79c;
+  border-left: 2px solid #f0ad4e;
   border-bottom: none;
   background-color: rgba(128, 128, 128, 0.11);
 }
@@ -1288,7 +1276,7 @@ a.text-muted:focus {
 
 /* events */
 .events .active {
-  border-bottom: 2px solid #12b79c;
+  border-bottom: 2px solid #f0ad4e;
   background-color: rgba(128, 128, 128, 0.11);
 }
 
@@ -1309,4 +1297,9 @@ a.text-muted:focus {
   transform: translateY(-10px);
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
+}
+
+/* add edit event */
+.datetime input:focus {
+  outline: none;
 }
