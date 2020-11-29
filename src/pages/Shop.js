@@ -1,35 +1,9 @@
 import ShopCard from "../components/ShopCard";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { ShopContext } from "../contexts/ShopContext";
+import { Link } from "react-router-dom";
 
 const Shop = () => {
-  const [articles] = useState({
-    articles: [
-      {
-        id: 1,
-        name: "bag",
-        price: 200,
-        description: "7aja nthifa",
-        pics:
-          "https://ae01.alicdn.com/kf/HTB1PHEkOVXXXXXwXpXXq6xXFXXXW/2017-Canvas-Leather-Crossbody-Bag-Men-Military-Army-Vintage-Messenger-Bags-Large-Shoulder-Bag-Casual-Travel.jpg",
-      },
-      {
-        id: 2,
-        name: "5ima",
-        price: 300,
-        description: "7aja nthifa",
-        pics:
-          "https://ae01.alicdn.com/kf/HTB1PHEkOVXXXXXwXpXXq6xXFXXXW/2017-Canvas-Leather-Crossbody-Bag-Men-Military-Army-Vintage-Messenger-Bags-Large-Shoulder-Bag-Casual-Travel.jpg",
-      },
-      {
-        id: 3,
-        name: "canne",
-        price: 200,
-        description: "7aja nthifa",
-        pics: "",
-      },
-    ],
-  });
   const { items, getItems } = useContext(ShopContext);
 
   useEffect(() => {
@@ -199,7 +173,9 @@ const Shop = () => {
                       <table className="table table-hover">
                         <tbody>
                           {items.map((item) => (
-                            <ShopCard item={item} key={item._id} />
+                            <Link to={`/shop/${item._id}`} key={item._id}>
+                              <ShopCard item={item} />
+                            </Link>
                           ))}
                         </tbody>
                       </table>

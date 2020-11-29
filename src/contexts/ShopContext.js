@@ -6,6 +6,7 @@ export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
   const [items, setItems] = useState([]);
+  const [item, setItem] = useState([]);
 
   //   get all items
   const getItems = () => {
@@ -20,8 +21,18 @@ const ShopContextProvider = (props) => {
       })
       .catch((err) => console.log(err));
   };
+
+  // get item by id
+  const getItem = (id) => {
+    axios
+      .get(`http://localhost:5000/api/shop/${id}`, {
+        headers: { token: localStorage.getItem("token") },
+      })
+      .then((res) => setItem(res.data))
+      .catch((err) => console.log(err));
+  };
   return (
-    <ShopContext.Provider value={{ items, getItems }}>
+    <ShopContext.Provider value={{ items, getItems, getItem, item }}>
       {props.children}
     </ShopContext.Provider>
   );
