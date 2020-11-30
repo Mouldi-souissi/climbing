@@ -23,36 +23,21 @@ function ShopArticleDetails() {
           data-ride="carousel"
         >
           <ol className="carousel-indicators">
-            <li
-              data-target="#carouselExampleIndicators"
-              data-slide-to="0"
-              className="active"
-            ></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            {item.pics.map((pic, i = -1) => (
+              <li
+                data-target="#carouselExampleIndicators"
+                data-slide-to={i++}
+                className="active"
+                key={pic}
+              ></li>
+            ))}
           </ol>
           <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img
-                src="https://via.placeholder.com/700x400/FFB6C1/000000"
-                className="d-block w-100"
-                alt="..."
-              />
-            </div>
-            <div className="carousel-item">
-              <img
-                src="https://via.placeholder.com/700x400/87CEFA/000000"
-                className="d-block w-100"
-                alt="..."
-              />
-            </div>
-            <div className="carousel-item">
-              <img
-                src="https://via.placeholder.com/700x400/87CEFA/000000"
-                className="d-block w-100"
-                alt="..."
-              />
-            </div>
+            {item.pics.map((pic) => (
+              <div className="carousel-item active" key={pic}>
+                <img src={pic} className="d-block w-100" alt="..." />
+              </div>
+            ))}
           </div>
           <a
             className="carousel-control-prev"

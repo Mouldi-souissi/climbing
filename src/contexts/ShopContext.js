@@ -6,7 +6,7 @@ export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
   const [items, setItems] = useState([]);
-  const [item, setItem] = useState([]);
+  const [item, setItem] = useState({ pics: [] });
 
   //   get all items
   const getItems = () => {

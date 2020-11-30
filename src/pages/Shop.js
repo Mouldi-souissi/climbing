@@ -90,13 +90,13 @@ const Shop = () => {
                         <form>
                           <input
                             type="range"
-                            class="custom-range"
+                            className="custom-range"
                             id="customRange1"
                           />
                           <input
                             type="range"
-                            class="custom-range"
-                            id="customRange1"
+                            className="custom-range"
+                            id="customRange2"
                           />
                         </form>
                       </div>
@@ -171,13 +171,9 @@ const Shop = () => {
 
                     <div className="table-responsive">
                       <table className="table table-hover">
-                        <tbody>
-                          {items.map((item) => (
-                            <Link to={`/shop/${item._id}`} key={item._id}>
-                              <ShopCard item={item} />
-                            </Link>
-                          ))}
-                        </tbody>
+                        {items.map((item) => (
+                          <ShopCard item={item} key={item._id} />
+                        ))}
                       </table>
                     </div>
 

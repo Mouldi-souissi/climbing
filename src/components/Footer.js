@@ -2,15 +2,13 @@ import React from "react";
 import facebook from "../assets/facebook.png";
 import insta from "../assets/insta.png";
 import twitter from "../assets/twitter.png";
+import Bonus from "./Bonus";
 
 const Footer = () => {
   return (
-    <footer
-      className="footer bg-white py-2 shadow-lg"
-      style={{ marginTop: "auto" }}
-    >
+    <footer className="footer bg-white py-2" style={{ marginTop: "auto" }}>
       {/* <hr className="mt-0" /> */}
-      <div className="container-fluid">
+      <div className="container-fluid mb-2">
         <div className="row">
           <div className="col-lg-6 my-auto h-100 text-center  pt-3">
             <ul className="list-inline mb-2">
@@ -59,6 +57,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <Bonus />
     </footer>
   );
 };
