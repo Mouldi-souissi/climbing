@@ -8,7 +8,10 @@ const Footer = () => {
   return (
     <footer className="footer bg-white py-2" style={{ marginTop: "auto" }}>
       {/* <hr className="mt-0" /> */}
-      <div className="container-fluid mb-2">
+      <div
+        className="container-fluid mb-2
+      "
+      >
         <div className="row">
           <div className="col-lg-6 my-auto h-100 text-center  pt-3">
             <ul className="list-inline mb-2">

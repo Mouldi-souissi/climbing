@@ -56,7 +56,17 @@ const EventDetails = () => {
           {moment(event.date).format("MMMM Do YYYY, h:mm a")}
         </span>
       </h6>
-      <img className="card-img mt-3 mb-3" alt="event-pic" src={event.image} />
+      {event.image ? (
+        <img className="card-img mt-3 mb-3" alt="event-pic" src={event.image} />
+      ) : (
+        <div
+          className="card-img mt-3 mb-3 bg-dark d-flex align-items-center"
+          style={{ height: "500px" }}
+        >
+          <p className="mx-auto my-auto text-white">No image</p>
+        </div>
+      )}
+
       {isOwner && (
         <div className="btn-group dropleft float-right">
           <button
@@ -95,34 +105,36 @@ const EventDetails = () => {
       )}
       <div className="card-body">
         <p className="mt-5">{event.description}</p>
-        <div className="d-flex align-items-center mt-3 mb-5">
-          <div className="mr-3">
-            <i className="fa fa-check mr-2 text-primary" aria-hidden="true" />
-            {sure.length} sure{" "}
-          </div>
-          <div className="mr-5">
-            <i
-              className="fa fa-question mr-2 text-primary"
-              aria-hidden="true"
-            />
-            {maybe.length} maybe{" "}
-          </div>
+        {!event.completed && (
+          <div className="d-flex align-items-center mt-3 mb-5">
+            <div className="mr-3">
+              <i className="fa fa-check mr-2 text-primary" aria-hidden="true" />
+              {sure.length} sure{" "}
+            </div>
+            <div className="mr-5">
+              <i
+                className="fa fa-question mr-2 text-primary"
+                aria-hidden="true"
+              />
+              {maybe.length} maybe{" "}
+            </div>
 
-          <button
-            className="btn btn-outline-primary mr-2"
-            onClick={() => participate(event._id, { will: "sure" })}
-          >
-            {participant ? "unparticipate" : "Participate"}
-          </button>
-          {!participant && (
             <button
-              className="btn btn-outline-primary"
-              onClick={() => participate(event._id, { will: "maybe" })}
+              className="btn btn-outline-primary mr-2"
+              onClick={() => participate(event._id, { will: "sure" })}
             >
-              Maybe
+              {participant ? "unparticipate" : "Participate"}
             </button>
-          )}
-        </div>
+            {!participant && (
+              <button
+                className="btn btn-outline-primary"
+                onClick={() => participate(event._id, { will: "maybe" })}
+              >
+                Maybe
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
