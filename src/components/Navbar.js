@@ -141,13 +141,17 @@ const Navbar = () => {
                   type="button"
                   onClick={handleLogout}
                 >
-                  <i
+                  {/* <i
                     className="icon-logout text-warning"
                     aria-hidden="true"
                     style={{
                       color: "white",
                       fontSize: "20px",
                     }}
+                  /> */}
+                  <i
+                    class="fa fa-sign-out text-warning fa-2x"
+                    aria-hidden="true"
                   />
                 </button>
               </div>

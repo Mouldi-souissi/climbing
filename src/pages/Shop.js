@@ -15,8 +15,8 @@ const Shop = () => {
         <div className="row">
           <div className="col-md-12">
             <div
-              className="grid search card shadow-sm p-4"
-              style={{ borderRadius: "20px" }}
+              className="grid search  p-4"
+              // style={{ borderRadius: "20px" }}
             >
               <div className="grid-body">
                 <div className="row">

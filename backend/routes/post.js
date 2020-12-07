@@ -173,10 +173,7 @@ router.post("/addComment:id", verifyAuth, async (req, res) => {
 // add sub comment
 // private route verify auth
 router.put("/addSubComment:id/:commentId", verifyAuth, async (req, res) => {
-  const post = await Post.findById(req.params.id).populate({
-    path: "likes",
-    model: "user",
-  });
+  const post = await Post.findById(req.params.id);
   let comment = post.comments.find(
     (comment) => comment.id === req.params.commentId
   );
@@ -201,9 +198,57 @@ router.put(
       req.params.id,
       { $pull: { comments: { _id: req.params.commentId } } },
       { new: true }
-    );
+    )
+      .populate({ path: "author", model: "user" })
+      .populate({
+        path: "likes",
+        model: "user",
+      })
+      .populate({
+        path: "comments.user",
+        model: "user",
+      })
+      .populate({
+        path: "comments.subComments.user",
+        model: "user",
+      });
     try {
       res.send(deletedComment);
+    } catch (err) {
+      res.send("no such comment");
+    }
+  }
+);
+
+// delete subcomment by author
+// private route permission owner
+router.put(
+  "/deleteSubComment/:id/:commentId/:subCommentId",
+  verifyAuth,
+  verifyOwner,
+  async (req, res) => {
+    const post = await Post.findById(req.params.id)
+      .populate({ path: "author", model: "user" })
+      .populate({
+        path: "likes",
+        model: "user",
+      })
+      .populate({
+        path: "comments.user",
+        model: "user",
+      })
+      .populate({
+        path: "comments.subComments.user",
+        model: "user",
+      });
+
+    try {
+      const comment = post.comments.find((x) => x._id == req.params.commentId);
+      comment.subComments.pull(req.params.subCommentId);
+      post
+        .save()
+        .then((post) => res.send(post))
+        .catch((err) => console.log(err));
     } catch (err) {
       res.send("no such comment");
     }

@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import moment from "moment";
+import { PostsContext } from "../contexts/PostsContext";
+import { useParams } from "react-router-dom";
 
 function SubCommentCard(props) {
-  const { comment, date, user } = props.subComment;
+  const { comment, date, user, _id } = props.subComment;
+  const { deleteSubCommentByOwner } = useContext(PostsContext);
+  const { id } = useParams();
   return (
     <div className="media mt-3">
       <a className="" href="/">
@@ -31,6 +35,34 @@ function SubCommentCard(props) {
         <p>{comment}</p>
         <hr />
       </div>
+      {props.isOwner && (
+        <div className="btn-group dropleft float-right">
+          <button
+            type="button"
+            className="btn btn-transparent"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i className="fa fa-cog" aria-hidden="true" />
+          </button>
+
+          <div className="dropdown-menu p-0 shadow-sm">
+            <div className="dropdown-item btn">
+              <i className="fa fa-pencil-square-o mr-2 pb-2" />
+              Edit comment
+            </div>
+            <hr className="my-1 py-0" />
+            <div
+              className="dropdown-item btn"
+              onClick={() => deleteSubCommentByOwner(id, props.commentId, _id)}
+            >
+              <i className="fa fa-trash-o mr-2 pb-2" />
+              Delete comment
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

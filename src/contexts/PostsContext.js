@@ -125,8 +125,9 @@ const PostsContextProvider = (props) => {
           },
         }
       )
-      .then(() => {
+      .then((res) => {
         getPostById(id);
+        // setPost(res.data);
       })
       .catch((err) => console.log(err));
   };
@@ -138,8 +139,23 @@ const PostsContextProvider = (props) => {
       method: "put",
       headers: { token: localStorage.getItem("token") },
     })
-      .then(() => {
-        getPostById(postId);
+      .then((res) => {
+        // getPostById(postId);
+        setPost(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  // delete Subcomment by owner
+  const deleteSubCommentByOwner = (postId, commentId, subcommentId) => {
+    axios({
+      url: `http://localhost:5000/api/posts/deleteSubComment/${postId}/${commentId}/${subcommentId}`,
+      method: "put",
+      headers: { token: localStorage.getItem("token") },
+    })
+      .then((res) => {
+        // getPostById(postId);
+        setPost(res.data);
       })
       .catch((err) => console.log(err));
   };
@@ -159,6 +175,7 @@ const PostsContextProvider = (props) => {
         createPost,
         likePost,
         addSubComment,
+        deleteSubCommentByOwner,
       }}
     >
       {props.children}

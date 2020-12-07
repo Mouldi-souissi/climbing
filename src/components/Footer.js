@@ -2,7 +2,7 @@ import React from "react";
 import facebook from "../assets/facebook.png";
 import insta from "../assets/insta.png";
 import twitter from "../assets/twitter.png";
-import Bonus from "./Bonus";
+// import Bonus from "./Bonus";
 
 const Footer = () => {
   return (
@@ -60,7 +60,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <Bonus />
     </footer>
   );
 };

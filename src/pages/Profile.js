@@ -69,12 +69,16 @@ function Profile() {
                   href="#settings"
                   role="tab"
                 >
-                  <i className="icon-settings mr-1 ml-3"></i> Settings
+                  <i className="icon-settings mr-1 ml-3 "></i> Settings
                 </div>
               )}
               {owner && (
                 <div className="nav-link" onClick={handleLogout}>
-                  <i className="icon-logout mr-1 ml-3"></i> Logout
+                  <i
+                    class="fa fa-sign-out mr-1 ml-3 text-warning"
+                    style={{ fontSize: "20px" }}
+                  />
+                  Logout
                 </div>
               )}
             </div>

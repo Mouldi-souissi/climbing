@@ -953,15 +953,9 @@ a.text-muted:focus {
 }
 
 /* events */
-.events .active {
-  border-bottom: 2px solid #f0ad4e;
-  background-color: rgba(128, 128, 128, 0.11);
-}
 
 .events .nav-link:hover {
-  /* color: #12b79c !important; */
   cursor: pointer;
-  background-color: rgba(128, 128, 128, 0.11);
 }
 
 .events .tab-pane {

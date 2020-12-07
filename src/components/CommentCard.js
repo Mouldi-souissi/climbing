@@ -76,7 +76,12 @@ function CommentCard(props) {
           {subComments
             .sort((a, b) => new moment(b.date) - new moment(a.date))
             .map((subComment) => (
-              <SubCommentCard subComment={subComment} key={subComment._id} />
+              <SubCommentCard
+                subComment={subComment}
+                key={subComment._id}
+                commentId={_id}
+                isOwner={props.isOwner}
+              />
             ))}
         </div>
         {props.isOwner && (
