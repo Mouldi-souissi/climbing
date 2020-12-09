@@ -1,6 +1,6 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useCallback } from "react";
 import axios from "axios";
-import JwtDecode from "jwt-decode";
+// import JwtDecode from "jwt-decode";
 
 export const ShopContext = createContext();
 
@@ -9,7 +9,7 @@ const ShopContextProvider = (props) => {
   const [item, setItem] = useState({ pics: [] });
 
   //   get all items
-  const getItems = () => {
+  const getItems = useCallback(() => {
     axios
       .get("http://localhost:5000/api/shop", {
         headers: {
@@ -20,17 +20,18 @@ const ShopContextProvider = (props) => {
         setItems(res.data);
       })
       .catch((err) => console.log(err));
-  };
+  }, []);
 
   // get item by id
-  const getItem = (id) => {
+  const getItem = useCallback((id) => {
     axios
       .get(`http://localhost:5000/api/shop/${id}`, {
         headers: { token: localStorage.getItem("token") },
       })
       .then((res) => setItem(res.data))
       .catch((err) => console.log(err));
-  };
+  }, []);
+
   return (
     <ShopContext.Provider value={{ items, getItems, getItem, item }}>
       {props.children}

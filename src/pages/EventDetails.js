@@ -15,7 +15,7 @@ const EventDetails = () => {
   // get event by id
   useEffect(() => {
     getEvent(id);
-  }, [id]);
+  }, [id, getEvent]);
 
   // paticipants;
   const sure = event.participants.filter((event) => event.will === "sure");

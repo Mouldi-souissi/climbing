@@ -34,7 +34,7 @@ const Navbar = () => {
         myNav.classList.remove("nav-colored");
       }
     };
-  }, []);
+  }, [checkAuth]);
 
   return (
     <nav className="navbar navbar-light navbar-expand-lg px-3 py-2">

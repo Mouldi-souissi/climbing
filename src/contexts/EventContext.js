@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useCallback } from "react";
 import axios from "axios";
 export const EventContext = createContext();
 
@@ -16,7 +16,7 @@ const EventContextProvider = (props) => {
   });
 
   // get all events
-  const getEvents = () => {
+  const getEvents = useCallback(() => {
     axios
       .get("http://localhost:5000/api/events", {
         headers: {
@@ -26,10 +26,10 @@ const EventContextProvider = (props) => {
       .then((res) => {
         setEvents(res.data);
       });
-  };
+  }, []);
 
   // get event by id
-  const getEvent = (id) => {
+  const getEvent = useCallback((id) => {
     axios
       .get(`http://localhost:5000/api/events/${id}`, {
         headers: {
@@ -38,7 +38,7 @@ const EventContextProvider = (props) => {
       })
       .then((res) => setEvent(res.data))
       .catch((err) => console.log(err));
-  };
+  }, []);
 
   // create event
   const createEvent = (data) => {

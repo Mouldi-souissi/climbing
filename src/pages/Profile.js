@@ -13,17 +13,20 @@ function Profile() {
   React.useEffect(() => {
     getUserPosts(id);
     getUser(id);
-  }, [id]);
+  }, [id, getUser, getUserPosts]);
+
   // handle logout
   const handleLogout = () => {
     window.localStorage.removeItem("token");
     window.location.replace("/");
   };
+
   // check owner
   const actuelUser =
     localStorage.getItem("token") &&
     JwtDecode(localStorage.getItem("token")).id;
   let owner = user._id === actuelUser;
+
   return (
     <div className="container-fluid profile pt-3" style={{ marginTop: "80px" }}>
       <div className="row">

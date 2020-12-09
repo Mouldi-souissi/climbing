@@ -34,8 +34,8 @@ function BlogDetails() {
     }
 
     //
-    showLikers(post.likes);
-  }, [post._id, post.content, id]);
+    // showLikers(post.likes);
+  }, [post._id, post.content, id, getPostById, getAllPostes]);
 
   // calc comment
   const calcComments = (main) => {

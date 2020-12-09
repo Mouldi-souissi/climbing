@@ -12,7 +12,7 @@ const Events = () => {
   // get all events
   useEffect(() => {
     getEvents();
-  }, []);
+  }, [getEvents]);
   return (
     <div className="container events" style={{ marginTop: "80px" }}>
       <h2 className="pt-5">Events</h2>

@@ -6,7 +6,7 @@ import FacebookLogin from "react-facebook-login";
 import Axios from "axios";
 
 const SignIn = () => {
-  const { login, register } = useContext(UserContext);
+  const { login } = useContext(UserContext);
   const [data, setData] = useState("");
   const [show, setshow] = useState(false);
 
@@ -28,7 +28,7 @@ const SignIn = () => {
 
   useEffect(() => {
     logindRef && logindRef.focus();
-  }, []);
+  }, [logindRef]);
 
   const componentClicked = () => {
     console.log("clicked");

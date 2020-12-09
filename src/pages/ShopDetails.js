@@ -12,7 +12,7 @@ function ShopDetails() {
   // get item
   useEffect(() => {
     getItem(id);
-  }, [id]);
+  }, [id, getItem]);
 
   return (
     <div className="container" style={{ marginTop: "80px" }}>

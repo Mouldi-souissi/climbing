@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useCallback } from "react";
 import axios from "axios";
 
 export const ProfileContext = createContext();
@@ -8,7 +8,7 @@ const ProfileContextProvider = (props) => {
   const [user, setUser] = useState({ name: "" });
 
   // get user posts by id
-  const getUserPosts = (id) => {
+  const getUserPosts = useCallback((id) => {
     axios
       .get(`http://localhost:5000/api/posts/user/${id}`, {
         headers: {
@@ -19,9 +19,9 @@ const ProfileContextProvider = (props) => {
         setUserPosts(res.data);
       })
       .catch((err) => console.log(err));
-  };
+  }, []);
   // get user
-  const getUser = (id) => {
+  const getUser = useCallback((id) => {
     axios
       .get(`http://localhost:5000/api/user/${id}`, {
         headers: {
@@ -32,7 +32,7 @@ const ProfileContextProvider = (props) => {
         setUser(res.data);
       })
       .catch((err) => console.log(err));
-  };
+  }, []);
   const editUser = (data) => {
     axios
       .put("http://localhost:5000/api/user/edit", data, {

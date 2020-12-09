@@ -1,14 +1,14 @@
 import ShopCard from "../components/ShopCard";
 import React, { useEffect, useContext } from "react";
 import { ShopContext } from "../contexts/ShopContext";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const Shop = () => {
   const { items, getItems } = useContext(ShopContext);
 
   useEffect(() => {
     getItems();
-  }, []);
+  }, [getItems]);
   return (
     <div className="shop" style={{ paddingTop: "100px" }}>
       <div className="container-fluid">
