@@ -150,7 +150,7 @@ const Navbar = () => {
                     }}
                   /> */}
                   <i
-                    class="fa fa-sign-out text-warning fa-2x"
+                    className="fa fa-sign-out text-warning fa-2x"
                     aria-hidden="true"
                   />
                 </button>

@@ -75,7 +75,7 @@ function Profile() {
               {owner && (
                 <div className="nav-link" onClick={handleLogout}>
                   <i
-                    class="fa fa-sign-out mr-1 ml-3 text-warning"
+                    className="fa fa-sign-out mr-1 ml-3 text-warning"
                     style={{ fontSize: "20px" }}
                   />
                   Logout
@@ -84,7 +84,7 @@ function Profile() {
             </div>
           </div>
         </div>
-        <div className="col-lg-8 mt-md-3 ">
+        <div className="col-lg-8">
           <div className="tab-content">
             <div
               className="tab-pane fade show active"

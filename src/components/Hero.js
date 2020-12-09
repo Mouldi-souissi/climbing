@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -13,9 +14,9 @@ const Hero = () => {
               </span>
               <span className="text-white">?</span>
             </h1>
-            <a href="/signUp" className="btn btn-primary btn-lg mt-3">
+            <Link to="/signUp" className="btn btn-primary btn-lg mt-3">
               Learn more »
-            </a>
+            </Link>
           </div>
         </div>
       </div>

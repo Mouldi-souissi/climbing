@@ -4,20 +4,23 @@ import { Link } from "react-router-dom";
 
 function BlogSidebarCard({ post }) {
   return (
-    <div className="media mb-2">
-      <div className="media-body">
-        <h6 className="text-break">
-          {post.title}
-          <span className="text-secondary text-sm ml-2">
-            by {post.author.name}
-          </span>
-        </h6>
-        <p className="date text-muted" style={{ fontSize: "12px" }}>
-          {moment(post.date).format("MMMM Do YYYY")}
-        </p>
-      </div>
+    <Link
+      to={`/blog/post${post._id}`}
+      style={{ textDecoration: "none", color: "inherit" }}
+    >
+      <div className="media my-1">
+        <div className="media-body">
+          <h6 className="text-break">
+            {post.title}
+            <span className="text-secondary text-sm ml-2">
+              by {post.author.name}
+            </span>
+          </h6>
+          <p className="date text-muted" style={{ fontSize: "12px" }}>
+            {moment(post.date).format("MMMM Do YYYY")}
+          </p>
+        </div>
 
-      <Link to={`/blog/post${post._id}`}>
         {post.image ? (
           <img
             src={post.image}
@@ -35,8 +38,8 @@ function BlogSidebarCard({ post }) {
             </p>
           </div>
         )}
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }
 

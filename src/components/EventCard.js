@@ -53,6 +53,15 @@ const EventCard = ({ event }) => {
                   {moment(event.date).format("MMMM Do YYYY, h:mm a")}
                 </span>
               </h6>
+              {event.completed && (
+                <span>
+                  <i className="fa fa-star"></i>
+                  <i className="fa fa-star"></i>
+                  <i className="fa fa-star"></i>
+                  <i className="fa fa-star"></i>
+                  <i className="fa fa-star-half-o"></i>
+                </span>
+              )}
             </div>
           </div>
         </div>

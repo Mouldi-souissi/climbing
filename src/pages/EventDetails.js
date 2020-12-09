@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 import jwtDecode from "jwt-decode";
 import { EventContext } from "../contexts/EventContext";
@@ -34,8 +34,6 @@ const EventDetails = () => {
   )
     ? true
     : false;
-
-  console.log(participant);
 
   return (
     <div className="container" style={{ marginTop: "80px" }}>
@@ -102,6 +100,15 @@ const EventDetails = () => {
             </div>
           </div>
         </div>
+      )}
+      {event.completed && (
+        <span>
+          <i className="fa fa-star"></i>
+          <i className="fa fa-star"></i>
+          <i className="fa fa-star"></i>
+          <i className="fa fa-star"></i>
+          <i className="fa fa-star-half-o"></i>
+        </span>
       )}
       <div className="card-body">
         <p className="mt-5">{event.description}</p>

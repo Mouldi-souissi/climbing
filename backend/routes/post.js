@@ -225,7 +225,7 @@ router.put(
 router.put(
   "/deleteSubComment/:id/:commentId/:subCommentId",
   verifyAuth,
-  verifyOwner,
+  // verifyOwner,
   async (req, res) => {
     const post = await Post.findById(req.params.id)
       .populate({ path: "author", model: "user" })

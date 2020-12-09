@@ -5,9 +5,7 @@ import Feature3 from "../assets/f3.svg";
 
 const Features = () => {
   return (
-    <div className="container-fluid">
-      {/* <hr className="featurette-divider" /> */}
-
+    <div className="container">
       <div
         className="row featurette d-flex align-items-center mt-5"
         data-aos="fade-left"
@@ -90,8 +88,6 @@ const Features = () => {
           />
         </div>
       </div>
-
-      {/* <hr className="featurette-divider" /> */}
     </div>
   );
 };

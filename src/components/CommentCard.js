@@ -2,7 +2,8 @@ import React, { useContext, useState } from "react";
 import moment from "moment";
 import { PostsContext } from "../contexts/PostsContext";
 import { useParams } from "react-router-dom";
-import SubCommentCard from "./SubCommentCard";
+import CommentSubCard from "./CommentSubCard";
+import jwtDecode from "jwt-decode";
 
 function CommentCard(props) {
   const { user, comment, date, _id, subComments } = props.comment;
@@ -19,6 +20,11 @@ function CommentCard(props) {
       setCommentbar(false);
     }
   };
+
+  // checking if user is the owner of the comment
+  const token = localStorage.getItem("token");
+  const actuelUserId = token && jwtDecode(token).id;
+  const subCommentOwner = actuelUserId !== user._id ? false : true;
 
   return (
     <div className="comments mt-5 animate__animated animate__fadeInDown">
@@ -76,7 +82,7 @@ function CommentCard(props) {
           {subComments
             .sort((a, b) => new moment(b.date) - new moment(a.date))
             .map((subComment) => (
-              <SubCommentCard
+              <CommentSubCard
                 subComment={subComment}
                 key={subComment._id}
                 commentId={_id}
@@ -84,7 +90,7 @@ function CommentCard(props) {
               />
             ))}
         </div>
-        {props.isOwner && (
+        {(props.isOwner || subCommentOwner) && (
           <div className="btn-group dropleft float-right">
             <button
               type="button"

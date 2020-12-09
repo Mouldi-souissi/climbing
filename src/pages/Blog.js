@@ -30,7 +30,7 @@ function Blog() {
   return (
     <section className="blog-listing py-5" style={{ marginTop: "78px" }}>
       <div className="container-fluid">
-        <SearchBar setSearchResut={setSearchResut} />
+        <SearchBar setSearchResut={setSearchResut} showDog={true} />
         <div className="row align-items-start">
           <div className="col-lg-8 mt-md-5">
             <div className="row">
@@ -46,7 +46,7 @@ function Blog() {
 
         <div className="go-up float-right">
           <i
-            className="fa fa-arrow-up btn btn-outline-secondary mb-3 mt-3 px-3 py-3"
+            className="fa fa-arrow-up btn btn-outline-primary mb-3 mt-3 px-3 py-3"
             aria-hidden="true"
             onClick={() =>
               window.scroll({

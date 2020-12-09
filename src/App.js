@@ -6,15 +6,15 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import SignIn from "./pages/SignIn";
 import Shop from "./pages/Shop";
-import ShopArticleDetails from "./components/ShopArticleDetails";
+import ShopDetails from "./pages/ShopDetails";
 import Page404 from "./pages/Page404";
 import { PrivateRoute } from "./PrivateRoute";
 import Blog from "./pages/Blog";
 import BlogDetails from "./pages/BlogDetails";
-import CreatePost from "./pages/CreatePost";
+import BlogAddEdit from "./pages/BlogAddEdit.";
 import Profile from "./pages/Profile";
 import Events from "./pages/Events";
-import EventAdd from "./pages/EventAdd";
+import EventAddEdit from "./pages/EventAddEdit";
 import EventDetails from "./pages/EventDetails";
 import BlogTag from "./pages/BlogTag";
 import ScrolToTop from "./components/ScrollToTop";
@@ -30,18 +30,14 @@ function App() {
             <Route exact path="/signUp" component={SignUp} />
             <Route exact path="/signIn" component={SignIn} />
             <PrivateRoute exact path="/shop" component={Shop} />
-            <PrivateRoute
-              exact
-              path="/shop/:id"
-              component={ShopArticleDetails}
-            />
+            <PrivateRoute exact path="/shop/:id" component={ShopDetails} />
             <PrivateRoute exact path="/blog" component={Blog} />
             <PrivateRoute exact path="/blog/post:id" component={BlogDetails} />
-            <PrivateRoute exact path="/createPost:id" component={CreatePost} />
+            <PrivateRoute exact path="/createPost:id" component={BlogAddEdit} />
             <PrivateRoute exact path="/profile:id" component={Profile} />
             <PrivateRoute exact path="/events" component={Events} />
             <PrivateRoute exact path="/events/:id" component={EventDetails} />
-            <PrivateRoute exact path="/addEvent:id" component={EventAdd} />
+            <PrivateRoute exact path="/addEvent:id" component={EventAddEdit} />
             <PrivateRoute exact path="/blogTag:tag" component={BlogTag} />
             <Route component={Page404} />
           </Switch>

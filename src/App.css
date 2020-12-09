@@ -56,7 +56,7 @@ input:focus {
 }
 
 .active {
-  border-bottom: 1px solid #f0ad4e;
+  border-bottom: 1px solid #5cb85c;
 }
 .navbar {
   position: fixed;
@@ -933,7 +933,7 @@ a.text-muted:focus {
   min-height: 1000px;
 }
 .profile .active {
-  border-left: 2px solid #f0ad4e;
+  border-left: 2px solid #5cb85c;
   border-bottom: none;
   background-color: rgba(128, 128, 128, 0.11);
 }
@@ -970,7 +970,7 @@ a.text-muted:focus {
 }
 
 .footer img:hover {
-  transform: translateY(-10px);
+  transform: translateY(-5px);
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
 }

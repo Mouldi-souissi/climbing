@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SvgAnimation from "./SvgAnimation";
 
-function SearchBar({ setSearchResut }) {
+function SearchBar({ setSearchResut, showDog }) {
   const [search, setSearch] = useState();
   const handleEnter = (e) => {
     if (e.charCode === 13) {
@@ -19,9 +19,12 @@ function SearchBar({ setSearchResut }) {
       }}
     >
       <div className="d-flex align-items-center">
-        <div className="mr-3">
-          <SvgAnimation />
-        </div>
+        {showDog && (
+          <div className="mr-3">
+            <SvgAnimation />
+          </div>
+        )}
+
         <input
           type="text"
           className="form-control mr-3"
