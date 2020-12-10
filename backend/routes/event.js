@@ -92,4 +92,22 @@ router.put("/participate:id", verifyAuth, async (req, res) => {
   }
 });
 
+// rate event
+// private route
+router.put("/rate:id", verifyAuth, (req, res) => {
+  Event.findById(req.params.id)
+    .then((event) => {
+      event.rating = {
+        raters: event.rating.raters + 1,
+        total: event.rating.total + req.body.rating,
+        result:
+          (event.rating.total + req.body.rating) / (event.rating.raters + 1),
+      };
+      // event.rating = {};
+      event.save();
+      res.send("done");
+    })
+    .catch((err) => console.log(err));
+});
+
 module.exports = router;

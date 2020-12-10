@@ -26,19 +26,26 @@ function App() {
         <Route path="/" component={Navbar} />
         <ScrolToTop>
           <Switch>
+            {/* home */}
             <Route exact path="/" component={LandingPage} />
+            {/* sign in/up */}
             <Route exact path="/signUp" component={SignUp} />
             <Route exact path="/signIn" component={SignIn} />
-            <PrivateRoute exact path="/shop" component={Shop} />
-            <PrivateRoute exact path="/shop/:id" component={ShopDetails} />
+            {/* blog */}
             <PrivateRoute exact path="/blog" component={Blog} />
             <PrivateRoute exact path="/blog/post:id" component={BlogDetails} />
             <PrivateRoute exact path="/createPost:id" component={BlogAddEdit} />
-            <PrivateRoute exact path="/profile:id" component={Profile} />
+            <PrivateRoute exact path="/blogTag:tag" component={BlogTag} />
+            {/* events */}
             <PrivateRoute exact path="/events" component={Events} />
             <PrivateRoute exact path="/events/:id" component={EventDetails} />
             <PrivateRoute exact path="/addEvent:id" component={EventAddEdit} />
-            <PrivateRoute exact path="/blogTag:tag" component={BlogTag} />
+            {/* shop */}
+            <PrivateRoute exact path="/shop" component={Shop} />
+            <PrivateRoute exact path="/shop/:id" component={ShopDetails} />
+            {/* profile */}
+            <PrivateRoute exact path="/profile:id" component={Profile} />
+            {/* 404 */}
             <Route component={Page404} />
           </Switch>
         </ScrolToTop>

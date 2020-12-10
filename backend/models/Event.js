@@ -24,6 +24,11 @@ const eventSchema = new mongoose.Schema({
       will: "",
     },
   ],
+  rating: {
+    raters: { type: Number, default: 0 },
+    total: { type: Number, default: 0 },
+    result: { type: Number, default: 0 },
+  },
 });
 
 module.exports = mongoose.model("event", eventSchema);
