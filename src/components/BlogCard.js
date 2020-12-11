@@ -43,7 +43,7 @@ function BlogCard({ post }) {
           <label style={{ textTransform: "uppercase" }}>{month}</label>
         </div>
         <div className="img">
-          <Link to={`/blog/post${post._id}`} style={{ textDecoration: "none" }}>
+          <Link to={`/blog/${post._id}`} style={{ textDecoration: "none" }}>
             {post.image ? (
               <img
                 src={post.image}
@@ -77,10 +77,7 @@ function BlogCard({ post }) {
             // title={post.content}
           ></p>
           <div className="btn-bar align-self-end d-flex justify-content-between">
-            <Link
-              to={`/blog/post${post._id}`}
-              style={{ textDecoration: "none" }}
-            >
+            <Link to={`/blog/${post._id}`} style={{ textDecoration: "none" }}>
               <span>Read More</span>
               <i className="fa fa-arrow-right ml-2" aria-hidden="true" />
             </Link>

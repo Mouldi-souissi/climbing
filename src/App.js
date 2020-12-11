@@ -33,8 +33,8 @@ function App() {
             <Route exact path="/signIn" component={SignIn} />
             {/* blog */}
             <PrivateRoute exact path="/blog" component={Blog} />
-            <PrivateRoute exact path="/blog/post:id" component={BlogDetails} />
-            <PrivateRoute exact path="/createPost:id" component={BlogAddEdit} />
+            <PrivateRoute exact path="/blog/:id" component={BlogDetails} />
+            <PrivateRoute exact path="/addPost:id" component={BlogAddEdit} />
             <PrivateRoute exact path="/blogTag:tag" component={BlogTag} />
             {/* events */}
             <PrivateRoute exact path="/events" component={Events} />

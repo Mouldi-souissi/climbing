@@ -7,7 +7,7 @@ import EventDelete from "../components/EventDelete";
 
 const EventDetails = () => {
   // context
-  const { participate, getEvent, event } = useContext(EventContext);
+  const { participate, getEvent, event, rateEvent } = useContext(EventContext);
 
   // get id from params
   const { id } = useParams();
@@ -102,14 +102,26 @@ const EventDetails = () => {
         </div>
       )}
       {event.completed && (
-        <span>
-          <i className="fa fa-star"></i>
-          <i className="fa fa-star"></i>
-          <i className="fa fa-star"></i>
-          <i className="fa fa-star"></i>
-          <i className="fa fa-star-half-o"></i>
-        </span>
+        <div className="rating rating2">
+          <span className="ml-3">{event.rating.result}</span>
+          <a href="#5" title="Give 5 stars" onClick={() => rateEvent(id, 5)}>
+            ★
+          </a>
+          <a href="#4" title="Give 4 stars" onClick={() => rateEvent(id, 4)}>
+            ★
+          </a>
+          <a href="#3" title="Give 3 stars" onClick={() => rateEvent(id, 3)}>
+            ★
+          </a>
+          <a href="#2" title="Give 2 stars" onClick={() => rateEvent(id, 2)}>
+            ★
+          </a>
+          <a href="#1" title="Give 1 star" onClick={() => rateEvent(id, 1)}>
+            ★
+          </a>
+        </div>
       )}
+
       <div className="card-body">
         <p className="mt-5">{event.description}</p>
         {!event.completed && (

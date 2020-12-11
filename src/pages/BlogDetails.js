@@ -128,7 +128,7 @@ function BlogDetails() {
                 <div className="dropdown-menu p-0 shadow-sm">
                   <Link
                     to={{
-                      pathname: `/createPost${post._id}`,
+                      pathname: `/addPost${post._id}`,
                       state: { isEditing: true, post },
                     }}
                     style={{ textDecoration: "none", color: "inherit" }}

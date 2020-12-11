@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function BlogSidebarCard({ post }) {
   return (
     <Link
-      to={`/blog/post${post._id}`}
+      to={`/blog/${post._id}`}
       style={{ textDecoration: "none", color: "inherit" }}
     >
       <div className="media my-1">

@@ -100,7 +100,7 @@ const Navbar = () => {
                     // style={{ borderRadius: "20px" }}
                   >
                     <Link
-                      to={{ pathname: "/createPost:0", state: false }}
+                      to={{ pathname: "/addPost:0", state: false }}
                       style={{ textDecoration: "none", color: "inherit" }}
                     >
                       <button className="dropdown-item" type="button">

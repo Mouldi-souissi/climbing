@@ -53,7 +53,7 @@ const PostsContextProvider = (props) => {
       )
       .then((res) => {
         getPostById(res.data._id);
-        window.location.replace(`/blog/post${res.data._id}`);
+        window.location.replace(`/blog/${res.data._id}`);
       })
       .catch((err) => console.log(err));
   };
@@ -68,7 +68,7 @@ const PostsContextProvider = (props) => {
       })
       .then((res) => {
         setPost(res.data);
-        window.location.replace(`/blog/post${res.data._id}`);
+        window.location.replace(`/blog/${res.data._id}`);
       })
       .catch((err) => console.log(err));
   };

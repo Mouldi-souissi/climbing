@@ -2,17 +2,8 @@ import React from "react";
 import moment from "moment";
 
 const EventCard = ({ event }) => {
-  // text limiting ...
-  const textLimit = (text) => {
-    const limit = 200;
-    if (text.length > limit) {
-      return text.substring(0, limit).concat("...");
-    } else {
-      return text;
-    }
-  };
   return (
-    <div className="col-md-12 mb-3">
+    <div className="col-md-12 mb-3 events">
       <div className="card shadow-sm p-4" style={{ borderRadius: "20px" }}>
         <div className="row no-gutters">
           <div className="col-md-4">
@@ -33,28 +24,44 @@ const EventCard = ({ event }) => {
             )}
           </div>
           <div className="col-md-8">
-            <div className="card-body flex-column">
-              <h5 className="card-title">
+            <div className="card-body">
+              <h5 className="card-title mb-4">
                 {event.name}
                 <span className="text-secondary text-sm ml-2">
                   by {event.creator.name}
                 </span>
               </h5>
-              <h6>
-                Destination:{" "}
-                <span className="text-muted">{event.destination}</span>
-              </h6>
-              <p className="card-text">
-                {event.description && textLimit(event.description)}
-              </p>
-              <h6 className="card-text align-self-end">
-                Date:{" "}
-                <span className="text-muted">
-                  {moment(event.date).format("MMMM Do YYYY, h:mm a")}
-                </span>
-              </h6>
+              <div className="row mb-1">
+                <h6 className="col-md-6 mb-3">
+                  <div className="d-flex align-items-center text-muted">
+                    <i className="fa fa-map-marker text-success event-icon mr-3 ml-1" />
+                    <div>{event.destination}</div>
+                  </div>
+                </h6>
+                <h6 className="col-md-6 mb-3">
+                  <div className="d-flex align-items-center text-muted">
+                    <i className="fa fa-calendar text-success event-icon mr-3" />
+                    <div className="">
+                      {moment(event.date).format("MMMM Do YYYY, h:mm a")}
+                    </div>
+                  </div>
+                </h6>
+                <h6 className="col-md-6 mb-3">
+                  <div className="d-flex align-items-center text-muted">
+                    <i className="fa fa-user-o text-success event-icon mr-3" />
+                    <div className="">8/50</div>
+                  </div>
+                </h6>
+                <h6 className="col-md-6 mb-3">
+                  <div className="d-flex align-items-center text-muted">
+                    <i className="fa fa-usd text-success event-icon mr-3 ml-1" />
+                    <div className="">30 TND</div>
+                  </div>
+                </h6>
+              </div>
+
               {event.completed && (
-                <span>
+                <span className="rate">
                   <i className="fa fa-star"></i>
                   <i className="fa fa-star"></i>
                   <i className="fa fa-star"></i>

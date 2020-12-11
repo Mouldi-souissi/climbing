@@ -92,6 +92,24 @@ const EventContextProvider = (props) => {
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
+
+  // rate event
+  const rateEvent = (id, rating) => {
+    axios
+      .put(
+        `http://localhost:5000/api/events/rate${id}`,
+        { rating },
+        {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        }
+      )
+      .then(() => {
+        console.log("done");
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <EventContext.Provider
       value={{
@@ -103,6 +121,7 @@ const EventContextProvider = (props) => {
         editEvent,
         participate,
         deleteEvent,
+        rateEvent,
       }}
     >
       {props.children}

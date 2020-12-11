@@ -245,11 +245,6 @@ input:focus {
   line-height: 1.9em;
 }
 
-.search table tr td.rate {
-  color: #f39c12;
-  line-height: 50px;
-}
-
 .search table tr:hover {
   cursor: pointer;
 }
@@ -978,4 +973,45 @@ a.text-muted:focus {
 /* add edit event */
 .datetime input:focus {
   outline: none;
+}
+
+.rate i {
+  color: #f39c12;
+  line-height: 50px;
+}
+
+.event-icon {
+  font-size: 25px;
+}
+
+/* rating */
+.rating {
+  width: 226px;
+  /* margin: 0 auto 1em; */
+  font-size: 30px;
+  overflow: hidden;
+}
+
+.rating a {
+  float: right;
+  color: #aaa;
+  text-decoration: none;
+  -webkit-transition: color 0.4s;
+  -moz-transition: color 0.4s;
+  -o-transition: color 0.4s;
+  transition: color 0.4s;
+}
+
+.rating a:hover,
+.rating a:hover ~ a,
+.rating a:focus,
+.rating a:focus ~ a {
+  color: orange;
+  cursor: pointer;
+}
+.rating2 {
+  direction: rtl;
+}
+.rating2 a {
+  float: none;
 }
