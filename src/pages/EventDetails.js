@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 import jwtDecode from "jwt-decode";
@@ -6,6 +6,9 @@ import { EventContext } from "../contexts/EventContext";
 import EventDelete from "../components/EventDelete";
 
 const EventDetails = () => {
+  // state
+  // const [rating, setRating] = useState(0);
+  const [hover, setHover] = useState(0);
   // context
   const { participate, getEvent, event, rateEvent } = useContext(EventContext);
 
@@ -34,6 +37,12 @@ const EventDetails = () => {
   )
     ? true
     : false;
+
+  // rating
+  const handleRating = (i) => {
+    // setRating(i + 1);
+    rateEvent(id, i + 1);
+  };
 
   return (
     <div className="container" style={{ marginTop: "80px" }}>
@@ -64,63 +73,73 @@ const EventDetails = () => {
           <p className="mx-auto my-auto text-white">No image</p>
         </div>
       )}
-
-      {isOwner && (
-        <div className="btn-group dropleft float-right">
-          <button
-            type="button"
-            className="btn btn-transparent"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <i className="fa fa-cog fa-2x shadowIcon" aria-hidden="true" />
-          </button>
-          <div className="dropdown-menu p-0 shadow-sm">
-            <Link
-              to={{
-                pathname: `/addEvent${event._id}`,
-                state: { isEditing: true, event },
-              }}
-              style={{ textDecoration: "none", color: "inherit" }}
+      <div className="d-flex align-items-baseline justify-content-between mt-2 ml-2">
+        {event.completed && (
+          <div className="d-flex align-items-baseline">
+            {[...Array(5)].map((star, i) => (
+              <label key={i}>
+                <input
+                  type="radio"
+                  className="starInput"
+                  onClick={() => handleRating(i)}
+                />
+                <i
+                  className="fa fa-star star"
+                  rating={i + 1}
+                  style={{
+                    color:
+                      i + 1 <= (hover || Math.round(event.rating.result))
+                        ? "orange"
+                        : "grey",
+                  }}
+                  onMouseEnter={() => setHover(i + 1)}
+                  onMouseLeave={() => setHover(0)}
+                />
+              </label>
+            ))}
+            <h5 className="ml-3">{Math.round(event.rating.result)}/5</h5>
+          </div>
+        )}
+        {isOwner && (
+          <div className="btn-group dropleft float-right">
+            <button
+              type="button"
+              className="btn btn-transparent"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
             >
-              <div className="dropdown-item">
-                <i className="fa fa-pencil-square-o mr-2 pt-2" />
-                Edit Event
+              <i
+                className="fa fa-cog settingsIcon img-fluid"
+                aria-hidden="true"
+              />
+            </button>
+            <div className="dropdown-menu p-0 shadow-sm">
+              <Link
+                to={{
+                  pathname: `/addEvent${event._id}`,
+                  state: { isEditing: true, event },
+                }}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <div className="dropdown-item">
+                  <i className="fa fa-pencil-square-o mr-2 pt-2" />
+                  Edit Event
+                </div>
+              </Link>
+              <hr className="my-1 py-0" />
+              <div
+                className="dropdown-item btn"
+                data-toggle="modal"
+                data-target="#deleteEvent"
+              >
+                <i className="fa fa-trash-o mr-2 pb-2" />
+                Delete Event
               </div>
-            </Link>
-            <hr className="my-1 py-0" />
-            <div
-              className="dropdown-item btn"
-              data-toggle="modal"
-              data-target="#deleteEvent"
-            >
-              <i className="fa fa-trash-o mr-2 pb-2" />
-              Delete Event
             </div>
           </div>
-        </div>
-      )}
-      {event.completed && (
-        <div className="rating rating2">
-          <span className="ml-3">{event.rating.result}</span>
-          <a href="#5" title="Give 5 stars" onClick={() => rateEvent(id, 5)}>
-            ★
-          </a>
-          <a href="#4" title="Give 4 stars" onClick={() => rateEvent(id, 4)}>
-            ★
-          </a>
-          <a href="#3" title="Give 3 stars" onClick={() => rateEvent(id, 3)}>
-            ★
-          </a>
-          <a href="#2" title="Give 2 stars" onClick={() => rateEvent(id, 2)}>
-            ★
-          </a>
-          <a href="#1" title="Give 1 star" onClick={() => rateEvent(id, 1)}>
-            ★
-          </a>
-        </div>
-      )}
+        )}
+      </div>
 
       <div className="card-body">
         <p className="mt-5">{event.description}</p>

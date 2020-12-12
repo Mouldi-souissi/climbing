@@ -13,6 +13,7 @@ const EventContextProvider = (props) => {
     creator: { name: "" },
     _id: "",
     participants: [],
+    rating: 0,
   });
 
   // get all events

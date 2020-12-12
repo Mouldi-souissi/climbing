@@ -121,7 +121,7 @@ function BlogDetails() {
                   aria-expanded="false"
                 >
                   <i
-                    className="fa fa-cog fa-2x shadowIcon"
+                    className="fa fa-cog fa-2x settingsIcon"
                     aria-hidden="true"
                   />
                 </button>

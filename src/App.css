@@ -984,34 +984,28 @@ a.text-muted:focus {
   font-size: 25px;
 }
 
-/* rating */
-.rating {
-  width: 226px;
-  /* margin: 0 auto 1em; */
-  font-size: 30px;
-  overflow: hidden;
+/* reponsive icon */
+/* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
+@media screen and (min-width: 601px) {
+  .settingsIcon {
+    font-size: 25px;
+  }
 }
 
-.rating a {
-  float: right;
-  color: #aaa;
-  text-decoration: none;
-  -webkit-transition: color 0.4s;
-  -moz-transition: color 0.4s;
-  -o-transition: color 0.4s;
-  transition: color 0.4s;
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+  .settingsIcon {
+    font-size: 15px;
+  }
 }
 
-.rating a:hover,
-.rating a:hover ~ a,
-.rating a:focus,
-.rating a:focus ~ a {
-  color: orange;
+/* rating 2 */
+
+.starInput {
+  display: none;
+}
+
+.star {
   cursor: pointer;
-}
-.rating2 {
-  direction: rtl;
-}
-.rating2 a {
-  float: none;
+  font-size: 20px;
 }
