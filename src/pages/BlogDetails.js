@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import BlogDelete from "../components/BlogDelete";
 import BlogSidebar from "../components/BlogSidebar";
 import { PostsContext } from "../contexts/PostsContext";
@@ -7,12 +7,19 @@ import jwtDecode from "jwt-decode";
 import CommentsSection from "../components/CommentsSection";
 import moment from "moment";
 import BlogShowLikers from "../components/BlogShowLikers";
+import {
+  FacebookShareButton,
+  TelegramShareButton,
+  WhatsappShareButton,
+} from "react-share";
+import { FacebookIcon, TelegramIcon, WhatsappIcon } from "react-share";
 
 function BlogDetails() {
   const { posts, getAllPostes, getPostById, post, likePost } = useContext(
     PostsContext
   );
   const { id } = useParams();
+  const location = useLocation().pathname;
 
   // check if user has already liked the post
   let actualUser =
@@ -57,12 +64,11 @@ function BlogDetails() {
       return likes;
     }
   };
-
+  console.log(`https://localhost:3000${location}`);
   return (
     <div className="container" style={{ marginTop: "100px" }}>
       <BlogDelete id={id} x={post.title.trim()} />
       <BlogShowLikers likes={post.likes} />
-
       <article className="article row" style={{ borderRadius: "20px" }}>
         <div className="col-lg-12">
           <h1 className="display-3 text-center mb-1 text-break">
@@ -77,6 +83,33 @@ function BlogDetails() {
           <p className="text-secondary text-sm text-center">
             {moment(post.date).format("MMMM Do YYYY")}
           </p>
+          <div
+            className="mediaShare flex-column p-2"
+            style={{
+              position: "absolute",
+              top: "165px",
+              left: "20px",
+              background: "rgba(255,255,255,.9)",
+              borderRadius: "20px",
+            }}
+          >
+            {/* <i className="fa fa-share mb-2 ml-3" aria-hidden="true" /> */}
+            <div>
+              <FacebookShareButton url={`https://localhost:3000${location}`}>
+                <FacebookIcon round={true} size={40} className="mb-2" />
+              </FacebookShareButton>
+            </div>
+            <div>
+              <TelegramShareButton url={`https://localhost:3000${location}`}>
+                <TelegramIcon round={true} size={40} className="mb-2" />
+              </TelegramShareButton>
+            </div>
+            <div>
+              <WhatsappShareButton url={`https://localhost:3000${location}`}>
+                <WhatsappIcon round={true} size={40} />
+              </WhatsappShareButton>
+            </div>
+          </div>
           <div className="article-img">
             {post.image ? (
               <img

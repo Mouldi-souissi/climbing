@@ -90,6 +90,7 @@ const PostsContextProvider = (props) => {
       url: `http://localhost:5000/api/posts/like${id}`,
       method: "put",
       headers: { token: localStorage.getItem("token") },
+      data: { date: Date.now() },
     })
       .then((res) => {
         setPost(res.data);

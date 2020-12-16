@@ -19,7 +19,12 @@ const Events = () => {
 
       <Bonus />
       <div className="d-flex align-items-end mt-3">
-        <img alt="anim" src={eventA} height="200px" />
+        <img
+          alt="anim"
+          src={eventA}
+          height="200px"
+          className="d-none d-lg-block"
+        />
         <SearchBar showDog={false} />
       </div>
       <ul className="nav nav-tabs pt-3 mb-5" role="tablist">
@@ -56,19 +61,51 @@ const Events = () => {
           id="upcoming"
           role="tabpanel"
         >
-          {events
-            .filter((event) => !event.completed)
-            .map((event) => (
-              <Link
-                to={{ pathname: `/events/${event._id}` }}
-                key={event._id}
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
-                <EventCard event={event} />
-              </Link>
-            ))}
+          <hr />
+          <hr />
+          <div className="row ml-3 align-items-center">
+            <h4 className="col-lg-3">
+              <i className="fa fa-filter col-3"></i> Filters
+            </h4>
+            <button className="btn btn-outline-secondary mr-2">
+              This week
+            </button>
+            <button className="btn btn-outline-secondary mr-2">
+              This mounth
+            </button>
+            <button className="btn btn-outline-secondary">This year</button>
+          </div>
+          <hr />
+
+          <div className="mt-4">
+            {events
+              .filter((event) => !event.completed)
+              .map((event) => (
+                <Link
+                  to={{ pathname: `/events/${event._id}` }}
+                  key={event._id}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <EventCard event={event} />
+                </Link>
+              ))}
+          </div>
         </div>
         <div className="tab-pane fade" id="completed" role="tabpanel">
+          <hr />
+          <div className="row ml-3 align-items-center">
+            <h4 className="col-lg-3">
+              <i className="fa fa-filter col-3"></i> Filters
+            </h4>
+            <button className="btn btn-outline-secondary mr-2">
+              Top rated
+            </button>
+            <button className="btn btn-outline-secondary mr-2">
+              Last month
+            </button>
+            <button className="btn btn-outline-secondary">Last year</button>
+          </div>
+          <hr />
           {events
             .filter((event) => event.completed)
             .map((event) => (

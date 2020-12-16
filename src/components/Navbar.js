@@ -83,18 +83,28 @@ const Navbar = () => {
                 {/* <p className="text-center">
                   {decodedToken && decodedToken.name}
                 </p> */}
+                <i
+                  class="fa fa-bell-o text-muted mr-3"
+                  aria-hidden="true"
+                  style={{
+                    fontSize: "25px",
+                    textShadow: "1px 0px 1px grey",
+                  }}
+                />
+
                 <div className="btn-group mr-3">
                   <button
                     type="button"
-                    className="btn btn-outline-primary font-weight-bold rounded"
+                    className="btn btn-outline-secondary font-weight-bold rounded"
                     data-toggle="dropdown"
                     data-display="static"
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i className="fa fa-pencil fa-fw" />
+                    {/* <i className="fa fa-pencil fa-fw" /> */}
                     ADD
                   </button>
+
                   <div
                     className="dropdown-menu dropdown-menu-lg-right p-0 shadow-sm"
                     // style={{ borderRadius: "20px" }}
@@ -150,8 +160,9 @@ const Navbar = () => {
                     }}
                   /> */}
                   <i
-                    className="fa fa-sign-out text-warning fa-2x"
+                    className="fa fa-sign-out text-warning"
                     aria-hidden="true"
+                    style={{ fontSize: "30px" }}
                   />
                 </button>
               </div>

@@ -134,6 +134,7 @@ router.put("/like:id", verifyAuth, async (req, res) => {
       .catch((err) => res.send(err));
   } else {
     likedPost.likes.push(req.user.id);
+    likedPost.likes.date = req.body.date;
     likedPost
       .save()
       .then((post) => res.send(post))
