@@ -63,6 +63,7 @@ const EventCard = ({ event }) => {
                 <span className="rate">
                   {[...Array(5)].map((star, i) => (
                     <i
+                      key={i}
                       className="fa fa-star"
                       style={{
                         color: i + 1 <= event.rating.result ? "orange" : "grey",

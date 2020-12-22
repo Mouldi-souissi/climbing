@@ -52,6 +52,7 @@ const Navbar = () => {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
+
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
           <li className="nav-item">
@@ -84,7 +85,7 @@ const Navbar = () => {
                   {decodedToken && decodedToken.name}
                 </p> */}
                 <i
-                  class="fa fa-bell-o text-muted mr-3"
+                  className="fa fa-bell-o text-muted mr-3"
                   aria-hidden="true"
                   style={{
                     fontSize: "25px",

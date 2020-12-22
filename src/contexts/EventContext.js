@@ -1,5 +1,6 @@
 import React, { createContext, useState, useCallback } from "react";
 import axios from "axios";
+
 export const EventContext = createContext();
 
 const EventContextProvider = (props) => {
@@ -111,6 +112,7 @@ const EventContextProvider = (props) => {
       })
       .catch((err) => console.log(err));
   };
+
   return (
     <EventContext.Provider
       value={{

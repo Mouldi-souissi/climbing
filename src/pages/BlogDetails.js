@@ -64,7 +64,7 @@ function BlogDetails() {
       return likes;
     }
   };
-  console.log(`https://localhost:3000${location}`);
+
   return (
     <div className="container" style={{ marginTop: "100px" }}>
       <BlogDelete id={id} x={post.title.trim()} />

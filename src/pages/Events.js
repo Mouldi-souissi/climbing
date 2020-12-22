@@ -1,13 +1,27 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import EventCard from "../components/EventCard";
 import { EventContext } from "../contexts/EventContext";
 import Bonus from "../components/Bonus";
 import { Link } from "react-router-dom";
 import eventA from "../assets/animation.gif";
 import SearchBar from "../components/SearchBar";
+import moment from "moment";
 
 const Events = () => {
   const { getEvents, events } = useContext(EventContext);
+  const [filter, setFilter] = useState("");
+
+  //filtering events completed/upcoming
+  const completed = events.filter((event) => event.completed);
+  const upcoming = events.filter((event) => !event.completed);
+
+  // filters
+  let filtered = completed;
+  if (filter === "toprated") {
+    filtered = completed.sort(
+      (a, b) => new moment(a.rating.result) - new moment(b.rating.result)
+    );
+  }
 
   // get all events
   useEffect(() => {
@@ -15,8 +29,8 @@ const Events = () => {
   }, [getEvents]);
   return (
     <div className="container events" style={{ marginTop: "80px" }}>
+      {/* header */}
       <h2 className="pt-5">Events</h2>
-
       <Bonus />
       <div className="d-flex align-items-end mt-3">
         <img
@@ -27,6 +41,7 @@ const Events = () => {
         />
         <SearchBar showDog={false} />
       </div>
+      {/* nav tab */}
       <ul className="nav nav-tabs pt-3 mb-5" role="tablist">
         <li className="nav-item" role="presentation">
           <div
@@ -40,7 +55,6 @@ const Events = () => {
             Upcoming
           </div>
         </li>
-
         <li className="nav-item" role="presentation">
           <div
             className="text-muted nav-link"
@@ -54,7 +68,7 @@ const Events = () => {
           </div>
         </li>
       </ul>
-
+      {/* tab content */}
       <div className="tab-content">
         <div
           className="tab-pane fade show active"
@@ -78,17 +92,15 @@ const Events = () => {
           <hr />
 
           <div className="mt-4">
-            {events
-              .filter((event) => !event.completed)
-              .map((event) => (
-                <Link
-                  to={{ pathname: `/events/${event._id}` }}
-                  key={event._id}
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  <EventCard event={event} />
-                </Link>
-              ))}
+            {upcoming.map((event) => (
+              <Link
+                to={{ pathname: `/events/${event._id}` }}
+                key={event._id}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <EventCard event={event} />
+              </Link>
+            ))}
           </div>
         </div>
         <div className="tab-pane fade" id="completed" role="tabpanel">
@@ -97,7 +109,16 @@ const Events = () => {
             <h4 className="col-lg-3">
               <i className="fa fa-filter col-3"></i> Filters
             </h4>
-            <button className="btn btn-outline-secondary mr-2">
+            <button
+              className="btn btn-outline-secondary mr-2"
+              onClick={() => setFilter("")}
+            >
+              All
+            </button>
+            <button
+              className="btn btn-outline-secondary mr-2"
+              onClick={() => setFilter("toprated")}
+            >
               Top rated
             </button>
             <button className="btn btn-outline-secondary mr-2">
@@ -106,17 +127,15 @@ const Events = () => {
             <button className="btn btn-outline-secondary">Last year</button>
           </div>
           <hr />
-          {events
-            .filter((event) => event.completed)
-            .map((event) => (
-              <Link
-                to={{ pathname: `/events/${event._id}`, state: event }}
-                key={event._id}
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
-                <EventCard event={event} key={event._id} />
-              </Link>
-            ))}
+          {filtered.map((event) => (
+            <Link
+              to={{ pathname: `/events/${event._id}`, state: event }}
+              key={event._id}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <EventCard event={event} key={event._id} />
+            </Link>
+          ))}
         </div>
       </div>
     </div>
