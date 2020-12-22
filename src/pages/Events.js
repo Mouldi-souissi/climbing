@@ -17,9 +17,22 @@ const Events = () => {
 
   // filters
   let filtered = completed;
+
   if (filter === "toprated") {
     filtered = completed.sort(
-      (a, b) => new moment(a.rating.result) - new moment(b.rating.result)
+      (a, b) => new moment(b.rating.result) - new moment(a.rating.result)
+    );
+  }
+  if (filter === "mounth") {
+    filtered = completed.filter(
+      (event) => moment(new Date()).diff(event.date, "days") < 30
+    );
+  }
+  if (filter === "year") {
+    filtered = completed.filter(
+      (event) =>
+        moment(new Date()).diff(event.date, "years") > 1 &&
+        moment(new Date()).diff(event.date, "years") < 2
     );
   }
 
@@ -109,22 +122,41 @@ const Events = () => {
             <h4 className="col-lg-3">
               <i className="fa fa-filter col-3"></i> Filters
             </h4>
+            {filter && (
+              <button
+                className="btn btn-danger mr-2"
+                onClick={() => setFilter("")}
+              >
+                Reset
+              </button>
+            )}
+
             <button
-              className="btn btn-outline-secondary mr-2"
-              onClick={() => setFilter("")}
-            >
-              All
-            </button>
-            <button
-              className="btn btn-outline-secondary mr-2"
+              className={`btn ${
+                filter === "toprated"
+                  ? "btn-secondary"
+                  : "btn-outline-secondary"
+              } mr-2`}
               onClick={() => setFilter("toprated")}
             >
               Top rated
             </button>
-            <button className="btn btn-outline-secondary mr-2">
+            <button
+              className={`btn ${
+                filter === "mounth" ? "btn-secondary" : "btn-outline-secondary"
+              } mr-2`}
+              onClick={() => setFilter("mounth")}
+            >
               Last month
             </button>
-            <button className="btn btn-outline-secondary">Last year</button>
+            <button
+              className={`btn ${
+                filter === "year" ? "btn-secondary" : "btn-outline-secondary"
+              } mr-2`}
+              onClick={() => setFilter("year")}
+            >
+              Last year
+            </button>
           </div>
           <hr />
           {filtered.map((event) => (
