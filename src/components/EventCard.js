@@ -55,7 +55,7 @@ const EventCard = ({ event }) => {
                 <h6 className="col-lg-6 mb-3">
                   <div className="d-flex align-items-center text-muted">
                     <i className="fa fa-usd text-success event-icon mr-3 ml-1" />
-                    <div className="">30 TND</div>
+                    <div className="">{event.price} TND</div>
                   </div>
                 </h6>
               </div>

@@ -10,38 +10,85 @@ import moment from "moment";
 const Events = () => {
   const { getEvents, events } = useContext(EventContext);
   const [filter, setFilter] = useState("");
+  const [month, setMonth] = useState("");
 
   //filtering events completed/upcoming
   const completed = events.filter((event) => event.completed);
   const upcoming = events.filter((event) => !event.completed);
 
   // filters
-  let filtered = completed;
+  let filtered = "";
 
   if (filter === "toprated") {
     filtered = completed.sort(
       (a, b) => new moment(b.rating.result) - new moment(a.rating.result)
     );
   }
-  if (filter === "mounth") {
+  if (filter === "lastMonth") {
     filtered = completed.filter(
-      (event) => moment(new Date()).diff(event.date, "days") < 30
+      (event) => moment(new Date()).diff(event.date, "months") === 1
     );
   }
-  if (filter === "year") {
+  if (filter === "lastYear") {
     filtered = completed.filter(
-      (event) =>
-        moment(new Date()).diff(event.date, "years") > 1 &&
-        moment(new Date()).diff(event.date, "years") < 2
+      (event) => moment(new Date()).diff(event.date, "years") < 1
+    );
+  }
+  if (filter === "thisWeek") {
+    filtered = upcoming.filter(
+      (event) => Math.abs(moment(new Date()).diff(event.date, "weeks")) < 1
+    );
+  }
+  if (filter === "thisMonth") {
+    filtered = upcoming.filter(
+      (event) => Math.abs(moment(new Date()).diff(event.date, "months")) < 1
+    );
+  }
+  if (filter === "thisYear") {
+    filtered = upcoming.filter(
+      (event) => Math.abs(moment(new Date()).diff(event.date, "years")) < 1
+    );
+  }
+  if (filter === "months") {
+    filtered = upcoming.filter(
+      (event) => moment(event.date).format("MMMM") === month
     );
   }
 
+  // reset filter
+  const resetFilter = () => {
+    setFilter("");
+  };
+
+  // dropdown filter
+  let year = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const handleMonth = (e) => {
+    setMonth(e.target.value);
+    setFilter("months");
+  };
   // get all events
   useEffect(() => {
     getEvents();
   }, [getEvents]);
   return (
-    <div className="container events" style={{ marginTop: "80px" }}>
+    <div
+      className="container events"
+      style={{ marginTop: "80px", minHeight: "100vh" }}
+    >
       {/* header */}
       <h2 className="pt-5">Events</h2>
       <Bonus />
@@ -63,6 +110,7 @@ const Events = () => {
             href="#upcoming"
             role="tab"
             style={{ fontSize: "20px" }}
+            onClick={resetFilter}
           >
             <i className="fa fa-clock-o mr-2" />
             Upcoming
@@ -75,6 +123,7 @@ const Events = () => {
             href="#completed"
             role="tab"
             style={{ fontSize: "20px" }}
+            onClick={resetFilter}
           >
             <i className="fa fa-check mr-2" />
             Finished
@@ -89,23 +138,78 @@ const Events = () => {
           role="tabpanel"
         >
           <hr />
-          <hr />
           <div className="row ml-3 align-items-center">
             <h4 className="col-lg-3">
               <i className="fa fa-filter col-3"></i> Filters
             </h4>
-            <button className="btn btn-outline-secondary mr-2">
+            {filter && (
+              <button
+                className="btn btn-danger mr-2"
+                onClick={() => setFilter("")}
+              >
+                Reset
+              </button>
+            )}
+            <button
+              className={`btn ${
+                filter === "thisWeek"
+                  ? "btn-secondary"
+                  : "btn-outline-secondary"
+              } mr-2`}
+              onClick={() => setFilter("thisWeek")}
+            >
               This week
             </button>
-            <button className="btn btn-outline-secondary mr-2">
-              This mounth
+            <button
+              className={`btn ${
+                filter === "thisMonth"
+                  ? "btn-secondary"
+                  : "btn-outline-secondary"
+              } mr-2`}
+              onClick={() => setFilter("thisMonth")}
+            >
+              This month
             </button>
-            <button className="btn btn-outline-secondary">This year</button>
+            <button
+              className={`btn ${
+                filter === "thisYear"
+                  ? "btn-secondary"
+                  : "btn-outline-secondary"
+              } mr-5`}
+              onClick={() => setFilter("thisYear")}
+            >
+              This year
+            </button>
+            {filter && !filtered.length && (
+              <div className="text-center">No result</div>
+            )}
+            <div className="input-group ml-2 w-25">
+              <div className="input-group-prepend">
+                <label
+                  className="input-group-text"
+                  htmlFor="inputGroupSelect01"
+                >
+                  Months
+                </label>
+              </div>
+              <select
+                className="custom-select"
+                id="inputGroupSelect01"
+                onChange={handleMonth}
+              >
+                <option defaultValue="Choose..."></option>
+                {year.map((month, i) => (
+                  <option value={month} key={i}>
+                    {month}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
           <hr />
 
           <div className="mt-4">
-            {upcoming.map((event) => (
+            {(filter ? filtered : upcoming).map((event) => (
               <Link
                 to={{ pathname: `/events/${event._id}` }}
                 key={event._id}
@@ -143,23 +247,31 @@ const Events = () => {
             </button>
             <button
               className={`btn ${
-                filter === "mounth" ? "btn-secondary" : "btn-outline-secondary"
+                filter === "lastMonth"
+                  ? "btn-secondary"
+                  : "btn-outline-secondary"
               } mr-2`}
-              onClick={() => setFilter("mounth")}
+              onClick={() => setFilter("lastMonth")}
             >
               Last month
             </button>
             <button
               className={`btn ${
-                filter === "year" ? "btn-secondary" : "btn-outline-secondary"
-              } mr-2`}
-              onClick={() => setFilter("year")}
+                filter === "lastYear"
+                  ? "btn-secondary"
+                  : "btn-outline-secondary"
+              } mr-5`}
+              onClick={() => setFilter("lastYear")}
             >
               Last year
             </button>
+            {filter && !filtered.length && (
+              <div className="text-center">No result</div>
+            )}
           </div>
           <hr />
-          {filtered.map((event) => (
+
+          {(filter ? filtered : completed).map((event) => (
             <Link
               to={{ pathname: `/events/${event._id}`, state: event }}
               key={event._id}

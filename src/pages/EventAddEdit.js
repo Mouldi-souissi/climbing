@@ -31,8 +31,9 @@ function EventAddEdit() {
   // handle create or edit
   const handleCreateOrEdit = () => {
     if (isEditing) {
+      const copy = { ...data, date: startDate };
       // clean object from unmodified fields
-      const modified = _.omit(data, _.isUndefined);
+      const modified = _.omit(copy, _.isUndefined);
       // edit
       editEvent(id, modified);
       setData("");
@@ -106,6 +107,16 @@ function EventAddEdit() {
                 className="form-control col-lg-6"
                 onChange={handleInput}
                 name="destination"
+              />
+            </div>
+            <div className="form-group mt-3">
+              <label>Price</label>
+              <input
+                defaultValue={isEditing ? event.price : ""}
+                type="number"
+                className="form-control col-lg-6"
+                onChange={handleInput}
+                name="price"
               />
             </div>
             <div className="form-group mt-3">

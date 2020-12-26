@@ -9,6 +9,7 @@ router.post("/add", verifyAuth, async (req, res) => {
   const event = new Event({
     name: req.body.name,
     date: req.body.date,
+    price: req.body.price,
     destination: req.body.destination,
     creator: req.user.id,
     image: req.body.image,
