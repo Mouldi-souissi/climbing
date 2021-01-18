@@ -39,6 +39,11 @@ router.post("/login", loginValidator, async (req, res) => {
   // check if psw is corect
   const validpsw = await bcrypt.compare(req.body.password, user.password);
   if (!validpsw) return res.status(400).send("invalid credentials");
+
+  // check if user is not blocked
+  if (user.status === "blocked")
+    return res.status(400).send("user has been blocked");
+
   // create token
   const token = jwt.sign(
     { id: user._id, name: user.name, avatar: user.avatar },
