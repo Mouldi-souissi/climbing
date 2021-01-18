@@ -9,6 +9,7 @@ import PostsContextProvider from "./contexts/PostsContext";
 import ProfileContextProvider from "./contexts/ProfileContext";
 import EventContextProvider from "./contexts/EventContext";
 import ShopContextProvider from "./contexts/ShopContext";
+import AdminContextProvider from "./contexts/AdminContext";
 
 ReactDOM.render(
   <UserContextProvider>
@@ -16,8 +17,10 @@ ReactDOM.render(
       <ProfileContextProvider>
         <EventContextProvider>
           <ShopContextProvider>
-            <App />
-            <Footer />
+            <AdminContextProvider>
+              <App />
+              <Footer />
+            </AdminContextProvider>
           </ShopContextProvider>
         </EventContextProvider>
       </ProfileContextProvider>

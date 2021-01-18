@@ -11,6 +11,7 @@ const authRoute = require("./routes/user");
 const postRoute = require("./routes/post");
 const eventRoute = require("./routes/event");
 const itemRoute = require("./routes/item");
+const adminRoute = require("./routes/admin");
 
 // connect to db
 db();
@@ -28,6 +29,7 @@ app.use("/api/user", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/events", eventRoute);
 app.use("/api/shop", itemRoute);
+app.use("/api/admin", adminRoute);
 
 // upload photo
 app.post("/upload", (req, res) => {

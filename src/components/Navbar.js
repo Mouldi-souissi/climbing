@@ -88,7 +88,7 @@ const Navbar = () => {
                   className="fa fa-bell-o text-muted mr-3"
                   aria-hidden="true"
                   style={{
-                    fontSize: "25px",
+                    fontSize: "19px",
                     textShadow: "1px 0px 1px grey",
                   }}
                 />

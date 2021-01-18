@@ -25,5 +25,6 @@ const userSchema = new mongoose.Schema({
   },
   avatar: String,
   aboutMe: String,
+  status: { type: String, default: "active" },
 });
 module.exports = mongoose.model("user", userSchema);

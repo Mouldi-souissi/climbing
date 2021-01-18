@@ -95,10 +95,10 @@ function Profile() {
               role="tabpanel"
             >
               <div
-                className="card shadow-sm p-5"
+                className="card shadow-sm p-4"
                 style={{ borderRadius: "20px" }}
               >
-                <h1>About me</h1>
+                <h2>About me</h2>
                 <p>{user.aboutMe}</p>
               </div>
             </div>

@@ -31,7 +31,7 @@ const ProfileSettings = ({ user }) => {
   };
   return (
     <div className="container">
-      <div className="card shadow-sm p-5" style={{ borderRadius: "20px" }}>
+      <div className="card shadow-sm p-4" style={{ borderRadius: "20px" }}>
         <h2 className="mb-5">Settings</h2>
         {/* <img
           className="rounded-circle mb-5"

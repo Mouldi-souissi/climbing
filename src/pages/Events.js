@@ -58,6 +58,7 @@ const Events = () => {
   // reset filter
   const resetFilter = () => {
     setFilter("");
+    setMonth("");
   };
 
   // dropdown filter
@@ -84,6 +85,7 @@ const Events = () => {
   useEffect(() => {
     getEvents();
   }, [getEvents]);
+
   return (
     <div
       className="container events"
@@ -146,6 +148,8 @@ const Events = () => {
               <button
                 className="btn btn-danger mr-2"
                 onClick={() => setFilter("")}
+                type="reset"
+                value="reset"
               >
                 Reset
               </button>
@@ -194,10 +198,13 @@ const Events = () => {
               </div>
               <select
                 className="custom-select"
-                id="inputGroupSelect01"
                 onChange={handleMonth}
+                value={month}
+                autocomplete="off"
               >
-                <option defaultValue="Choose..."></option>
+                <option value="default" selected="selected">
+                  Choose...
+                </option>
                 {year.map((month, i) => (
                   <option value={month} key={i}>
                     {month}
@@ -220,6 +227,7 @@ const Events = () => {
             ))}
           </div>
         </div>
+
         <div className="tab-pane fade" id="completed" role="tabpanel">
           <hr />
           <div className="row ml-3 align-items-center">

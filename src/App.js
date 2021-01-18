@@ -18,6 +18,7 @@ import EventAddEdit from "./pages/EventAddEdit";
 import EventDetails from "./pages/EventDetails";
 import BlogTag from "./pages/BlogTag";
 import ScrolToTop from "./components/ScrollToTop";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -45,6 +46,8 @@ function App() {
             <PrivateRoute exact path="/shop/:id" component={ShopDetails} />
             {/* profile */}
             <PrivateRoute exact path="/profile:id" component={Profile} />
+            {/* admin */}
+            <PrivateRoute exact path="/admin" component={Admin} />
             {/* 404 */}
             <Route component={Page404} />
           </Switch>
