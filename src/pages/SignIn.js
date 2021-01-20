@@ -4,9 +4,10 @@ import Bonus from "../components/Bonus";
 import { UserContext } from "../contexts/UserContext";
 import FacebookLogin from "react-facebook-login";
 import Axios from "axios";
+import Message from "../components/Message";
 
 const SignIn = () => {
-  const { login } = useContext(UserContext);
+  const { login, message } = useContext(UserContext);
   const [data, setData] = useState("");
   const [show, setshow] = useState(false);
 
@@ -42,6 +43,8 @@ const SignIn = () => {
 
   return (
     <div className="container mx-auto" style={{ marginTop: "100px" }}>
+      {message && <Message message={message} />}
+
       <div className="row">
         <div
           className="shadow-sm card p-4 mx-auto mb-5 col-lg-6"

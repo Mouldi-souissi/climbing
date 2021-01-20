@@ -6,6 +6,7 @@ export const UserContext = createContext();
 
 const UserContextProvider = (props) => {
   const [isAuth, setAuth] = useState(false);
+  const [message, setMessage] = useState("");
 
   // register
   const register = (email, password, name) => {
@@ -27,7 +28,11 @@ const UserContextProvider = (props) => {
         localStorage.setItem("token", res.data);
         window.location.replace("/blog");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response) {
+          setMessage(err.response.data);
+        }
+      });
   };
 
   // is auth
@@ -44,7 +49,7 @@ const UserContextProvider = (props) => {
 
   return (
     <UserContext.Provider
-      value={{ isAuth, login, register, checkAuth, logout }}
+      value={{ isAuth, login, register, checkAuth, logout, message }}
     >
       {props.children}
     </UserContext.Provider>

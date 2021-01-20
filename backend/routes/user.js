@@ -42,7 +42,7 @@ router.post("/login", loginValidator, async (req, res) => {
 
   // check if user is not blocked
   if (user.status === "blocked")
-    return res.status(400).send("user has been blocked");
+    return res.status(401).send("user has been blocked");
 
   // create token
   const token = jwt.sign(
