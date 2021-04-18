@@ -17,7 +17,7 @@ function BlogSidebar({ posts }) {
         style={{ borderRadius: "20px" }}
       >
         <div className="mb-4">
-          <h3 className="text-center">Trending Now</h3>
+          <h3 className="text-center">Latest Posts</h3>
           <Bonus />
         </div>
 

@@ -20,7 +20,7 @@ function BlogDelete({ id, x }) {
   return (
     <div
       className="modal fade"
-      id={x}
+      id="delete-post"
       tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"

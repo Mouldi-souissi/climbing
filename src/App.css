@@ -10,20 +10,15 @@ body {
   overflow-x: hidden;
 }
 
-/* @import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
-h1 {
-  font-family: "Oswald", sans-serif;
-} */
-/*start  to keep footer down */
+/*sto keep footer down */
 
 #root {
   display: flex;
   flex-direction: column;
 }
-/* end */
 
 button:focus {
-  outline: 0 !important;
+  outline: none !important;
 }
 .btn:focus,
 .btn:active {
@@ -31,8 +26,10 @@ button:focus {
   box-shadow: none;
 }
 
-input:focus {
-  border-color: grey !important;
+input:focus,
+input:active {
+  border-color: rgba(128, 128, 128, 0.301) !important;
+  -webkit-box-shadow: none !important;
   box-shadow: none !important;
 }
 

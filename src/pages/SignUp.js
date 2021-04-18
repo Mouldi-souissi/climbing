@@ -7,6 +7,7 @@ const SignUp = () => {
   const { register } = useContext(UserContext);
   const [data, setData] = useState("");
   const [show, setshow] = useState(false);
+
   const handleInput = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -97,20 +98,6 @@ const SignUp = () => {
               >
                 If you have forgot your password please click on this link
               </p>
-              <div className="social-media text-center">
-                <h5>Sign up with social media</h5>
-                <div className="social-icons">
-                  <a href="/fb" className="mr-3">
-                    <i className="icon-social-facebook" title="Facebook"></i>
-                  </a>
-                  <a href="/google" className="mr-3">
-                    <i className="icon-social-google" title="Google"></i>
-                  </a>
-                  <a href="/twitter" className="mr-3">
-                    <i className="icon-social-twitter" title="Twitter"></i>
-                  </a>
-                </div>
-              </div>
             </form>
           </div>
         </div>

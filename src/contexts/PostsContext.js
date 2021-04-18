@@ -1,4 +1,4 @@
-import React, { createContext, useState, useCallback } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
 export const PostsContext = createContext();
@@ -15,7 +15,7 @@ const PostsContextProvider = (props) => {
   });
 
   // get all posts
-  const getAllPostes = useCallback(() => {
+  const getAllPostes = () => {
     axios
       .get("http://localhost:5000/api/posts", {
         headers: {
@@ -24,15 +24,18 @@ const PostsContextProvider = (props) => {
       })
       .then((res) => setPosts(res.data))
       .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    getAllPostes();
   }, []);
 
   //get post by id
-  const getPostById = useCallback((id) => {
+  const getPostById = (id) => {
     axios
       .get(`http://localhost:5000/api/posts/${id}`)
       .then((res) => setPost(res.data))
       .catch((err) => console.log(err));
-  }, []);
+  };
 
   // create post
   const createPost = ({ title, image, content, tags }) => {
@@ -108,8 +111,8 @@ const PostsContextProvider = (props) => {
         },
       })
       .then((res) => {
-        getPostById(id);
-        // setPost(res.data);
+        // getPostById(id);
+        setPost(res.data);
       })
       .catch((err) => console.log(err));
   };
@@ -127,8 +130,8 @@ const PostsContextProvider = (props) => {
         }
       )
       .then((res) => {
-        getPostById(id);
-        // setPost(res.data);
+        // getPostById(id);
+        setPost(res.data);
       })
       .catch((err) => console.log(err));
   };

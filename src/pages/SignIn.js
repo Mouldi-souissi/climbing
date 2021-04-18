@@ -1,9 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Bonus from "../components/Bonus";
 import { UserContext } from "../contexts/UserContext";
-import FacebookLogin from "react-facebook-login";
-import Axios from "axios";
 import Message from "../components/Message";
 
 const SignIn = () => {
@@ -18,27 +16,6 @@ const SignIn = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     login(data.login, data.password);
-  };
-
-  let logindRef = null;
-  let passwordRef = null;
-  let buttonRef = null;
-  const handleFocus = (name) => {
-    name.focus();
-  };
-
-  useEffect(() => {
-    logindRef && logindRef.focus();
-  }, [logindRef]);
-
-  const componentClicked = () => {
-    console.log("clicked");
-  };
-
-  const responseFacebook = (res) => {
-    console.log(res);
-    Axios.get("/auth/facebook");
-    Axios.get("/auth/facebook/callback");
   };
 
   return (
@@ -69,10 +46,6 @@ const SignIn = () => {
                   required
                   name="login"
                   onChange={handleInput}
-                  ref={(input) => (logindRef = input)}
-                  onKeyUp={(e) => {
-                    e.keyCode === 13 && handleFocus(passwordRef);
-                  }}
                 />
                 <label className="form__label">Email</label>
               </div>
@@ -85,10 +58,6 @@ const SignIn = () => {
                   required
                   name="password"
                   onChange={handleInput}
-                  ref={(input) => (passwordRef = input)}
-                  onKeyUp={(e) => {
-                    e.keyCode === 13 && handleFocus(buttonRef);
-                  }}
                 />
                 <label className="form__label pb-0">Password</label>
               </div>
@@ -109,19 +78,9 @@ const SignIn = () => {
                 <button
                   className="btn btn-block btn-primary create-account mb-3"
                   type="submit"
-                  ref={(input) => (buttonRef = input)}
                 >
                   Login
                 </button>
-                <FacebookLogin
-                  appId="561395128053548"
-                  autoLoad={false}
-                  fields="name,email,picture"
-                  onClick={componentClicked}
-                  callback={responseFacebook}
-                  cssClass="btn btn-block btn-outline-primary"
-                  icon="fa-facebook mr-2"
-                />
               </div>
               <div className="text-center mt-5">
                 <Link to="/signUp"> Sign up </Link>
@@ -133,21 +92,6 @@ const SignIn = () => {
               >
                 If you have forgot your password please click on this link
               </p>
-              {/* <div className="social-media text-center">
-                <h5>Sign up with social media</h5>
-
-                <div className="social-icons">
-                  <a href="/fb" className="mr-3">
-                    <i className="icon-social-facebook" title="Facebook"></i>
-                  </a>
-                  <a href="/google" className="mr-3">
-                    <i className="icon-social-google" title="Google"></i>
-                  </a>
-                  <a href="/twitter" className="mr-3">
-                    <i className="icon-social-twitter" title="Twitter"></i>
-                  </a>
-                </div>
-              </div> */}
             </form>
           </div>
         </div>

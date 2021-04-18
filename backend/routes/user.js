@@ -2,14 +2,11 @@ const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const registerValidator = require("../validators/registerValidator");
-const loginValidator = require("../validators/loginValidator");
 const verifyAuth = require("../permissions/verifyAuth");
-const passport = require("passport");
 
 // register
 // public route
-router.post("/register", registerValidator, async (req, res) => {
+router.post("/register", async (req, res) => {
   // hash psw
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
@@ -32,7 +29,7 @@ router.post("/register", registerValidator, async (req, res) => {
 
 // login
 // public route
-router.post("/login", loginValidator, async (req, res) => {
+router.post("/login", async (req, res) => {
   // check existance
   const user = await User.findOne({ email: req.body.email });
   if (!user) return res.status(400).send("invalid credentials");
@@ -69,15 +66,5 @@ router.put("/edit", verifyAuth, (req, res) => {
     .then((modifiedUser) => res.status(200).send(modifiedUser))
     .catch((err) => console.log(err));
 });
-
-// facebook
-router.get("/auth/facebook", passport.authenticate("facebook"));
-router.get(
-  "/auth/facebook/callback",
-  passport.authenticate("facebook"),
-  (req, res) => {
-    res.redirect("/profile");
-  }
-);
 
 module.exports = router;

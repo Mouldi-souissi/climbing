@@ -12,13 +12,12 @@ function CommentCard(props) {
   const [subComment, setSubComment] = useState("");
   const { id } = useParams();
 
-  const handleEnter = (e) => {
-    if (e.charCode === 13) {
-      const copy = subComment;
-      addSubComment(id, _id, { comment: copy });
-      setSubComment("");
-      setCommentbar(false);
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const copy = subComment;
+    addSubComment(id, _id, { comment: copy });
+    setSubComment("");
+    setCommentbar(false);
   };
 
   // checking if user is the owner of the comment
@@ -61,21 +60,19 @@ function CommentCard(props) {
           </div>
 
           {showCommentbar && (
-            <div className="mt-2 d-flex align-items-center">
+            <form
+              className="mt-2 d-flex align-items-center"
+              onSubmit={handleSubmit}
+            >
               <input
                 className="form-control mr-3"
                 onChange={(e) => setSubComment(e.target.value)}
-                onKeyPress={handleEnter}
                 value={subComment}
               />
-              <button
-                className="btn btn-primary btn-sm"
-                onClick={() => addSubComment(id, _id, { comment: subComment })}
-              >
-                <i className="fa fa-pencil d-inline mr-1"></i>
+              <button className="btn btn-primary btn-sm" type="submit">
                 Share
               </button>
-            </div>
+            </form>
           )}
 
           <hr />
@@ -111,7 +108,6 @@ function CommentCard(props) {
                 className="dropdown-item btn"
                 onClick={() => deleteCommentByOwner(id, _id)}
               >
-                <i className="fa fa-trash-o mr-2 pb-2" />
                 Delete comment
               </div>
             </div>

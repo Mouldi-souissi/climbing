@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const Post = require("../models/Post");
-// const postValidator = require("../validators/postValidator");
 const verifyAuth = require("../permissions/verifyAuth");
 const verifyOwner = require("../permissions/verifyOwner");
 
@@ -193,7 +192,7 @@ router.put("/addSubComment:id/:commentId", verifyAuth, async (req, res) => {
 router.put(
   "/deleteComment/:id/:commentId",
   verifyAuth,
-  verifyOwner,
+  // verifyOwner,
   async (req, res) => {
     const deletedComment = await Post.findByIdAndUpdate(
       req.params.id,

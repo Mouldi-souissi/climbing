@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import BlogCard from "../components/BlogCard";
 import Pagination from "../components/Pagination";
 import { PostsContext } from "../contexts/PostsContext";
@@ -6,12 +6,8 @@ import BlogSidebar from "../components/BlogSidebar";
 import SearchBar from "../components/SearchBar";
 
 function Blog() {
-  const { posts, getAllPostes } = useContext(PostsContext);
+  const { posts } = useContext(PostsContext);
   const [searchResult, setSearchResut] = useState("");
-
-  useEffect(() => {
-    getAllPostes();
-  }, [getAllPostes]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);

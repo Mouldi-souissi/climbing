@@ -15,9 +15,7 @@ import {
 import { FacebookIcon, TelegramIcon, WhatsappIcon } from "react-share";
 
 function BlogDetails() {
-  const { posts, getAllPostes, getPostById, post, likePost } = useContext(
-    PostsContext
-  );
+  const { posts, getPostById, post, likePost } = useContext(PostsContext);
   const { id } = useParams();
   const location = useLocation().pathname;
 
@@ -33,16 +31,12 @@ function BlogDetails() {
 
   useEffect(() => {
     getPostById(id);
-    getAllPostes();
     //  html to text
     let content = document.getElementById(post._id);
     if (content) {
       content.innerHTML = post.content;
     }
-
-    //
-    // showLikers(post.likes);
-  }, [post._id, post.content, id, getPostById, getAllPostes]);
+  }, [id]);
 
   // calc comment
   const calcComments = (main) => {
@@ -175,7 +169,7 @@ function BlogDetails() {
                   <div
                     className="dropdown-item btn"
                     data-toggle="modal"
-                    data-target={`#${post.title}`}
+                    data-target="#delete-post"
                   >
                     <i className="fa fa-trash-o mr-2 pb-2" />
                     Delete Post
@@ -185,10 +179,10 @@ function BlogDetails() {
             )}
           </div>
           {/* show likers */}
-          {showLikers(post.likes).map((like) =>
+          {showLikers(post.likes).map((like, i) =>
             like._id === "users" ? (
               <span
-                key={like._id}
+                key={i}
                 style={{ fontSize: "13px", cursor: "pointer" }}
                 data-toggle="modal"
                 data-target="#staticBackdrop"
